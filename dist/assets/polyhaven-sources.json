@@ -1,0 +1,54 @@
+{
+  "source": "Poly Haven",
+  "license": "CC0-1.0",
+  "files": [
+    [
+      "forest_floor-color.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_floor/forest_floor_diff_1k.jpg"
+    ],
+    [
+      "forest_floor-normal.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_floor/forest_floor_nor_gl_1k.jpg"
+    ],
+    [
+      "forest_floor-rough.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_floor/forest_floor_rough_1k.jpg"
+    ],
+    [
+      "japanese_cedar_bark-color.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_bark/japanese_cedar_bark_diff_1k.jpg"
+    ],
+    [
+      "japanese_cedar_bark-normal.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_bark/japanese_cedar_bark_nor_gl_1k.jpg"
+    ],
+    [
+      "japanese_cedar_bark-rough.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_bark/japanese_cedar_bark_rough_1k.jpg"
+    ],
+    [
+      "japanese_cedar_planks-color.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_planks/japanese_cedar_planks_diff_1k.jpg"
+    ],
+    [
+      "japanese_cedar_planks-normal.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_planks/japanese_cedar_planks_nor_gl_1k.jpg"
+    ],
+    [
+      "japanese_cedar_planks-rough.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_cedar_planks/japanese_cedar_planks_rough_1k.jpg"
+    ],
+    [
+      "japanese_stone_wall-color.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_stone_wall/japanese_stone_wall_diff_1k.jpg"
+    ],
+    [
+      "japanese_stone_wall-normal.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_stone_wall/japanese_stone_wall_nor_gl_1k.jpg"
+    ],
+    [
+      "japanese_stone_wall-rough.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/japanese_stone_wall/japanese_stone_wall_rough_1k.jpg"
+    ]
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "errors": [],
+  "externalRequests": [],
+  "release": {
+    "revision": "3.1",
+    "end": -32.4999999999979,
+    "cherry": 132,
+    "foxes": 8,
+    "ratio": 1,
+    "samples": 4,
+    "method": "smaa",
+    "lookupsReady": true
+  },
+  "export": {
+    "width": 2560,
+    "height": 1707
+  },
+  "checks": [
+    "double-click file URL ready",
+    "entrance traversal with blossom and fox assets embedded",
+    "offline season switch",
+    "offline keyboard walking and no penetration",
+    "offline photography",
+    "2560px export",
+    "reduced motion stops automatic orbit"
+  ],
+  "state": {
+    "ready": true,
+    "version": 3,
+    "revision": "3.1",
+    "mode": "overview",
+    "season": "spring",
+    "weather": "clear",
+    "dusk": false,
+    "fps": 0,
+    "frameCap": 60,
+    "photos": 0,
+    "renderQuality": "clear",
+    "quality": "clear",
+    "aaSamples": 4,
+    "antialias": "MSAA + SMAA",
+    "resolutionLocked": true,
+    "toriiCount": 3070,
+    "senbonCount": 731,
+    "mountainCount": 2254,
+    "buildings": 382,
+    "colliders": 17379,
+    "staticInstances": 177944,
+    "trees": 1765,
+    "shops": 135,
+    "stalls": 59,
+    "routeMetres": 2343,
+    "cherryTrees": 132,
+    "mapleTrees": 34,
+    "groundPetals": 1436,
+    "foxCount": 8,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Laptop GPU (0x000025A2) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "residency": {
+      "available": true,
+      "totalMiB": 43.471885681152344,
+      "residentMiB": 42.886558532714844,
+      "dormantChunks": 10,
+      "pending": 0
+    },
+    "textures": {
+      "compressed": 0,
+      "raw": 18,
+      "gpuMiB": 0,
+      "savedMiB": 0,
+      "enabled": false
+    },
+    "streetLife": {
+      "modelsLoaded": 0,
+      "active": 0,
+      "paused": true,
+      "modelStyle": "textured-human",
+      "downloadBytes": 0,
+      "textureMiB": 0,
+      "geometryMiB": 0
+    },
+    "wildlife": {
+      "deer": 0,
+      "crows": 0,
+      "active": 0
+    },
+    "drawCalls": 244,
+    "triangles": 2951870,
+    "position": {
+      "x": -88,
+      "y": -5.508,
+      "z": 1
+    },
+    "camera": {
+      "x": -82.48,
+      "y": 78.7,
+      "z": 93
+    },
+    "pixelRatio": 1
+  }
+}

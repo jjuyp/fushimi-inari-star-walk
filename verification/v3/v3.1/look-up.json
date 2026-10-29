@@ -1,0 +1,60 @@
+{
+  "url": "http://127.0.0.1:4186",
+  "checks": [
+    "correct camera fix revision",
+    "gate mouse drag looks upward",
+    "gate upward view retains safe camera clearance",
+    "gate can look back down",
+    "hall mouse drag looks upward",
+    "hall upward view retains safe camera clearance",
+    "hall can look back down",
+    "torii mouse drag looks upward",
+    "torii upward view retains safe camera clearance",
+    "torii can look back down",
+    "tablet touch swipe looks upward",
+    "photography preserves upward angle",
+    "no runtime or WebGL errors"
+  ],
+  "views": [
+    {
+      "place": "gate",
+      "neutral": {
+        "elevation": -3.1512678732195263,
+        "boom": 8,
+        "blocked": false
+      },
+      "up": {
+        "elevation": 68.44972768499679,
+        "boom": 8,
+        "blocked": false
+      }
+    },
+    {
+      "place": "hall",
+      "neutral": {
+        "elevation": -3.1512678732195294,
+        "boom": 8,
+        "blocked": false
+      },
+      "up": {
+        "elevation": 68.4497274679399,
+        "boom": 8,
+        "blocked": false
+      }
+    },
+    {
+      "place": "torii",
+      "neutral": {
+        "elevation": -3.1512678732195374,
+        "boom": 4.7,
+        "blocked": false
+      },
+      "up": {
+        "elevation": 68.44972728375186,
+        "boom": 4.7,
+        "blocked": false
+      }
+    }
+  ],
+  "errors": []
+}

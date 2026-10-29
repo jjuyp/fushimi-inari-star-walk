@@ -1,0 +1,86 @@
+{
+  "v3.1/shop-facade-atlas.webp": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "v3.1/kyoto-inari-skyline.webp": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "forest_floor-color.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "forest_floor-normal.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "forest_floor-rough.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "granite-paving-color.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "granite-paving-height.png": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "japanese_cedar_bark-color.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "japanese_cedar_bark-normal.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "japanese_cedar_bark-rough.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "japanese_cedar_planks-color.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "japanese_cedar_planks-normal.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "japanese_cedar_planks-rough.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "japanese_stone_wall-color.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "japanese_stone_wall-normal.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "japanese_stone_wall-rough.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "roof-cypress-color.jpg": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "roof-cypress-height.png": {
+    "encodeYFlip": true,
+    "runtimeFlipY": false
+  },
+  "v3.1/mei-atlas.png": {
+    "encodeYFlip": false,
+    "runtimeFlipY": false
+  },
+  "v3.1/jordan-atlas.png": {
+    "encodeYFlip": false,
+    "runtimeFlipY": false
+  },
+  "v3.1/amara-atlas.png": {
+    "encodeYFlip": false,
+    "runtimeFlipY": false
+  }
+}

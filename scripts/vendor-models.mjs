@@ -1,0 +1,9 @@
+import * as esbuild from '../../tidepool-jelly/node_modules/esbuild/lib/main.js';
+import {copyFileSync,mkdirSync,writeFileSync} from 'node:fs';
+import path from 'node:path';
+mkdirSync('dist/vendor',{recursive:true});
+await esbuild.build({stdin:{contents:"export {Tree} from './tools/ez-tree/src/lib/tree.js'; export {default as TreeOptions} from './tools/ez-tree/src/lib/options.js'; export {loadPreset} from './tools/ez-tree/src/lib/presets/index.js';",resolveDir:process.cwd(),sourcefile:'ez-tree-vendor-entry.js'},outfile:'dist/vendor/ez-tree.js',bundle:true,format:'esm',minify:true,external:['three'],loader:{'.jpg':'dataurl','.png':'dataurl'},legalComments:'inline',plugins:[{name:'scene-texture-subset',setup(build){build.onLoad({filter:/[/\\]textures\.js$/},args=>({resolveDir:path.dirname(args.path),loader:'js',contents:`import * as THREE from 'three';import pine from './assets/leaves/pine_color.png';import oak from './assets/leaves/oak_color.png';const loader=new THREE.TextureLoader();function texture(url){const t=loader.load(url);t.colorSpace=THREE.SRGBColorSpace;return t;}const maps={pine:texture(pine),oak:texture(oak)};export function getLeafTexture(type){return maps[type]||maps.oak;}export function getBarkTexture(){throw Error('Scene uses its own Japanese cedar PBR bark');}`}));}}]});
+copyFileSync('tools/ez-tree/LICENSE','dist/vendor/EZ-TREE-LICENSE.txt');
+copyFileSync('../tidepool-jelly/node_modules/three/examples/jsm/objects/Sky.js','dist/vendor/Sky.js');
+writeFileSync('dist/vendor/GITHUB-SKILLS.txt','CloudAI-X/threejs-skills\nMIT\nCommit 0e181866f095b5f06d005133876e926515390d95\nApplied: geometry, materials, lighting, loaders, postprocessing, performance.\nhttps://github.com/CloudAI-X/threejs-skills\n');
+console.log('Vendored MIT EZ-Tree with used leaf textures; Japanese cedar PBR replaces bundled bark.');

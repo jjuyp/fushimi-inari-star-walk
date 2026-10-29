@@ -1,0 +1,6 @@
+tools/
+output/
+reference/
+*.zip
+*.tar.gz
+/.browser-profile/

@@ -1,0 +1,69 @@
+{
+  "checks": [
+    {
+      "pass": true,
+      "label": "three-car train moves on continuous railway"
+    },
+    {
+      "pass": true,
+      "label": "all three coaches have physical camera/player collision"
+    },
+    {
+      "pass": true,
+      "label": "camera sphere stays clear at 368 path orbit samples"
+    },
+    {
+      "pass": true,
+      "label": "town people geometry/textures released after leaving district"
+    },
+    {
+      "pass": true,
+      "label": "distant geometry moved out of active heap/GPU"
+    },
+    {
+      "pass": true,
+      "label": "walking/teleporting back restores nearby chunks before visibility radius"
+    },
+    {
+      "pass": true,
+      "label": "storage unavailable safely retains full geometry"
+    },
+    {
+      "pass": true,
+      "label": "no JavaScript or WebGL errors"
+    }
+  ],
+  "errors": [],
+  "data": {
+    "pathCamera": {
+      "tested": 368,
+      "fail": []
+    },
+    "mount": {
+      "residency": {
+        "available": true,
+        "totalMiB": 43.471885681152344,
+        "residentMiB": 9.300395965576172,
+        "dormantChunks": 265,
+        "pending": 0
+      },
+      "people": {
+        "modelsLoaded": 0,
+        "active": 0,
+        "paused": true,
+        "modelStyle": "textured-human",
+        "downloadBytes": 0,
+        "textureMiB": 0,
+        "geometryMiB": 0
+      },
+      "textures": {
+        "compressed": 16,
+        "raw": 2,
+        "gpuMiB": 22.83380126953125,
+        "savedMiB": 68.49953206380208,
+        "enabled": true
+      }
+    },
+    "restore": 0
+  }
+}

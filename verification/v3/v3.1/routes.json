@@ -1,0 +1,79 @@
+[
+  {
+    "from": "260121328",
+    "to": "senbon-end",
+    "metres": 84.8,
+    "maxError": 0,
+    "failures": []
+  },
+  {
+    "from": "377968455",
+    "to": "senbon-end",
+    "metres": 84.7,
+    "maxError": 0,
+    "failures": []
+  },
+  {
+    "from": "okusha",
+    "to": "kumataka",
+    "metres": 426.1,
+    "maxError": 0,
+    "failures": []
+  },
+  {
+    "from": "kumataka",
+    "to": "mitsu",
+    "metres": 216.9,
+    "maxError": 0,
+    "failures": []
+  },
+  {
+    "from": "mitsu",
+    "to": "yotsu",
+    "metres": 304,
+    "maxError": 0,
+    "failures": []
+  },
+  {
+    "from": "yotsu",
+    "to": "sannomine",
+    "metres": 169.5,
+    "maxError": 0.121,
+    "failures": []
+  },
+  {
+    "from": "sannomine",
+    "to": "ninomine",
+    "metres": 199.6,
+    "maxError": 0,
+    "failures": []
+  },
+  {
+    "from": "ninomine",
+    "to": "summit",
+    "metres": 153.4,
+    "maxError": 0,
+    "failures": []
+  },
+  {
+    "from": "summit",
+    "to": "mitsurugi",
+    "metres": 307.6,
+    "maxError": 0,
+    "failures": []
+  },
+  {
+    "from": "mitsurugi",
+    "to": "gozentani",
+    "metres": 327.9,
+    "maxError": 0,
+    "failures": []
+  },
+  {
+    "from": "gozentani",
+    "to": "yotsu",
+    "metres": 238.1,
+    "maxError": 0.601,
+    "failures": []
+  }
+]

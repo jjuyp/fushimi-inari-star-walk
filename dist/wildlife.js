@@ -1,0 +1,16 @@
+import * as THREE from 'three';
+import {GLTFLoader} from './vendor/GLTFLoader.js';
+import {clone} from './vendor/SkeletonUtils.js';
+import {asset} from './materials.js';
+export function createWildlife(scene,world){
+ const root=new THREE.Group();root.name='参道の鹿と烏';scene.add(root);const loader=new GLTFLoader(),deer=[],crows=[];let loading=null,loaded=false;const stats={deer:0,crows:0,active:0};
+ const sites=[[-112,12],[-148,-5],[-160,10],[-290,-65]],safe=[];
+ for(const [x,z]of sites){const y=world.walkHeight(x,z);if(Number.isFinite(y)&&!world.physics.collides(x,y,z))safe.push({x,y,z});}
+ async function load(){if(loading||loaded)return;loading=Promise.all([loader.loadAsync(asset('v3.1/deer.glb')),loader.loadAsync(asset('v3.1/crow.glb'))]).then(([d,c])=>{
+  for(let i=0;i<safe.length;i++){const model=clone(d.scene),box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),scale=1.3/size.y,holder=new THREE.Group();model.scale.setScalar(scale);model.position.y=-box.min.y*scale;holder.add(model);holder.position.set(safe[i].x,safe[i].y,safe[i].z);root.add(holder);const mixer=new THREE.AnimationMixer(model),idle=d.animations.find(a=>/eat|idle/i.test(a.name))||d.animations[0],walk=d.animations.find(a=>/walk/i.test(a.name))||idle;const idleAction=mixer.clipAction(idle),walkAction=mixer.clipAction(walk);idleAction.play();walkAction.play();walkAction.weight=0;deer.push({holder,model,mixer,idleAction,walkAction,base:safe[i],phase:i*2.3,x:safe[i].x,y:safe[i].y,z:safe[i].z});model.traverse(m=>{if(m.isMesh){m.castShadow=false;m.receiveShadow=true;}});}
+  const bbox=new THREE.Box3().setFromObject(c.scene),size=bbox.getSize(new THREE.Vector3()),scale=.65/Math.max(size.x,size.y,size.z);for(let i=0;i<9;i++){const bird=c.scene.clone(true);bird.scale.setScalar(scale);root.add(bird);crows.push({bird,scale,phase:i*2.4,center:i<5?{x:-80,z:8}:{x:-310,z:-65}});}stats.deer=deer.length;stats.crows=crows.length;loaded=true;
+ }).catch(e=>stats.error=e.message).finally(()=>loading=null);}
+ return{root,deer,crows,stats,update(dt,time,player,reduced,enabled=true){root.visible=enabled;if(!enabled){stats.active=0;return;}if(player.x<-20)load();let active=0;for(const a of deer){const near=Math.hypot(player.x-a.x,player.z-a.z)<100;a.holder.visible=near;if(!near)continue;active++;if(!reduced){const moving=Math.sin(time*.12+a.phase)>.2,angle=time*.09+a.phase,tx=a.base.x+Math.sin(angle)*3,tz=a.base.z+Math.cos(angle)*2,dx=tx-a.x,dz=tz-a.z,len=Math.hypot(dx,dz);if(moving&&len>.1){world.physics.move(a,dx/len*.4*dt,dz/len*.4*dt,world.walkHeight);a.holder.rotation.y=Math.atan2(dx,dz);a.walkAction.weight=1;a.idleAction.weight=0;}else{a.walkAction.weight=0;a.idleAction.weight=1;}a.mixer.update(dt);}a.holder.position.set(a.x,a.y,a.z);}
+ for(const a of crows){const near=Math.hypot(player.x-a.center.x,player.z-a.center.z)<150;a.bird.visible=near;if(!near)continue;active++;const t=reduced?a.phase:time*.18+a.phase,x=a.center.x+Math.cos(t)*16,z=a.center.z+Math.sin(t)*12,y=world.walkHeight(x,z);a.bird.position.set(x,(Number.isFinite(y)?y:0)+8+Math.sin(t*2)*1.5,z);a.bird.rotation.set(.08,-t,Math.sin(t*4)*.13);a.bird.scale.y=a.scale*(.8+Math.sin(t*8)*.2);}
+ stats.active=active;}};
+}

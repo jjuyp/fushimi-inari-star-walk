@@ -1,0 +1,5 @@
+CloudAI-X/threejs-skills
+MIT
+Commit 0e181866f095b5f06d005133876e926515390d95
+Applied: geometry, materials, lighting, loaders, postprocessing, performance.
+https://github.com/CloudAI-X/threejs-skills
