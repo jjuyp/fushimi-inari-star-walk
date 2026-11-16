@@ -7,7 +7,7 @@ const ok=(v,s)=>{if(!v)throw Error(s);checks.push(s);console.log('PASS',s)};
 try{
  const p=await browser.newPage({viewport:{width:1280,height:800},hasTouch:true});p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
  await p.goto(url);await p.waitForFunction(()=>inari.state.ready,null,{timeout:120000});
- ok(await p.evaluate(()=>inari.state.revision==='3.2.0'),'V3.2.0 ready');
+ ok(await p.evaluate(()=>inari.state.revision==='3.3.0'),'V3.3.0 ready');
  await p.locator('#journey').click();ok(await p.locator('#journeyDialog').isVisible(),'journal opens');
  for(const id of ['wash','shop','charms','fortune','tie','stone','kagura','waterfall','art','art2','art3']){
   await p.evaluate(id=>inari.pilgrimage.travel(id),id);await p.waitForFunction(()=>!inari.state.travelLoading);

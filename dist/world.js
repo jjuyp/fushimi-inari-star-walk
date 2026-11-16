@@ -36,7 +36,8 @@ export async function buildWorld(scene,M,onProgress){
   else{toriis.torii(-90,1.7,2.7,-Math.PI/2+.055,{plaque:true});toriis.torii(-42,-.9,2.35,-Math.PI/2+.055,{plaque:true});}
   for(let i=0;i<5;i++)for(const side of [-1,1])architecture.standingLantern(-83+i*11,side*8-1,.9,-Math.PI/2);
   // A low stone water basin at the real hand-washing pavilion west/north of the gate.
-  const washB=byId.get(105449723);if(washB){const bb=footprintBox(washB),b=new Building(g,'temizu basin',bb.x,terrainHeight(bb.x,bb.z),bb.z,bb.angle);b.box(M.wall,0,.8,0,3.3,1.2,1.8,0,true);b.box(M.bronze,0,1.42,0,2.9,.025,1.5);for(let i=-1;i<=1;i++){b.box(M.wood,i,1.52,0,.07,.07,2);b.sphere(M.wood,i,1.58,.35,.16,.07,.16);}}
+  // The interactive art module builds the hollow basin inside this pavilion.
+
   onProgress('鋪設實際步道與雙列千本鳥居…');
   await new Promise(r=>setTimeout(r,0));
   const senbonPaths=MAP.paths.filter(p=>p.id===260121328||p.id===377968455);let senbonCount=0;

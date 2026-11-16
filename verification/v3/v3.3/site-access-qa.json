@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "all redesigned sites have collision-safe reachable arrivals",
+    "washing completes",
+    "shrine prayer completes",
+    "all revised food accessories can be purchased and carried",
+    "no JS or WebGL errors"
+  ],
+  "errors": []
+}

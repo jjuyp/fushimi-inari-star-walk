@@ -111,3 +111,8 @@ Deployment repair, 2026-10-26: mei-atlas.ktx2 includes 40 bytes of inari_release
 巫女角色沿用本作品 CC0 Mei / MakeHuman 模型的頭部與身體，另加原創白衣、緋袴與扇；舞蹈是程序動畫，非官方神樂舞譜。籤詩、御守圖樣、攝影藝術裝置及山林之瀧為本作原創。水聲與神樂提示音以 Web Audio 即時合成，無額外音檔。夜景使用既有授權京都白晝照片調色，另加程序燈火與星空，並非實地夜景拍攝。
 
 地點與文化參考：伏見稻荷大社官方導覽 https://inari.jp/trip/map01/ 與授與品分類 https://inari.jp/grace/omamori/ （未複製官方照片、商品圖或籤文）。
+
+
+## V3.3 體驗美術
+
+御守織紋、籤筒/籤紙、食品、狐狸面具、石燈籠、手水、岩壁/瀑布與藝術裝置均由本作程式原創繪製與建模；商品目錄圖片直接從同一3D商品模型生成。巫女使用既有CC0 Mei/MakeHuman頭臉貼圖及骨骼烘焙，另搭配原創白衣緋袴與扇舞。獨立AI評審的主觀分數與圖證見verification/v3/v3.3/art-review.md。
