@@ -104,3 +104,10 @@ Not yet used by runtime. Both photographs by Kykk wiki under CC0 1.0.
 - Final human atlases were regenerated with original alpha masks and material vertex colors, with names corrected to match their GLB models. The latest mei/jordan/amara KTX2 files preserve full alpha (source alpha range 0..255) and are encoded without Y flipping. No -no_alpha flag is used for these three textures. All 12 mip levels report alpha present. Source PNG files were moved to reference/v3.1-assets and removed from runtime dist to avoid embedding unused PNG payloads.
 
 Deployment repair, 2026-10-26: mei-atlas.ktx2 includes 40 bytes of inari_release KTX2 metadata; all compressed mip payloads are unchanged (1228548 -> 1228588 bytes). This changes storage identity only, not image pixels or licensing.
+
+
+## V3.2 參拜互動
+
+巫女角色沿用本作品 CC0 Mei / MakeHuman 模型的頭部與身體，另加原創白衣、緋袴與扇；舞蹈是程序動畫，非官方神樂舞譜。籤詩、御守圖樣、攝影藝術裝置及山林之瀧為本作原創。水聲與神樂提示音以 Web Audio 即時合成，無額外音檔。夜景使用既有授權京都白晝照片調色，另加程序燈火與星空，並非實地夜景拍攝。
+
+地點與文化參考：伏見稻荷大社官方導覽 https://inari.jp/trip/map01/ 與授與品分類 https://inari.jp/grace/omamori/ （未複製官方照片、商品圖或籤文）。

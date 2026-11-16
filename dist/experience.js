@@ -12,6 +12,7 @@ import {createMusic} from './music.js';
 import {createStreetLife} from './street-life.js';
 import {createWildlife} from './wildlife.js';
 import {createTrains} from './trains.js';
+import {createPilgrimage} from './pilgrimage.js';
 import {createRitual} from './ritual.js';
 import {createCameraRig} from './camera-rig.js';
 import {createSnacks} from './snacks.js';
@@ -21,7 +22,7 @@ import {MAP,terrainHeight} from './geography.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const touchDevice=navigator.maxTouchPoints>0,mobile=innerWidth<600;
-const state={ready:false,version:3,revision:'3.1.1',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
+const state={ready:false,version:3,revision:'3.2.0',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
 window.inari={state};
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('on');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('on'),2600);}
 async function init(){
@@ -42,6 +43,7 @@ async function init(){
   const flora=createFlora(scene,M,world),foxes=createFoxes(scene,world);
   const landscape=await createLandscape(scene,lighting,M);
   const snacks=createSnacks(player,M),cameraRig=createCameraRig(world.physics),trains=createTrains(scene,world),ritual=createRitual(scene,world),streetLife=createStreetLife(scene,world),wildlife=createWildlife(scene,world),residency=createResidency(world);
+  const pilgrimage=createPilgrimage({scene,world,player,avatar,ritual,snacks,lighting,landscape,state,toast,goPlace,setMode,setTime,togglePhoto,resetInput});
   scene.traverse(o=>{for(const mat of o.material?(Array.isArray(o.material)?o.material:[o.material]):[]){if(mat.alphaTest>0&&!mat.transparent){mat.alphaToCoverage=true;mat.needsUpdate=true;}}});
   pipeline.foliageDepth=createFoliageDepth(scene,world,flora);
   const qualityLevels={clear:{label:'平滑',ratio:nativeRatio,samples:4,aa:'smaa',ao:false},fine:{label:'精緻',ratio:Math.max(nativeRatio,Math.min(3,nativeRatio*1.5)),samples:4,aa:'smaa',ao:false},smooth:{label:'流暢',ratio:1,samples:2,aa:'fxaa',ao:false}};
@@ -78,10 +80,10 @@ async function init(){
     world.trees.seasonal.forEach(mesh=>{mesh.userData.seasonalHidden=value==='winter';mesh.visible=value!=='winter';});world.seasonal.forEach(mesh=>mesh.visible=value==='winter');
     M.forest.map=value==='winter'?snowTexture:forestTexture;M.forest.normalScale.setScalar(value==='winter'?.15:.65);M.forest.color.set(value==='winter'?'#e1e5e8':value==='autumn'?'#9c8766':'#7d815b');
     M.roof.color.set('#ffffff');particleMaterial.uniforms.tint.value.set(s.particle);
-    lighting.setSeason(value);landscape.refresh();lighting.updateShadow(player.position,mode==='overview',true);
+    const wasNight=state.night;if(wasNight)pilgrimage.setNight(false);lighting.setSeason(value);landscape.refresh();if(wasNight)pilgrimage.setNight(true);lighting.updateShadow(player.position,mode==='overview',true);
   }
   const weatherNames={clear:'晴朗',cloudy:'多雲',rain:'雨景',mist:'山霧'};
-  function setWeather(value){if(!weatherNames[value])return;state.weather=value;landscape.setWeather(value);particleMaterial.uniforms.weatherKind.value=value==='rain'?1:0;$('#weather span').textContent=weatherNames[value];$('#weather').setAttribute('aria-label','天氣：'+weatherNames[value]+'，點擊切換');}
+  function setWeather(value){if(!weatherNames[value])return;const wasNight=state.night;if(wasNight)pilgrimage.setNight(false);state.weather=value;landscape.setWeather(value);if(wasNight)pilgrimage.setNight(true);particleMaterial.uniforms.weatherKind.value=value==='rain'?1:0;$('#weather span').textContent=weatherNames[value];$('#weather').setAttribute('aria-label','天氣：'+weatherNames[value]+'，點擊切換');}
   function setMode(value){
     mode=value;state.mode=value;snap=true;resetInput();cameraRig.reset();
     document.body.classList.toggle('walking',value==='walk');document.body.classList.toggle('photograph',value==='photo');
@@ -96,7 +98,7 @@ async function init(){
   function togglePhoto(){if(mode==='photo'){player.visible=true;setMode(photoReturn);return;}photoReturn=mode;const previousYaw=yaw,previousPitch=pitch;setMode('photo');yaw=previousYaw;pitch=previousPitch;}
   let travelToken=0;
   function warmPlace(){const token=++travelToken;state.travelLoading=true;$('#travelLoading').hidden=false;residency.prefetch(player.position).finally(()=>{if(token===travelToken){state.travelLoading=false;$('#travelLoading').hidden=true;}});}
-  function goPlace(id){const p=world.safePlace(id);if(!p)return;player.position.set(p.x,p.y,p.z);yaw=-Math.PI/2+.055;if(id==='torii'){const n=world.surface.nearPath(p.x,p.z);if(n.s)yaw=Math.atan2(-n.s.dx,-n.s.dz);}else if(id==='okusha')yaw=-2.27;else if(id==='tea')yaw=-Math.PI/2;else if(id==='yotsu')yaw=Math.PI/2-.18;else if(p.x>350){const n=world.surface.nearPath(p.x,p.z);if(n.s)yaw=Math.atan2(-n.s.dx,-n.s.dz);}player.rotation.y=yaw+Math.PI;setMode('walk');if(id==='gate'){pitch=-.12;walkDistance=13;}if(id==='hall'){pitch=-.18;walkDistance=5;}if(id==='jr'||id==='keihan'){const route=window.inari.districtData.DISTRICT.routes.find(r=>r.from===id),a=route.p[0],b=route.p[1];yaw=Math.atan2(a[0]-b[0],a[1]-b[1]);}if(id==='yotsu'){pitch=.08;walkDistance=6;}player.rotation.y=yaw+Math.PI;warmPlace();toast('已來到 '+world.places[id].name);}
+  function goPlace(id){pilgrimage.cancel();const p=world.safePlace(id);if(!p)return;player.position.set(p.x,p.y,p.z);yaw=-Math.PI/2+.055;if(id==='torii'){const n=world.surface.nearPath(p.x,p.z);if(n.s)yaw=Math.atan2(-n.s.dx,-n.s.dz);}else if(id==='okusha')yaw=-2.27;else if(id==='tea')yaw=-Math.PI/2;else if(id==='yotsu')yaw=Math.PI/2-.18;else if(p.x>350){const n=world.surface.nearPath(p.x,p.z);if(n.s)yaw=Math.atan2(-n.s.dx,-n.s.dz);}player.rotation.y=yaw+Math.PI;setMode('walk');if(id==='gate'){pitch=-.12;walkDistance=13;}if(id==='hall'){pitch=-.18;walkDistance=5;}if(id==='jr'||id==='keihan'){const route=window.inari.districtData.DISTRICT.routes.find(r=>r.from===id),a=route.p[0],b=route.p[1];yaw=Math.atan2(a[0]-b[0],a[1]-b[1]);}if(id==='yotsu'){pitch=.08;walkDistance=6;}player.rotation.y=yaw+Math.PI;warmPlace();toast('已來到 '+world.places[id].name);}
   function recoverPath(){
     resetInput();const candidates=[];
     for(let radius=0;radius<=9;radius+=.6)for(let i=0;i<16;i++){const a=i*Math.PI/8,n=world.surface.nearPath(player.position.x+Math.cos(a)*radius,player.position.z+Math.sin(a)*radius);if(!n.s)continue;const y=world.walkHeight(n.x,n.z);if(Number.isFinite(y)&&!world.physics.collides(n.x,y,n.z))candidates.push({x:n.x,z:n.z,y,d:Math.hypot(n.x-player.position.x,n.z-player.position.z)});}
@@ -113,9 +115,10 @@ async function init(){
   $('#rescue').onclick=recoverPath;
   $('#zoom').oninput=e=>photoRadius=Number(e.target.value);$('#showStar').onchange=e=>{player.visible=e.target.checked;avatar.shadow.visible=e.target.checked;};
   $('#quality').onclick=()=>{const next={clear:'fine',fine:'smooth',smooth:'clear'}[renderQuality];setRenderQuality(next);toast(next==='fine'?'精緻：超取樣 ＋ SMAA 輪廓平滑':next==='smooth'?'流暢：1× 解析度 ＋ FXAA':'平滑：原生解析度 ＋ SMAA 輪廓平滑');};
-  $('#light').onclick=()=>{dusk=!dusk;state.dusk=dusk;lighting.setDusk(dusk);landscape.setDusk(dusk);M.glow.emissiveIntensity=dusk?1.6:.26;$('#light span').textContent=dusk?'夕照':'日光'};
+  function setTime(value){pilgrimage.setNight(false);dusk=value==='dusk';state.dusk=dusk;state.timeOfDay=value;lighting.setDusk(dusk);landscape.setDusk(dusk);M.glow.emissiveIntensity=dusk?1.6:.26;if(value==='night')pilgrimage.setNight(true);$('#light span').textContent=value==='night'?'夜探':dusk?'夕照':'日光';}
+  $('#light').onclick=()=>setTime(state.night?'day':dusk?'night':'dusk');
   $('#weather').onclick=()=>{const values=Object.keys(weatherNames);setWeather(values[(values.indexOf(state.weather)+1)%values.length]);toast(weatherNames[state.weather]+' · 山景與光線同步變化');};
-  $('#pray').onclick=()=>{ritual.pray();toast('投下心意，搖鈴祈願。')};
+  $('#pray').onclick=()=>pilgrimage.pray();
   $('#teaBreak').onclick=()=>{resetInput();$('#teaDialog').showModal();};
   $('#goTea').onclick=()=>{$('#teaDialog').close();goPlace('tea');};
   $$('[data-snack]').forEach(button=>button.onclick=()=>{snacks.choose(button.dataset.snack);state.snack=button.dataset.snack;$('#teaDialog').close();toast(button.dataset.snack==='ice'?'抹茶霜淇淋 · 慢慢看京都山景':button.dataset.snack==='dango'?'三色糰子 · 歇一歇再出發':'已收起點心');});
@@ -148,7 +151,7 @@ async function init(){
   function shoot(){
     if(mode!=='photo')return;const ratio=renderer.getPixelRatio(),samples=pipeline.samples,size=renderer.getSize(new THREE.Vector2()),scale=Math.max(1,2560/Math.max(innerWidth,innerHeight));renderer.setPixelRatio(1);renderer.setSize(Math.round(innerWidth*scale),Math.round(innerHeight*scale),false);pipeline.setSamples(4);pipeline.resize();pipeline.render(false,true);
     const exportCanvas=document.createElement('canvas');exportCanvas.width=canvas.width;exportCanvas.height=canvas.height;const ctx=exportCanvas.getContext('2d');ctx.drawImage(canvas,0,0);renderer.setSize(size.x,size.y,false);renderer.setPixelRatio(ratio);pipeline.setSamples(samples);pipeline.resize();
-    const h=exportCanvas.height*.05;ctx.fillStyle='#f2eee4f2';ctx.fillRect(0,exportCanvas.height-h,exportCanvas.width,h);ctx.fillStyle='#2d3b31';ctx.font=`${Math.max(13,h*.34)}px serif`;ctx.fillText('稻荷・星旅  /  FUSHIMI INARI',h*.5,exportCanvas.height-h*.34);ctx.textAlign='right';ctx.fillText(seasons[season].name+' · '+(dusk?'夕照':'日光'),exportCanvas.width-h*.5,exportCanvas.height-h*.34);
+    const h=exportCanvas.height*.05;ctx.fillStyle='#f2eee4f2';ctx.fillRect(0,exportCanvas.height-h,exportCanvas.width,h);ctx.fillStyle='#2d3b31';ctx.font=`${Math.max(13,h*.34)}px serif`;ctx.fillText('稻荷・星旅  /  FUSHIMI INARI',h*.5,exportCanvas.height-h*.34);ctx.textAlign='right';ctx.fillText(seasons[season].name+' · '+(state.night?'夜探':dusk?'夕照':'日光'),exportCanvas.width-h*.5,exportCanvas.height-h*.34);
     photos.unshift({url:exportCanvas.toDataURL('image/jpeg',.9),title:seasons[season].name+' · '+$('#locationName').textContent,season:seasons[season].name});photos=photos.slice(0,6);try{localStorage.setItem('inari-postcards-v2',JSON.stringify(photos));}catch{while(photos.length>1){photos.pop();try{localStorage.setItem('inari-postcards-v2',JSON.stringify(photos));break;}catch{}}}
     state.photos=photos.length;state.lastExport={width:exportCanvas.width,height:exportCanvas.height};$('#flash').classList.remove('on');void $('#flash').offsetWidth;$('#flash').classList.add('on');toast('已收藏到旅行相簿 · 點相簿照片可下載');
   }
@@ -188,11 +191,12 @@ async function init(){
     if(now-lastPerf>1200){state.fps=Math.round(frameCount/((now-lastPerf)/1000));frameCount=0;lastPerf=now;locationUpdate();}
     let moving=false;$('#pray').hidden=mode!=='walk'||!ritual.near(player.position);trains.update(dt,player.position,reduced,mode!=='overview');ritual.update(dt);streetLife.update(dt,now/1000,player.position,reduced,mode!=='overview');wildlife.update(dt,now/1000,player.position,reduced,mode!=='overview');
     $('#teaBreak').hidden=mode!=='walk'||Math.hypot(player.position.x-world.places.yotsu.x,player.position.z-world.places.yotsu.z)>45;
-    if(mode==='walk'&&!$('dialog[open]')){let mx=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0)+joyX,mz=(keys.has('KeyS')||keys.has('ArrowDown')?1:0)-(keys.has('KeyW')||keys.has('ArrowUp')?1:0)+joyY,len=Math.hypot(mx,mz);
+    if(mode==='walk'&&!pilgrimage.busy&&!$('dialog[open]')){let mx=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0)+joyX,mz=(keys.has('KeyS')||keys.has('ArrowDown')?1:0)-(keys.has('KeyW')||keys.has('ArrowUp')?1:0)+joyY,len=Math.hypot(mx,mz);
       if(len>.06){mx/=Math.max(1,len);mz/=Math.max(1,len);const moveYaw=Math.atan2(camera.position.x-target.x,camera.position.z-target.z),dx=mx*Math.cos(moveYaw)+mz*Math.sin(moveYaw),dz=-mx*Math.sin(moveYaw)+mz*Math.cos(moveYaw),speed=joyRun||keys.has('ShiftLeft')||keys.has('ShiftRight')?6.2:3.1,oldX=player.position.x,oldZ=player.position.z;const hits=world.physics.move(player.position,dx*speed*dt,dz*speed*dt,world.walkHeight);state.collisionHits=(state.collisionHits||0)+hits;moving=Math.hypot(player.position.x-oldX,player.position.z-oldZ)>.001;
         if(moving){movePhase+=dt*speed*3;const angle=Math.atan2(dx,dz),diff=THREE.MathUtils.euclideanModulo(angle-player.rotation.y+Math.PI,Math.PI*2)-Math.PI;player.rotation.y+=diff*Math.min(1,dt*14);}}
     }
     avatar.shadow.visible=player.visible;avatar.animate(now/1000,movePhase,moving,player.position.y,reduced);
+    pilgrimage.update(dt,now/1000,mode);
     const tunnel=mode!=='overview'&&isTunnel();
     if(mode==='overview'){target.copy(fullMountain?new THREE.Vector3(560,90,-100):overviewCenter);offset.set(Math.sin(yaw)*Math.cos(pitch)*distance,Math.sin(pitch)*distance,Math.cos(yaw)*Math.cos(pitch)*distance);if(!reduced&&!pointers.size)yaw+=dt*.006;}
     else{target.copy(player.position);target.y+=tunnel?1.05:1.18;
@@ -220,7 +224,7 @@ lighting.updateShadow(player.position,mode==='overview');particles.position.set(
   }
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);pipeline.resize();if(mode==='overview'&&!fullMountain)distance=innerWidth<600?250:172;});
   setSeason('spring');setMode('overview');updateLoading('正在準備陰影與輪廓平滑…');await pipeline.ready;camera.position.set(-75,75,104);camera.lookAt(overviewCenter);await renderer.compileAsync(scene,camera);await renderer.compileAsync(pipeline.foliageDepth.scene,camera);
-  Object.assign(window.inari,{state,world,renderer,camera,player,flora,foxes,trains,ritual,streetLife,wildlife,residency,music,pipeline,landscape,lighting,recoverPath,setSeason,setWeather,setMode,goPlace,shoot,setDusk(value){if(dusk!==value)$('#light').click()},setView(valueYaw,valuePitch,valueDistance){yaw=valueYaw;pitch=valuePitch;if(mode==='overview')distance=valueDistance;else if(mode==='photo')photoRadius=valueDistance;else walkDistance=valueDistance;snap=true;},get photos(){return photos},teleport(x,z){const y=world.walkHeight(x,z);if(Number.isFinite(y)&&!world.physics.collides(x,y,z)){player.position.set(x,y,z);snap=true;return true;}return false;},get cameraTarget(){return target},setRenderQuality,setQuality(value){if(typeof value==='string')setRenderQuality(value);else{renderer.setPixelRatio(Math.max(1,Math.min(2.5,value)));pipeline.resize();}}});
+  Object.assign(window.inari,{state,world,renderer,camera,player,flora,foxes,trains,ritual,pilgrimage,setTime,streetLife,wildlife,residency,music,pipeline,landscape,lighting,recoverPath,setSeason,setWeather,setMode,goPlace,shoot,setDusk(value){if(dusk!==value)$('#light').click()},setView(valueYaw,valuePitch,valueDistance){yaw=valueYaw;pitch=valuePitch;if(mode==='overview')distance=valueDistance;else if(mode==='photo')photoRadius=valueDistance;else walkDistance=valueDistance;snap=true;},get photos(){return photos},teleport(x,z){const y=world.walkHeight(x,z);if(Number.isFinite(y)&&!world.physics.collides(x,y,z)){player.position.set(x,y,z);snap=true;return true;}return false;},get cameraTarget(){return target},setRenderQuality,setQuality(value){if(typeof value==='string')setRenderQuality(value);else{renderer.setPixelRatio(Math.max(1,Math.min(2.5,value)));pipeline.resize();}}});
   window.inari.districtData=await import('./district-data.js');
   const gl=renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info');state.gpu=debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER);
   frame(performance.now());state.ready=true;$('#loading').classList.add('ready');setTimeout(()=>$('#loading')?.remove(),1000);renderer.setAnimationLoop(frame);

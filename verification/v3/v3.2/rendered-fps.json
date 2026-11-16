@@ -1,0 +1,18 @@
+{
+  "rows": [
+    {
+      "id": "yotsu",
+      "renderedFPS": 55,
+      "drawCalls": 308,
+      "triangles": 2245576
+    },
+    {
+      "id": "gate",
+      "renderedFPS": 52,
+      "drawCalls": 460,
+      "triangles": 4104929
+    }
+  ],
+  "errors": [],
+  "scope": "RTX3050 laptop Chrome;1920x1080 DPR1;clear mode;single warmed sample per view"
+}

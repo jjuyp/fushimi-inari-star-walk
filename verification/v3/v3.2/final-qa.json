@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:4186",
+  "checks": [
+    "final release ready",
+    "prayer locks movement",
+    "complete shrine prayer",
+    "escape cancels ritual and sound",
+    "night remains through weather and season",
+    "mobile interaction and shutter do not overlap",
+    "art point opens photo mode",
+    "offline journal runs without external requests",
+    "no runtime or WebGL errors"
+  ],
+  "errors": [],
+  "perf": [
+    {
+      "place": "yotsu",
+      "p95": 20.900000000001455,
+      "drawCalls": 308,
+      "triangles": 2245576,
+      "heap": 338878571,
+      "device": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Laptop GPU (0x000025A2) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "rafCallbacksPerSecond": 103.86593661854985
+    },
+    {
+      "place": "gate",
+      "p95": 14,
+      "drawCalls": 460,
+      "triangles": 4104929,
+      "heap": 390962895,
+      "device": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Laptop GPU (0x000025A2) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "rafCallbacksPerSecond": 112.49751111701063
+    }
+  ],
+  "scope": "Chrome Windows, 1080p DPR1, high-performance GPU requested, 3 second warmed samples; simulated mobile only; JS heap is not whole-process RAM; rafCallbacksPerSecond measures display callbacks, not capped game render FPS"
+}
