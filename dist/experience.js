@@ -24,7 +24,7 @@ import {MAP,terrainHeight} from './geography.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const touchDevice=navigator.maxTouchPoints>0,mobile=innerWidth<600;
-const state={ready:false,version:3,revision:'3.5.0',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
+const state={ready:false,version:3,revision:'3.5.1',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
 window.inari={state};
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('on');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('on'),2600);}
 async function init(){

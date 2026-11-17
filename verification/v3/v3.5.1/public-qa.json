@@ -1,0 +1,35 @@
+{
+  "url": "https://fushimi-inari-star-walk.jjuyp.chatgpt.site/?v=3.5.1",
+  "checks": [
+    "V3.5.1 ready",
+    "360-degree photograph closes at identical geometry and UV",
+    "terrain perimeter completed with lightweight geometry",
+    "station-height background stays complete",
+    "mobile panorama layout has no overflow",
+    "no JavaScript/WebGL errors"
+  ],
+  "frames": [
+    0.35,
+    2.8,
+    0,
+    1.5707963267948966,
+    3.141592653589793,
+    -1.5707963267948966
+  ],
+  "result": {
+    "vertices": 386,
+    "closedPosition": true,
+    "closedUV": true,
+    "stats": {
+      "cityBuildings": 0,
+      "photoBackdrop": true,
+      "backdropTextureMiB": 21.33,
+      "backdropDegrees": 360,
+      "terrainSkirt": true,
+      "backdropExtension": "periodic-mirrored-photo"
+    }
+  },
+  "errors": [],
+  "external": [],
+  "scope": "Windows Chromium Intel low-power GPU; 1848x688 and simulated390x844, not physical iPad"
+}

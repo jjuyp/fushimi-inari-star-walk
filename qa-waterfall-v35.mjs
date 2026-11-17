@@ -9,7 +9,7 @@ try{
  await p.addInitScript(()=>{window.bootSamples=[];const timer=setInterval(()=>{const s=window.inariBoot?.state,bar=document.querySelector('#loadBar'),clip=document.querySelector('.load-fill-clip');if(s&&bar&&clip){bootSamples.push({percent:s.percent,actual:bar.getBoundingClientRect().width/clip.getBoundingClientRect().width*100,phase:s.phase,at:performance.now(),frame:getComputedStyle(document.querySelector('.fox-sprite')).backgroundPositionX});if(s.ready)clearInterval(timer);}},50)});
  await p.goto(url);await p.waitForFunction(()=>window.inari?.state.ready,null,{timeout:120000});
  data.boot=await p.evaluate(()=>({history:inariBoot.history,samples:bootSamples,gpu:inari.state.gpu}));
- ok(await p.evaluate(()=>inari.state.revision==='3.5.0'),'actual V3.5.0 startup');
+ ok(await p.evaluate(()=>inari.state.revision==='3.5.1'),'actual V3.5.1 startup');
  ok(data.boot.samples.length>5&&data.boot.samples.every((s,i,a)=>i===0||s.percent>=a[i-1].percent)&&data.boot.history.at(-1).percent===100,'real staged progress is monotonic and reaches 100');
  ok(data.boot.samples.filter(s=>s.percent<100).every(s=>Math.abs(s.percent-s.actual)<.2),'bar width agrees with actual startup percent');
  ok(new Set(data.boot.samples.map(s=>s.frame)).size>=4,'four fox animation poses observed during actual boot');
