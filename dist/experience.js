@@ -24,7 +24,7 @@ import {MAP,terrainHeight} from './geography.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const touchDevice=navigator.maxTouchPoints>0,mobile=innerWidth<600;
-const state={ready:false,version:3,revision:'3.4.0',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
+const state={ready:false,version:3,revision:'3.4.1',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
 window.inari={state};
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('on');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('on'),2600);}
 async function init(){
@@ -211,7 +211,7 @@ async function init(){
       const solved=cameraRig.solve(target,yaw,Math.max(.04,pitch),d,tunnel);offset.copy(solved.position).sub(target);
       state.cameraBoom=solved.distance;state.cameraObstructed=solved.obstructed;
     }
-    if(mode==='walk'&&pilgrimage.stats.focus){const f=pilgrimage.stats.focus;target.set(f.x,f.y+1.1,f.z);const r=f.id==='pray'?9:f.id==='kagura'?6:f.id==='waterfall'?7:4.8;if(f.id==='pray')offset.set(Math.sin(f.angle)*r+Math.cos(f.angle)*1.4,1.2,Math.cos(f.angle)*r-Math.sin(f.angle)*1.4);else if(f.id==='art3')offset.set(r,r*.24,.3);else offset.set(r*.45,r*.27,r);}
+    if(mode==='walk'&&pilgrimage.stats.focus){const f=pilgrimage.stats.focus;target.set(f.x,f.y+1.1,f.z);const r=f.id==='pray'?9:f.id==='kagura'?6:f.id==='waterfall'?7:4.8;if(f.id==='pray')offset.set(Math.sin(f.angle)*r+Math.cos(f.angle)*1.4,1.2,Math.cos(f.angle)*r-Math.sin(f.angle)*1.4);else if(f.id==='wash'&&f.cameraOffset){target.set(f.x,f.y+1.12,f.z+.8);offset.copy(f.cameraOffset);if(camera.aspect<.8){offset.x*=1.5;offset.z*=1.5;}}else if(f.id==='art3')offset.set(r,r*.24,.3);else offset.set(r*.45,r*.27,r);}
     if(snap)smoothTarget.copy(target);else smoothTarget.lerp(target,1-Math.exp(-dt*18));desired.copy(smoothTarget).add(offset);
     if(mode==='overview')desired.y=Math.max(desired.y,terrainHeight(desired.x,desired.z)+.6);
     if(snap){camera.position.copy(desired);snap=false;}else camera.position.lerp(desired,reduced?1:1-Math.exp(-dt*14));
