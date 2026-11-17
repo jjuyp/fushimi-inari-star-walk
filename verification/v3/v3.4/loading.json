@@ -1,0 +1,86 @@
+{
+  "first": {
+    "history": [
+      {
+        "phase": "下載基礎材質",
+        "percent": 6,
+        "at": 624.2000000011176
+      },
+      {
+        "phase": "依境內圖重建樓門、拜殿與本殿…",
+        "percent": 32,
+        "at": 2243.60000000149
+      },
+      {
+        "phase": "鋪設實際步道與雙列千本鳥居…",
+        "percent": 45,
+        "at": 3275.7000000011176
+      },
+      {
+        "phase": "生成杉林、枝葉與表面細節…",
+        "percent": 58,
+        "at": 3803
+      },
+      {
+        "phase": "建立四季花木",
+        "percent": 72,
+        "at": 4156.200000001118
+      },
+      {
+        "phase": "準備遠景與互動",
+        "percent": 79,
+        "at": 4199.9000000003725
+      },
+      {
+        "phase": "正在準備陰影與輪廓平滑…",
+        "percent": 88,
+        "at": 4466.200000001118
+      },
+      {
+        "phase": "預編譯光影與材質",
+        "percent": 94,
+        "at": 4497
+      },
+      {
+        "phase": "準備完成",
+        "percent": 100,
+        "at": 8088.800000000745
+      }
+    ],
+    "progress": 100,
+    "ready": true,
+    "queue": {
+      "active": 0,
+      "queued": 0,
+      "finished": 18,
+      "total": 18
+    },
+    "quality": "auto",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "preload": {
+    "street": 3,
+    "deer": 4,
+    "queue": {
+      "active": 0,
+      "queued": 0,
+      "finished": 26,
+      "total": 26
+    }
+  },
+  "panorama": {
+    "width": 4096,
+    "queue": {
+      "active": 0,
+      "queued": 0,
+      "finished": 27,
+      "total": 27
+    }
+  },
+  "mobile": {
+    "page": 390,
+    "width": 390,
+    "ready": 100
+  },
+  "errors": []
+}

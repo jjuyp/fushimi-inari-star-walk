@@ -1,0 +1,305 @@
+{
+  "url": "http://127.0.0.1:4187",
+  "readyMs": 8344.6312,
+  "initial": {
+    "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "resources": [
+      {
+        "name": "style.css",
+        "bytes": 27410
+      },
+      {
+        "name": "experience.js",
+        "bytes": 35296
+      },
+      {
+        "name": "materials.js",
+        "bytes": 5461
+      },
+      {
+        "name": "world.js",
+        "bytes": 19729
+      },
+      {
+        "name": "three.module.js",
+        "bytes": 603113
+      },
+      {
+        "name": "rendering.js",
+        "bytes": 10072
+      },
+      {
+        "name": "player.js",
+        "bytes": 2958
+      },
+      {
+        "name": "flora.js",
+        "bytes": 8871
+      },
+      {
+        "name": "foxes.js",
+        "bytes": 6398
+      },
+      {
+        "name": "landscape.js",
+        "bytes": 5561
+      },
+      {
+        "name": "textures.js",
+        "bytes": 2329
+      },
+      {
+        "name": "residency.js",
+        "bytes": 4464
+      },
+      {
+        "name": "music.js",
+        "bytes": 1326
+      },
+      {
+        "name": "street-life.js",
+        "bytes": 9009
+      },
+      {
+        "name": "wildlife.js",
+        "bytes": 3233
+      },
+      {
+        "name": "trains.js",
+        "bytes": 3984
+      },
+      {
+        "name": "pilgrimage.js",
+        "bytes": 32514
+      },
+      {
+        "name": "ritual.js",
+        "bytes": 3150
+      },
+      {
+        "name": "camera-rig.js",
+        "bytes": 2701
+      },
+      {
+        "name": "snacks.js",
+        "bytes": 1254
+      },
+      {
+        "name": "foliage-depth.js",
+        "bytes": 2215
+      },
+      {
+        "name": "geography.js",
+        "bytes": 6193
+      },
+      {
+        "name": "Sky.js",
+        "bytes": 7257
+      },
+      {
+        "name": "FXAAShader.js",
+        "bytes": 6815
+      },
+      {
+        "name": "SMAAPass.js",
+        "bytes": 50405
+      },
+      {
+        "name": "physics.js",
+        "bytes": 4393
+      },
+      {
+        "name": "geometry.js",
+        "bytes": 10504
+      },
+      {
+        "name": "architecture.js",
+        "bytes": 25336
+      },
+      {
+        "name": "district.js",
+        "bytes": 16577
+      },
+      {
+        "name": "ez-tree.js",
+        "bytes": 751522
+      },
+      {
+        "name": "terrain-chunks.js",
+        "bytes": 1181
+      },
+      {
+        "name": "KTX2Loader.js",
+        "bytes": 34612
+      },
+      {
+        "name": "three.core.js",
+        "bytes": 1403455
+      },
+      {
+        "name": "BufferGeometryUtils.js",
+        "bytes": 35539
+      },
+      {
+        "name": "district-data.js",
+        "bytes": 47888
+      },
+      {
+        "name": "GLTFLoader.js",
+        "bytes": 114734
+      },
+      {
+        "name": "SkeletonUtils.js",
+        "bytes": 11062
+      },
+      {
+        "name": "pilgrimage-art.js",
+        "bytes": 21485
+      },
+      {
+        "name": "map-data.js",
+        "bytes": 449948
+      },
+      {
+        "name": "Pass.js",
+        "bytes": 4218
+      },
+      {
+        "name": "SMAAShader.js",
+        "bytes": 15002
+      },
+      {
+        "name": "WorkerPool.js",
+        "bytes": 3110
+      },
+      {
+        "name": "ktx-parse.module.js",
+        "bytes": 19932
+      },
+      {
+        "name": "zstddec.module.js",
+        "bytes": 39754
+      },
+      {
+        "name": "ColorSpaces.js",
+        "bytes": 4290
+      },
+      {
+        "name": "ktx-manifest.json",
+        "bytes": 1223
+      },
+      {
+        "name": "japanese_stone_wall-color.ktx2",
+        "bytes": 1308324
+      },
+      {
+        "name": "japanese_stone_wall-normal.ktx2",
+        "bytes": 1358115
+      },
+      {
+        "name": "japanese_stone_wall-rough.ktx2",
+        "bytes": 271882
+      },
+      {
+        "name": "japanese_cedar_bark-color.ktx2",
+        "bytes": 616663
+      },
+      {
+        "name": "japanese_cedar_bark-normal.ktx2",
+        "bytes": 656641
+      },
+      {
+        "name": "japanese_cedar_bark-rough.ktx2",
+        "bytes": 10722
+      },
+      {
+        "name": "japanese_cedar_planks-color.ktx2",
+        "bytes": 1321007
+      },
+      {
+        "name": "japanese_cedar_planks-normal.ktx2",
+        "bytes": 1149290
+      },
+      {
+        "name": "japanese_cedar_planks-rough.ktx2",
+        "bytes": 285562
+      },
+      {
+        "name": "forest_floor-color.ktx2",
+        "bytes": 1398686
+      },
+      {
+        "name": "forest_floor-normal.ktx2",
+        "bytes": 1344980
+      },
+      {
+        "name": "forest_floor-rough.ktx2",
+        "bytes": 282546
+      },
+      {
+        "name": "basis_transcoder.js",
+        "bytes": 57529
+      },
+      {
+        "name": "basis_transcoder.wasm",
+        "bytes": 527333
+      },
+      {
+        "name": "roof-cypress-color.ktx2",
+        "bytes": 1367715
+      },
+      {
+        "name": "roof-cypress-height.ktx2",
+        "bytes": 324001
+      },
+      {
+        "name": "granite-paving-color.jpg",
+        "bytes": 349786
+      },
+      {
+        "name": "granite-paving-height.png",
+        "bytes": 137044
+      },
+      {
+        "name": "japanese_cedar_planks-color.jpg",
+        "bytes": 170913
+      },
+      {
+        "name": "shop-facade-atlas.ktx2",
+        "bytes": 4989691
+      },
+      {
+        "name": "kyoto-inari-skyline.ktx2",
+        "bytes": 3941422
+      }
+    ]
+  },
+  "rows": [
+    {
+      "place": "gate",
+      "fps": 12.185215272136475,
+      "p95ms": 86.10000000149012,
+      "ratio": 1,
+      "calls": 796,
+      "triangles": 4123227
+    },
+    {
+      "place": "torii",
+      "fps": 17.92439530340967,
+      "p95ms": 58.70000000111759,
+      "ratio": 1,
+      "calls": 217,
+      "triangles": 1845885
+    },
+    {
+      "place": "yotsu",
+      "fps": 16.53525841382012,
+      "p95ms": 62.899999998509884,
+      "ratio": 1,
+      "calls": 222,
+      "triangles": 1428580
+    }
+  ],
+  "errors": [],
+  "scope": "Same installed bundled Chromium, requested low-power GPU, 1920x1080 DPR1, reduced motion, 6s settle +5s actual render intervals. GPU string determines whether integrated GPU was used."
+}

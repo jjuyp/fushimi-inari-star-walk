@@ -1,0 +1,8 @@
+// Loaded before the 3D module: the fox and progress remain visible during startup.
+(function(){
+ const history=[],state={phase:'準備互動程式',percent:1,loaded:0,total:0,ready:false,history};
+ const bar=document.querySelector('#loadBar'),runner=document.querySelector('#loadFox'),number=document.querySelector('#loadPercent'),detail=document.querySelector('#loading small'),label=document.querySelector('#loadPhase'),meter=document.querySelector('#loadMeter'),near=document.querySelector('#assetStatus');
+ function paint(){bar.style.width=state.percent+'%';runner.style.left=state.percent+'%';number.textContent=Math.floor(state.percent)+'%';label.textContent=state.phase;meter.setAttribute('aria-valuenow',Math.floor(state.percent));if(state.ready){near.hidden=state.loaded>=state.total;near.textContent='🦊 附近素材 '+state.loaded+' / '+state.total;}}
+ window.inariBoot={...state,state,history,stage(phase,percent,description=''){state.phase=phase;state.percent=Math.max(state.percent,Math.min(99,percent));detail.textContent=description||phase;history.push({phase,percent:state.percent,at:performance.now()});paint();},asset(done,total){state.loaded=done;state.total=total;if(!state.ready&&state.phase==='下載基礎材質')state.percent=Math.max(state.percent,6+done/Math.max(21,total)*23);paint();},complete(){state.ready=true;state.percent=100;state.phase='準備完成';history.push({phase:state.phase,percent:100,at:performance.now()});paint();},fail(message){state.phase='載入暫停';detail.textContent=message;paint();}};
+ paint();
+})();

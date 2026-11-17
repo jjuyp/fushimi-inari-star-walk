@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import {createAdaptiveQuality} from './adaptive-quality.js';
+import {yieldToUI,assetQueueStats} from './asset-queue.js';
 import {createMaterials} from './materials.js';
 import {buildWorld} from './world.js';
 import {createLighting,SceneRenderer} from './rendering.js';
@@ -22,7 +24,7 @@ import {MAP,terrainHeight} from './geography.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const touchDevice=navigator.maxTouchPoints>0,mobile=innerWidth<600;
-const state={ready:false,version:3,revision:'3.3.0',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
+const state={ready:false,version:3,revision:'3.4.0',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
 window.inari={state};
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('on');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('on'),2600);}
 async function init(){
@@ -30,28 +32,33 @@ async function init(){
   canvas.tabIndex=0;
   // Scene edges are multisampled in the HDR target. The final fullscreen
   // canvas blit does not need a second multisampled framebuffer.
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:false,preserveDrawingBuffer:true,powerPreference:'low-power'});
   const nativeRatio=Math.max(1,devicePixelRatio);
-  renderer.setPixelRatio(nativeRatio);renderer.setSize(innerWidth,innerHeight);
+  renderer.setPixelRatio(Math.min(1,nativeRatio));
+  const earlyGL=renderer.getContext(),earlyDebug=earlyGL.getExtension('WEBGL_debug_renderer_info');state.gpu=earlyDebug?earlyGL.getParameter(earlyDebug.UNMASKED_RENDERER_WEBGL):earlyGL.getParameter(earlyGL.RENDERER);
+  const profile={integrated:/Intel|UHD|Iris|Vega|integrated|Apple/i.test(state.gpu)};renderer.setSize(innerWidth,innerHeight);
   renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.87;
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.info.autoReset=false;
   const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.08,22000);
-  const updateLoading=text=>$('#loading small').textContent=text;
-  updateLoading('載入 PBR 木材、檜皮、石材與林地…');
+  let buildStage=0;const updateLoading=async text=>{const stages=[6,32,45,58,88];window.inariBoot?.stage(buildStage===0?'下載基礎材質':text,stages[Math.min(buildStage++,4)],text);await yieldToUI();};
+  await updateLoading('載入 PBR 木材、檜皮、石材與林地…');
   const M=await createMaterials(renderer),lighting=createLighting(scene,renderer);
   const world=await buildWorld(scene,M,updateLoading),avatar=createPlayer(scene,M),player=avatar.group,pipeline=new SceneRenderer(renderer,scene,camera);
+  window.inariBoot?.stage('建立四季花木',72);await yieldToUI();
   const flora=createFlora(scene,M,world),foxes=createFoxes(scene,world);
+  window.inariBoot?.stage('準備遠景與互動',79);await yieldToUI();
   const landscape=await createLandscape(scene,lighting,M);
   const snacks=createSnacks(player,M),cameraRig=createCameraRig(world.physics),trains=createTrains(scene,world),ritual=createRitual(scene,world),streetLife=createStreetLife(scene,world),wildlife=createWildlife(scene,world),residency=createResidency(world);
   const pilgrimage=createPilgrimage({scene,world,player,avatar,ritual,snacks,lighting,landscape,state,toast,goPlace,setMode,setTime,togglePhoto,resetInput});
   scene.traverse(o=>{for(const mat of o.material?(Array.isArray(o.material)?o.material:[o.material]):[]){if(mat.alphaTest>0&&!mat.transparent){mat.alphaToCoverage=true;mat.needsUpdate=true;}}});
   pipeline.foliageDepth=createFoliageDepth(scene,world,flora);
-  const qualityLevels={clear:{label:'平滑',ratio:nativeRatio,samples:4,aa:'smaa',ao:false},fine:{label:'精緻',ratio:Math.max(nativeRatio,Math.min(3,nativeRatio*1.5)),samples:4,aa:'smaa',ao:false},smooth:{label:'流暢',ratio:1,samples:2,aa:'fxaa',ao:false}};
-  let renderQuality='clear';try{const stored=localStorage.getItem('inari-render-quality-v23');if(qualityLevels[stored])renderQuality=stored;}catch{}
+  const adaptive=createAdaptiveQuality(renderer,pipeline,state,profile);
+  const qualityLevels={auto:{label:'自動',ratio:.8,samples:0,aa:'fxaa',ao:false},clear:{label:'平滑',ratio:nativeRatio,samples:4,aa:'smaa',ao:false},fine:{label:'精緻',ratio:Math.max(nativeRatio,Math.min(3,nativeRatio*1.5)),samples:4,aa:'smaa',ao:false},smooth:{label:'流暢',ratio:1,samples:2,aa:'fxaa',ao:false}};
+  let renderQuality='auto';try{const stored=localStorage.getItem('inari-render-quality-v34');if(qualityLevels[stored])renderQuality=stored;}catch{}
   function setRenderQuality(value,persist=true){
-    const q=qualityLevels[value];if(!q)return;renderQuality=value;renderer.setPixelRatio(q.ratio);pipeline.setSamples(q.samples);pipeline.setAntialias(q.aa);pipeline.enabled=q.ao;pipeline.resize();
-    Object.assign(state,{renderQuality:value,quality:value,aaSamples:pipeline.samples,antialias:'MSAA + '+q.aa.toUpperCase(),resolutionLocked:true});$('#quality span').textContent=q.label;$('#quality').setAttribute('aria-label','畫質：'+q.label+'，點擊切換');
-    if(persist)try{localStorage.setItem('inari-render-quality-v23',value)}catch{}
+    const q=qualityLevels[value];if(!q)return;renderQuality=value;adaptive.set(value==='auto');world.builder.integrated=value==='auto'&&profile.integrated;if(value!=='auto')renderer.setPixelRatio(q.ratio);pipeline.setSamples(value==='auto'&& !profile.integrated?2:q.samples);pipeline.setAntialias(q.aa);pipeline.enabled=q.ao;pipeline.resize();
+    Object.assign(state,{renderQuality:value,quality:value,aaSamples:pipeline.samples,antialias:'MSAA + '+q.aa.toUpperCase(),resolutionLocked:value!=='auto'});$('#quality span').textContent=q.label;$('#quality').setAttribute('aria-label','畫質：'+q.label+'，點擊切換');
+    if(persist)try{localStorage.setItem('inari-render-quality-v34',value)}catch{}
   }
   setRenderQuality(renderQuality,false);
   Object.assign(state,world.stats,flora.stats,{foxCount:foxes.count,trees:world.trees.count+flora.sites.length,colliders:world.physics.bodies.length});
@@ -114,7 +121,7 @@ async function init(){
   $('#unstuck').onclick=recoverPath;
   $('#rescue').onclick=recoverPath;
   $('#zoom').oninput=e=>photoRadius=Number(e.target.value);$('#showStar').onchange=e=>{player.visible=e.target.checked;avatar.shadow.visible=e.target.checked;};
-  $('#quality').onclick=()=>{const next={clear:'fine',fine:'smooth',smooth:'clear'}[renderQuality];setRenderQuality(next);toast(next==='fine'?'精緻：超取樣 ＋ SMAA 輪廓平滑':next==='smooth'?'流暢：1× 解析度 ＋ FXAA':'平滑：原生解析度 ＋ SMAA 輪廓平滑');};
+  $('#quality').onclick=()=>{const next={auto:'clear',clear:'fine',fine:'smooth',smooth:'auto'}[renderQuality];setRenderQuality(next);toast(next==='auto'?'自動：依內顯負載調整解析度，近處材質維持細節':next==='fine'?'精緻：超取樣 ＋ SMAA 輪廓平滑':next==='smooth'?'流暢：1× 解析度 ＋ FXAA':'平滑：原生解析度 ＋ SMAA 輪廓平滑');};
   function setTime(value){pilgrimage.setNight(false);dusk=value==='dusk';state.dusk=dusk;state.timeOfDay=value;lighting.setDusk(dusk);landscape.setDusk(dusk);M.glow.emissiveIntensity=dusk?1.6:.26;if(value==='night')pilgrimage.setNight(true);$('#light span').textContent=value==='night'?'夜探':dusk?'夕照':'日光';}
   $('#light').onclick=()=>setTime(state.night?'day':dusk?'night':'dusk');
   $('#weather').onclick=()=>{const values=Object.keys(weatherNames);setWeather(values[(values.indexOf(state.weather)+1)%values.length]);toast(weatherNames[state.weather]+' · 山景與光線同步變化');};
@@ -187,7 +194,7 @@ async function init(){
     if(document.hidden||state.travelLoading){lastTime=now;return;}
     // Keep the requested 60 FPS target instead of spending GPU on 100+ surplus frames.
     if(now<nextFrameTime-.25)return;nextFrameTime=now+1000/60-Math.max(0,now-nextFrameTime)%(1000/60);
-    const elapsed=(now-lastTime)/1000,dt=Math.min(.15,Math.max(.001,elapsed));lastTime=now;frameCount++;
+    const elapsed=(now-lastTime)/1000,dt=Math.min(.15,Math.max(.001,elapsed));lastTime=now;frameCount++;adaptive.observe(elapsed,keys.size>0||pointers.size>0||Math.hypot(joyX,joyY)>.1,!!document.querySelector('dialog[open]')||pilgrimage.busy);state.assetQueue=assetQueueStats;
     if(now-lastPerf>1200){state.fps=Math.round(frameCount/((now-lastPerf)/1000));frameCount=0;lastPerf=now;locationUpdate();}
     let moving=false;$('#pray').hidden=mode!=='walk'||!ritual.near(player.position);trains.update(dt,player.position,reduced,mode!=='overview');ritual.update(dt);streetLife.update(dt,now/1000,player.position,reduced,mode!=='overview');wildlife.update(dt,now/1000,player.position,reduced,mode!=='overview');
     $('#teaBreak').hidden=mode!=='walk'||Math.hypot(player.position.x-world.places.yotsu.x,player.position.z-world.places.yotsu.z)>45;
@@ -224,10 +231,10 @@ lighting.updateShadow(player.position,mode==='overview');particles.position.set(
     foxes.update(dt,now/1000,player.position,reduced);flora.update(camera);world.updateVisibility(camera,mode==='overview',fullMountain);residency.update(camera,mode,fullMountain);state.residency=residency.stats;state.textures=textureStats;state.streetLife=streetLife.stats;state.wildlife=wildlife.stats;renderer.info.reset();pipeline.render(mode==='overview');state.drawCalls=renderer.info.render.calls;state.triangles=renderer.info.render.triangles;state.position={x:+player.position.x.toFixed(3),y:+player.position.y.toFixed(3),z:+player.position.z.toFixed(3)};state.camera={x:+camera.position.x.toFixed(2),y:+camera.position.y.toFixed(2),z:+camera.position.z.toFixed(2)};state.pixelRatio=renderer.getPixelRatio();
   }
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);pipeline.resize();if(mode==='overview'&&!fullMountain)distance=innerWidth<600?250:172;});
-  setSeason('spring');setMode('overview');updateLoading('正在準備陰影與輪廓平滑…');await pipeline.ready;camera.position.set(-75,75,104);camera.lookAt(overviewCenter);await renderer.compileAsync(scene,camera);await renderer.compileAsync(pipeline.foliageDepth.scene,camera);
+  setSeason('spring');setMode('overview');await updateLoading('正在準備陰影與輪廓平滑…');await pipeline.ready;camera.position.set(-75,75,104);camera.lookAt(overviewCenter);world.updateVisibility(camera,true);flora.update(camera);window.inariBoot?.stage('預編譯光影與材質',94);await yieldToUI();await renderer.compileAsync(scene,camera);await renderer.compileAsync(pipeline.foliageDepth.scene,camera);
   Object.assign(window.inari,{state,world,renderer,camera,player,flora,foxes,trains,ritual,pilgrimage,setTime,streetLife,wildlife,residency,music,pipeline,landscape,lighting,recoverPath,setSeason,setWeather,setMode,goPlace,shoot,setDusk(value){if(dusk!==value)$('#light').click()},setView(valueYaw,valuePitch,valueDistance){yaw=valueYaw;pitch=valuePitch;if(mode==='overview')distance=valueDistance;else if(mode==='photo')photoRadius=valueDistance;else walkDistance=valueDistance;snap=true;},get photos(){return photos},teleport(x,z){const y=world.walkHeight(x,z);if(Number.isFinite(y)&&!world.physics.collides(x,y,z)){player.position.set(x,y,z);snap=true;return true;}return false;},get cameraTarget(){return target},setRenderQuality,setQuality(value){if(typeof value==='string')setRenderQuality(value);else{renderer.setPixelRatio(Math.max(1,Math.min(2.5,value)));pipeline.resize();}}});
   window.inari.districtData=await import('./district-data.js');
   const gl=renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info');state.gpu=debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER);
-  frame(performance.now());state.ready=true;$('#loading').classList.add('ready');setTimeout(()=>$('#loading')?.remove(),1000);renderer.setAnimationLoop(frame);
+  frame(performance.now());state.ready=true;window.inariBoot?.complete();setTimeout(()=>{if(document.hidden||player.position.x>15)return;const preload=()=>{streetLife.prefetch();wildlife.prefetch();};if('requestIdleCallback' in window)requestIdleCallback(preload,{timeout:2500});else preload();},2500);$('#loading').classList.add('ready');setTimeout(()=>$('#loading')?.remove(),1000);renderer.setAnimationLoop(frame);
 }
-init().catch(error=>{console.error(error);$('#loading')?.remove();$('#failure').hidden=false;$('#failure pre').textContent=error.stack||error.message;});
+init().catch(error=>{console.error(error);window.inariBoot?.fail(error.message);$('#loading')?.remove();$('#failure').hidden=false;$('#failure pre').textContent=error.stack||error.message;});
