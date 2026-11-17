@@ -1,0 +1,495 @@
+{
+  "checks": [
+    {
+      "pass": true,
+      "label": "actual V3.5.0 startup"
+    },
+    {
+      "pass": true,
+      "label": "real staged progress is monotonic and reaches 100"
+    },
+    {
+      "pass": true,
+      "label": "bar width agrees with actual startup percent"
+    },
+    {
+      "pass": true,
+      "label": "four fox animation poses observed during actual boot"
+    },
+    {
+      "pass": true,
+      "label": "waterfall clearing and arrival are free of building/tree collisions"
+    },
+    {
+      "pass": true,
+      "label": "approaching after input unlock plays water sound before starting meditation"
+    },
+    {
+      "pass": true,
+      "label": "procedural water animation updates near waterfall"
+    },
+    {
+      "pass": true,
+      "label": "visible settling transition lowers star and folds legs into sitting pose"
+    },
+    {
+      "pass": true,
+      "label": "star sits on meditation rock with joined palms and stable contact"
+    },
+    {
+      "pass": true,
+      "label": "gesture unlocks audible proximity waterfall noise"
+    },
+    {
+      "pass": true,
+      "label": "photography available while seated"
+    },
+    {
+      "pass": true,
+      "label": "waterfall postcard captured"
+    },
+    {
+      "pass": true,
+      "label": "Escape restores walking pose and avatar visibility"
+    },
+    {
+      "pass": true,
+      "label": "keyboard walking resumes after meditation cancel"
+    },
+    {
+      "pass": true,
+      "label": "15-second completion records visit and restores walking"
+    },
+    {
+      "pass": true,
+      "label": "travelling cancels meditation and restores avatar"
+    },
+    {
+      "pass": true,
+      "label": "distant waterfall simulation is stopped"
+    },
+    {
+      "pass": true,
+      "label": "distant water sound fades to silence and audio suspends"
+    },
+    {
+      "pass": true,
+      "label": "mobile waterfall dialog fits viewport"
+    },
+    {
+      "pass": true,
+      "label": "mobile tap begins seated meditation"
+    },
+    {
+      "pass": true,
+      "label": "pool reflections dim with night lighting"
+    },
+    {
+      "pass": true,
+      "label": "no JavaScript/WebGL errors"
+    }
+  ],
+  "errors": [],
+  "data": {
+    "url": "http://127.0.0.1:4186",
+    "boot": {
+      "history": [
+        {
+          "phase": "下載基礎材質",
+          "percent": 6,
+          "at": 1728.2999999970198
+        },
+        {
+          "phase": "依境內圖重建樓門、拜殿與本殿…",
+          "percent": 32,
+          "at": 2581.89999999851
+        },
+        {
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "percent": 45,
+          "at": 3503.39999999851
+        },
+        {
+          "phase": "生成杉林、枝葉與表面細節…",
+          "percent": 58,
+          "at": 3926
+        },
+        {
+          "phase": "建立四季花木",
+          "percent": 72,
+          "at": 4214.89999999851
+        },
+        {
+          "phase": "準備遠景與互動",
+          "percent": 79,
+          "at": 4302.39999999851
+        },
+        {
+          "phase": "正在準備陰影與輪廓平滑…",
+          "percent": 88,
+          "at": 4548.099999997765
+        },
+        {
+          "phase": "預編譯光影與材質",
+          "percent": 94,
+          "at": 4571.699999999255
+        },
+        {
+          "phase": "準備完成",
+          "percent": 100,
+          "at": 8186.29999999702
+        }
+      ],
+      "samples": [
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 110.39999999850988,
+          "frame": "0px"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 111.5,
+          "frame": "0px"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 1742.5,
+          "frame": "0px"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 1783.3999999985099,
+          "frame": "0px"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 2011.699999999255,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 2063.599999997765,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 2113.599999997765,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 8.19047619047619,
+          "actual": 8.189592088481884,
+          "phase": "下載基礎材質",
+          "at": 2161.39999999851,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 12.571428571428571,
+          "actual": 12.569779840682433,
+          "phase": "下載基礎材質",
+          "at": 2211.39999999851,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 13.666666666666666,
+          "actual": 13.665349474168393,
+          "phase": "下載基礎材質",
+          "at": 2259.699999999255,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 15.857142857142856,
+          "actual": 15.856488741140312,
+          "phase": "下載基礎材質",
+          "at": 2314.2999999970198,
+          "frame": "100%"
+        },
+        {
+          "percent": 16.952380952380953,
+          "actual": 16.952058374626272,
+          "phase": "下載基礎材質",
+          "at": 2362.2999999970198,
+          "frame": "100%"
+        },
+        {
+          "percent": 21.333333333333332,
+          "actual": 21.33224612682682,
+          "phase": "下載基礎材質",
+          "at": 2411.599999997765,
+          "frame": "100%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 3506,
+          "frame": "0px"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 3596.699999999255,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 3618.2999999970198,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 3661.5,
+          "frame": "100%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 3710,
+          "frame": "100%"
+        },
+        {
+          "percent": 58,
+          "actual": 57.998285558970494,
+          "phase": "生成杉林、枝葉與表面細節…",
+          "at": 3928.199999999255,
+          "frame": "100%"
+        },
+        {
+          "percent": 72,
+          "actual": 71.9981601120659,
+          "phase": "建立四季花木",
+          "at": 4218.099999997765,
+          "frame": "0px"
+        },
+        {
+          "percent": 79,
+          "actual": 78.9980973886136,
+          "phase": "準備遠景與互動",
+          "at": 4304.79999999702,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 79,
+          "actual": 78.9980973886136,
+          "phase": "準備遠景與互動",
+          "at": 4310.199999999255,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 4572.699999999255,
+          "frame": "100%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 5278,
+          "frame": "0px"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 5309.39999999851,
+          "frame": "0px"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 5364.699999999255,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 5409.699999999255,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 5464.79999999702,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 5517.79999999702,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 5561.699999999255,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 100,
+          "actual": 100,
+          "phase": "準備完成",
+          "at": 8190.099999997765,
+          "frame": "66.6667%"
+        }
+      ],
+      "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    "arrival": {
+      "site": {
+        "x": 812.3017041593338,
+        "y": 133.4034712750289,
+        "z": -249.73994036547404,
+        "clear": true
+      },
+      "position": [
+        810.5017041593338,
+        133.3904637451172,
+        -245.83994036547404
+      ],
+      "collision": false,
+      "stats": {
+        "waterSheets": 10,
+        "mistParticles": 64,
+        "sprayParticles": 260,
+        "rocks": 38,
+        "proceduralWater": true,
+        "reflectionFaceSize": 128,
+        "reflectionFaces": 6,
+        "active": true,
+        "updates": 39,
+        "meditationSeat": true,
+        "reflectionIntensity": 1.05
+      },
+      "audio": {
+        "unlocked": true,
+        "graphReady": true,
+        "distance": 4.3,
+        "targetGain": 0.1532,
+        "contextState": "running",
+        "actualGain": 0.15306811034679413,
+        "bufferBytes": 2304000
+      }
+    },
+    "settling": [
+      {
+        "active": true,
+        "seated": false,
+        "elapsed": 0.16,
+        "seatTop": 133.8684712750289,
+        "contactGap": 0.3676,
+        "settle": 0.057,
+        "position": [
+          813.8017041593338,
+          133.92232034251936,
+          -247.83994036547404
+        ]
+      },
+      {
+        "active": true,
+        "seated": false,
+        "elapsed": 0.639,
+        "seatTop": 133.8684712750289,
+        "contactGap": 0.1488,
+        "settle": 0.62,
+        "position": [
+          813.8017041593338,
+          133.7703669872507,
+          -247.83994036547404
+        ]
+      },
+      {
+        "active": true,
+        "seated": true,
+        "elapsed": 1.25,
+        "seatTop": 133.8684712750289,
+        "contactGap": 0.0009,
+        "settle": 1,
+        "position": [
+          813.8017041593338,
+          133.66777744358512,
+          -247.83994036547404
+        ]
+      },
+      {
+        "active": true,
+        "seated": true,
+        "elapsed": 2.125,
+        "seatTop": 133.8684712750289,
+        "contactGap": -0.003,
+        "settle": 1,
+        "position": [
+          813.8017041593338,
+          133.66777744358512,
+          -247.83994036547404
+        ]
+      }
+    ],
+    "seat": {
+      "active": true,
+      "seated": true,
+      "elapsed": 2.534,
+      "seatTop": 133.8684712750289,
+      "contactGap": -0.0044,
+      "settle": 1,
+      "rig": true,
+      "position": [
+        813.8017041593338,
+        133.66777744358512,
+        -247.83994036547404
+      ],
+      "audio": {
+        "unlocked": true,
+        "graphReady": true,
+        "distance": 2.42,
+        "targetGain": 0.225,
+        "contextState": "running",
+        "actualGain": 0.2245979607105255,
+        "bufferBytes": 2304000
+      }
+    },
+    "far": {
+      "audio": {
+        "unlocked": true,
+        "graphReady": true,
+        "distance": 934.57,
+        "targetGain": 0,
+        "contextState": "suspended",
+        "actualGain": 0,
+        "bufferBytes": 2304000
+      },
+      "updates": 448
+    },
+    "night": {
+      "night": true,
+      "reflection": 0.11550000000000023
+    }
+  },
+  "scope": "Windows headless Chromium; Intel low-power GPU; mobile touch emulation is not physical iPad validation"
+}

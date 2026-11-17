@@ -24,7 +24,7 @@ import {MAP,terrainHeight} from './geography.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const touchDevice=navigator.maxTouchPoints>0,mobile=innerWidth<600;
-const state={ready:false,version:3,revision:'3.4.2',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
+const state={ready:false,version:3,revision:'3.5.0',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
 window.inari={state};
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('on');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('on'),2600);}
 async function init(){
@@ -49,7 +49,7 @@ async function init(){
   window.inariBoot?.stage('準備遠景與互動',79);await yieldToUI();
   const landscape=await createLandscape(scene,lighting,M);
   const snacks=createSnacks(player,M),cameraRig=createCameraRig(world.physics),trains=createTrains(scene,world),ritual=createRitual(scene,world),streetLife=createStreetLife(scene,world),wildlife=createWildlife(scene,world),residency=createResidency(world);
-  const pilgrimage=createPilgrimage({scene,world,player,avatar,ritual,snacks,lighting,landscape,state,toast,goPlace,setMode,setTime,togglePhoto,resetInput});
+  const pilgrimage=createPilgrimage({scene,world,player,avatar,ritual,snacks,lighting,landscape,state,toast,goPlace,setMode,setTime,togglePhoto,resetInput,flora});
   scene.traverse(o=>{for(const mat of o.material?(Array.isArray(o.material)?o.material:[o.material]):[]){if(mat.alphaTest>0&&!mat.transparent){mat.alphaToCoverage=true;mat.needsUpdate=true;}}});
   pipeline.foliageDepth=createFoliageDepth(scene,world,flora);
   const adaptive=createAdaptiveQuality(renderer,pipeline,state,profile);
@@ -202,6 +202,7 @@ async function init(){
       if(len>.06){mx/=Math.max(1,len);mz/=Math.max(1,len);const moveYaw=Math.atan2(camera.position.x-target.x,camera.position.z-target.z),dx=mx*Math.cos(moveYaw)+mz*Math.sin(moveYaw),dz=-mx*Math.sin(moveYaw)+mz*Math.cos(moveYaw),speed=joyRun||keys.has('ShiftLeft')||keys.has('ShiftRight')?6.2:3.1,oldX=player.position.x,oldZ=player.position.z;const hits=world.physics.move(player.position,dx*speed*dt,dz*speed*dt,world.walkHeight);state.collisionHits=(state.collisionHits||0)+hits;moving=Math.hypot(player.position.x-oldX,player.position.z-oldZ)>.001;
         if(moving){movePhase+=dt*speed*3;const angle=Math.atan2(dx,dz),diff=THREE.MathUtils.euclideanModulo(angle-player.rotation.y+Math.PI,Math.PI*2)-Math.PI;player.rotation.y+=diff*Math.min(1,dt*14);}}
     }
+    if(!pilgrimage.busy&&(keys.size||pointers.size||moving))pilgrimage.stats.focus=null;
     avatar.shadow.visible=player.visible;avatar.animate(now/1000,movePhase,moving,player.position.y,reduced);
     pilgrimage.update(dt,now/1000,mode);
     const tunnel=mode!=='overview'&&isTunnel();
@@ -211,7 +212,7 @@ async function init(){
       const solved=cameraRig.solve(target,yaw,Math.max(.04,pitch),d,tunnel);offset.copy(solved.position).sub(target);
       state.cameraBoom=solved.distance;state.cameraObstructed=solved.obstructed;
     }
-    if(mode==='walk'&&pilgrimage.stats.focus){const f=pilgrimage.stats.focus;target.set(f.x,f.y+1.1,f.z);const r=f.id==='pray'?9:f.id==='kagura'?6:f.id==='waterfall'?7:4.8;if(f.id==='pray')offset.set(Math.sin(f.angle)*r+Math.cos(f.angle)*1.4,1.2,Math.cos(f.angle)*r-Math.sin(f.angle)*1.4);else if(f.id==='wash'&&f.cameraOffset){target.set(f.x,f.y+1.12,f.z+.8);offset.copy(f.cameraOffset);if(camera.aspect<.8){offset.x*=1.5;offset.z*=1.5;}}else if(f.id==='art3')offset.set(r,r*.24,.3);else offset.set(r*.45,r*.27,r);}
+    if(mode==='walk'&&pilgrimage.stats.focus){const f=pilgrimage.stats.focus;target.set(f.x,f.y+1.1,f.z);const r=f.id==='pray'?9:f.id==='kagura'?6:f.id==='waterfall'?7:4.8;if(f.id==='pray')offset.set(Math.sin(f.angle)*r+Math.cos(f.angle)*1.4,1.2,Math.cos(f.angle)*r-Math.sin(f.angle)*1.4);else if(f.id==='wash'&&f.cameraOffset){target.set(f.x,f.y+1.12,f.z+.8);offset.copy(f.cameraOffset);if(camera.aspect<.8){offset.x*=1.5;offset.z*=1.5;}}else if(f.id==='waterfall'&&f.waterfallView){const view=f.waterfallView;target.set(f.x+view.cameraTarget.x,f.y+view.cameraTarget.y,f.z+view.cameraTarget.z);offset.copy(view.cameraOffset);if(camera.aspect<.8){target.x+=1.8;offset.x*=1.85;offset.z*=1.85;}}else if(f.id==='art3')offset.set(r,r*.24,.3);else offset.set(r*.45,r*.27,r);}
     if(snap)smoothTarget.copy(target);else smoothTarget.lerp(target,1-Math.exp(-dt*18));desired.copy(smoothTarget).add(offset);
     if(mode==='overview')desired.y=Math.max(desired.y,terrainHeight(desired.x,desired.z)+.6);
     if(snap){camera.position.copy(desired);snap=false;}else camera.position.lerp(desired,reduced?1:1-Math.exp(-dt*14));

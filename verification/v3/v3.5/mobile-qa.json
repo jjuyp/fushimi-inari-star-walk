@@ -1,0 +1,19 @@
+{
+  "data": {
+    "position": [
+      813.8017041593338,
+      133.66777744358512,
+      -247.83994036547404
+    ],
+    "camera": [
+      818.2017041593338,
+      136.45347127502887,
+      -232.71994036547403
+    ],
+    "overflow": false,
+    "seated": true,
+    "toast": false
+  },
+  "errors": [],
+  "scope": "390x844 Chromium simulated touch, not physical Safari/iPad"
+}

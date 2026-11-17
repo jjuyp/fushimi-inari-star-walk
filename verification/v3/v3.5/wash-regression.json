@@ -1,0 +1,166 @@
+{
+  "url": "http://127.0.0.1:4186",
+  "scope": "Intel UHD Chrome, desktop and simulated 390px mobile, not physical-device validation",
+  "checks": [
+    "left shows star at basin with articulated hands",
+    "right shows star at basin with articulated hands",
+    "mouth shows star at basin with articulated hands",
+    "handle shows star at basin with articulated hands",
+    "completion resets animation and records washing",
+    "Escape cancels and restores ladle",
+    "travel cancels and resets wash",
+    "mobile wash has no page overflow",
+    "no JS or WebGL errors"
+  ],
+  "frames": [
+    {
+      "active": true,
+      "phase": "left",
+      "flow": true,
+      "handedness": "right",
+      "elapsed": 2.043,
+      "starVisible": true,
+      "rigVisible": true,
+      "palms": [
+        {
+          "name": "左手掌",
+          "position": [
+            -0.24,
+            1.2046680821384912,
+            0.79
+          ]
+        },
+        {
+          "name": "右手掌",
+          "position": [
+            0.32,
+            1.28,
+            0.45
+          ]
+        }
+      ],
+      "distance": 1.5,
+      "collision": false,
+      "camera": {
+        "x": -22.96466052446599,
+        "y": 0.11529322309529633,
+        "z": -13.095492683871523
+      },
+      "avatarScale": 1,
+      "cameraCollision": false,
+      "waterThickness": 0.014642366290554766
+    },
+    {
+      "active": true,
+      "phase": "right",
+      "flow": true,
+      "handedness": "left",
+      "elapsed": 4.834,
+      "starVisible": true,
+      "rigVisible": true,
+      "palms": [
+        {
+          "name": "左手掌",
+          "position": [
+            -0.32,
+            1.28,
+            0.45
+          ]
+        },
+        {
+          "name": "右手掌",
+          "position": [
+            0.24,
+            1.18,
+            0.79
+          ]
+        }
+      ],
+      "distance": 1.5,
+      "collision": false,
+      "camera": {
+        "x": -22.96466052446599,
+        "y": 0.11529322309529633,
+        "z": -13.095492683871523
+      },
+      "avatarScale": 1,
+      "cameraCollision": false,
+      "waterThickness": 0.014635127637196677
+    },
+    {
+      "active": true,
+      "phase": "mouth",
+      "flow": false,
+      "handedness": "right",
+      "elapsed": 8,
+      "starVisible": true,
+      "rigVisible": true,
+      "palms": [
+        {
+          "name": "左手掌",
+          "position": [
+            -0.08000000000000002,
+            0.96,
+            0.4
+          ]
+        },
+        {
+          "name": "右手掌",
+          "position": [
+            0.38,
+            1.25,
+            0.44
+          ]
+        }
+      ],
+      "distance": 1.5,
+      "collision": false,
+      "camera": {
+        "x": -22.96466052446599,
+        "y": 0.11529322309529633,
+        "z": -13.095492683871523
+      },
+      "avatarScale": 1,
+      "cameraCollision": false,
+      "waterThickness": 0.015200271698713528
+    },
+    {
+      "active": true,
+      "phase": "handle",
+      "flow": true,
+      "handedness": "right",
+      "elapsed": 10.826,
+      "starVisible": true,
+      "rigVisible": true,
+      "palms": [
+        {
+          "name": "左手掌",
+          "position": [
+            -0.02,
+            1.12,
+            0.65
+          ]
+        },
+        {
+          "name": "右手掌",
+          "position": [
+            0.15,
+            1.28,
+            0.65
+          ]
+        }
+      ],
+      "distance": 1.5,
+      "collision": false,
+      "camera": {
+        "x": -22.96466052446599,
+        "y": 0.11529322309529633,
+        "z": -13.095492683871523
+      },
+      "avatarScale": 1,
+      "cameraCollision": false,
+      "waterThickness": 0.014961432763768927
+    }
+  ],
+  "errors": []
+}

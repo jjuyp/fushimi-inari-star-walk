@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "all loading illustration layers embedded in offline HTML",
+    "offline V3.5 startup",
+    "offline seated star, procedural water and generated proximity audio",
+    "offline cancel restores avatar",
+    "offline waterfall has no JavaScript/WebGL errors or external requests"
+  ],
+  "errors": [],
+  "external": [],
+  "scope": "Windows Chromium direct file URL; no network dependency"
+}

@@ -1,0 +1,887 @@
+{
+  "checks": [
+    {
+      "pass": true,
+      "label": "actual V3.5.0 startup"
+    },
+    {
+      "pass": true,
+      "label": "real staged progress is monotonic and reaches 100"
+    },
+    {
+      "pass": true,
+      "label": "bar width agrees with actual startup percent"
+    },
+    {
+      "pass": true,
+      "label": "four fox animation poses observed during actual boot"
+    },
+    {
+      "pass": true,
+      "label": "waterfall clearing and arrival are free of building/tree collisions"
+    },
+    {
+      "pass": true,
+      "label": "approaching after input unlock plays water sound before starting meditation"
+    },
+    {
+      "pass": true,
+      "label": "procedural water animation updates near waterfall"
+    },
+    {
+      "pass": true,
+      "label": "visible settling transition lowers star and folds legs into sitting pose"
+    },
+    {
+      "pass": true,
+      "label": "star sits on meditation rock with joined palms and stable contact"
+    },
+    {
+      "pass": true,
+      "label": "gesture unlocks audible proximity waterfall noise"
+    },
+    {
+      "pass": true,
+      "label": "photography available while seated"
+    },
+    {
+      "pass": true,
+      "label": "waterfall postcard captured"
+    },
+    {
+      "pass": true,
+      "label": "Escape restores walking pose and avatar visibility"
+    },
+    {
+      "pass": true,
+      "label": "keyboard walking resumes after meditation cancel"
+    },
+    {
+      "pass": true,
+      "label": "15-second completion records visit and restores walking"
+    },
+    {
+      "pass": true,
+      "label": "travelling cancels meditation and restores avatar"
+    },
+    {
+      "pass": true,
+      "label": "distant waterfall simulation is stopped"
+    },
+    {
+      "pass": true,
+      "label": "distant water sound fades to silence and audio suspends"
+    },
+    {
+      "pass": true,
+      "label": "mobile waterfall dialog fits viewport"
+    },
+    {
+      "pass": true,
+      "label": "mobile tap begins seated meditation"
+    },
+    {
+      "pass": true,
+      "label": "pool reflections dim with night lighting"
+    },
+    {
+      "pass": true,
+      "label": "no JavaScript/WebGL errors"
+    }
+  ],
+  "errors": [],
+  "data": {
+    "url": "https://fushimi-inari-star-walk.jjuyp.chatgpt.site/",
+    "boot": {
+      "history": [
+        {
+          "phase": "下載基礎材質",
+          "percent": 6,
+          "at": 3358
+        },
+        {
+          "phase": "依境內圖重建樓門、拜殿與本殿…",
+          "percent": 32,
+          "at": 5373.39999999851
+        },
+        {
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "percent": 45,
+          "at": 6351.099999997765
+        },
+        {
+          "phase": "生成杉林、枝葉與表面細節…",
+          "percent": 58,
+          "at": 7265.099999997765
+        },
+        {
+          "phase": "建立四季花木",
+          "percent": 72,
+          "at": 7562.099999997765
+        },
+        {
+          "phase": "準備遠景與互動",
+          "percent": 79,
+          "at": 7642.800000000745
+        },
+        {
+          "phase": "正在準備陰影與輪廓平滑…",
+          "percent": 88,
+          "at": 7944.300000000745
+        },
+        {
+          "phase": "預編譯光影與材質",
+          "percent": 94,
+          "at": 7969.39999999851
+        },
+        {
+          "phase": "準備完成",
+          "percent": 100,
+          "at": 11605.699999999255
+        }
+      ],
+      "samples": [
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2382,
+          "frame": "0px"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2430.699999999255,
+          "frame": "0px"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2478.5,
+          "frame": "0px"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2538.199999999255,
+          "frame": "0px"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2582,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2629,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2679.5,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2728.099999997765,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2783.699999999255,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2832.39999999851,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2880.89999999851,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2929.599999997765,
+          "frame": "100%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 2978.199999999255,
+          "frame": "100%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 3033.099999997765,
+          "frame": "100%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 3082.39999999851,
+          "frame": "0px"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 3131,
+          "frame": "0px"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 3179.699999999255,
+          "frame": "0px"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 3228.5,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 3279.699999999255,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 1,
+          "actual": 0.9993936732944448,
+          "phase": "準備互動程式",
+          "at": 3328.39999999851,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3399.599999997765,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3456.300000000745,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3478.300000000745,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3528.800000000745,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3579.300000000745,
+          "frame": "100%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3629.099999997765,
+          "frame": "100%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3679.39999999851,
+          "frame": "100%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3728.099999997765,
+          "frame": "100%"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3782.89999999851,
+          "frame": "0px"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3830,
+          "frame": "0px"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3880.89999999851,
+          "frame": "0px"
+        },
+        {
+          "percent": 6,
+          "actual": 5.998452821509963,
+          "phase": "下載基礎材質",
+          "at": 3929.800000000745,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 8.19047619047619,
+          "actual": 8.189592088481884,
+          "phase": "下載基礎材質",
+          "at": 3978.5,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 9.285714285714285,
+          "actual": 9.285161721967844,
+          "phase": "下載基礎材質",
+          "at": 4029.599999997765,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 9.285714285714285,
+          "actual": 9.285161721967844,
+          "phase": "下載基礎材質",
+          "at": 4079.39999999851,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 10.38095238095238,
+          "actual": 10.380731355453804,
+          "phase": "下載基礎材質",
+          "at": 4128.5,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 11.476190476190476,
+          "actual": 11.474210207196471,
+          "phase": "下載基礎材質",
+          "at": 4179.599999997765,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 12.571428571428571,
+          "actual": 12.569779840682433,
+          "phase": "下載基礎材質",
+          "at": 4228.599999997765,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 12.571428571428571,
+          "actual": 12.569779840682433,
+          "phase": "下載基礎材質",
+          "at": 4279.300000000745,
+          "frame": "100%"
+        },
+        {
+          "percent": 12.571428571428571,
+          "actual": 12.569779840682433,
+          "phase": "下載基礎材質",
+          "at": 4328.800000000745,
+          "frame": "100%"
+        },
+        {
+          "percent": 12.571428571428571,
+          "actual": 12.569779840682433,
+          "phase": "下載基礎材質",
+          "at": 4378.89999999851,
+          "frame": "100%"
+        },
+        {
+          "percent": 13.666666666666666,
+          "actual": 13.665349474168393,
+          "phase": "下載基礎材質",
+          "at": 4428.099999997765,
+          "frame": "0px"
+        },
+        {
+          "percent": 13.666666666666666,
+          "actual": 13.665349474168393,
+          "phase": "下載基礎材質",
+          "at": 4478.5,
+          "frame": "0px"
+        },
+        {
+          "percent": 15.857142857142856,
+          "actual": 15.856488741140312,
+          "phase": "下載基礎材質",
+          "at": 4533.699999999255,
+          "frame": "0px"
+        },
+        {
+          "percent": 15.857142857142856,
+          "actual": 15.856488741140312,
+          "phase": "下載基礎材質",
+          "at": 4579.5,
+          "frame": "0px"
+        },
+        {
+          "percent": 15.857142857142856,
+          "actual": 15.856488741140312,
+          "phase": "下載基礎材質",
+          "at": 4629.199999999255,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 15.857142857142856,
+          "actual": 15.856488741140312,
+          "phase": "下載基礎材質",
+          "at": 4679.300000000745,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 15.857142857142856,
+          "actual": 15.856488741140312,
+          "phase": "下載基礎材質",
+          "at": 4728.300000000745,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 16.952380952380953,
+          "actual": 16.952058374626272,
+          "phase": "下載基礎材質",
+          "at": 4778.300000000745,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 16.952380952380953,
+          "actual": 16.952058374626272,
+          "phase": "下載基礎材質",
+          "at": 4828.199999999255,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 19.142857142857142,
+          "actual": 19.1411068598549,
+          "phase": "下載基礎材質",
+          "at": 4880.800000000745,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 20.23809523809524,
+          "actual": 20.23667649334086,
+          "phase": "下載基礎材質",
+          "at": 4929.699999999255,
+          "frame": "100%"
+        },
+        {
+          "percent": 20.23809523809524,
+          "actual": 20.23667649334086,
+          "phase": "下載基礎材質",
+          "at": 4978.39999999851,
+          "frame": "100%"
+        },
+        {
+          "percent": 21.333333333333332,
+          "actual": 21.33224612682682,
+          "phase": "下載基礎材質",
+          "at": 5028.800000000745,
+          "frame": "100%"
+        },
+        {
+          "percent": 21.333333333333332,
+          "actual": 21.33224612682682,
+          "phase": "下載基礎材質",
+          "at": 5079.300000000745,
+          "frame": "100%"
+        },
+        {
+          "percent": 21.333333333333332,
+          "actual": 21.33224612682682,
+          "phase": "下載基礎材質",
+          "at": 5130.699999999255,
+          "frame": "0px"
+        },
+        {
+          "percent": 23.523809523809522,
+          "actual": 23.52338539379874,
+          "phase": "下載基礎材質",
+          "at": 5179.300000000745,
+          "frame": "0px"
+        },
+        {
+          "percent": 23.523809523809522,
+          "actual": 23.52338539379874,
+          "phase": "下載基礎材質",
+          "at": 5228.099999997765,
+          "frame": "0px"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6354.699999999255,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6442.099999997765,
+          "frame": "100%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6478.39999999851,
+          "frame": "0px"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6528.5,
+          "frame": "0px"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6578.199999999255,
+          "frame": "0px"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6629.099999997765,
+          "frame": "0%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6679.300000000745,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6728.699999999255,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6778.199999999255,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6829.199999999255,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6878.5,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6934.300000000745,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 6984.599999997765,
+          "frame": "100%"
+        },
+        {
+          "percent": 45,
+          "actual": 44.99989546091284,
+          "phase": "鋪設實際步道與雙列千本鳥居…",
+          "at": 7033.5,
+          "frame": "100%"
+        },
+        {
+          "percent": 58,
+          "actual": 57.998285558970494,
+          "phase": "生成杉林、枝葉與表面細節…",
+          "at": 7267.300000000745,
+          "frame": "100%"
+        },
+        {
+          "percent": 58,
+          "actual": 57.998285558970494,
+          "phase": "生成杉林、枝葉與表面細節…",
+          "at": 7281.5,
+          "frame": "0px"
+        },
+        {
+          "percent": 72,
+          "actual": 71.9981601120659,
+          "phase": "建立四季花木",
+          "at": 7565,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 79,
+          "actual": 78.9980973886136,
+          "phase": "準備遠景與互動",
+          "at": 7645.599999997765,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 79,
+          "actual": 78.9980973886136,
+          "phase": "準備遠景與互動",
+          "at": 7691.199999999255,
+          "frame": "100%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 7970.5,
+          "frame": "100%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 8672,
+          "frame": "0px"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 8682.39999999851,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 8746.099999997765,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 8789.300000000745,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 8831.599999997765,
+          "frame": "33.3333%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 8885.599999997765,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 8929.300000000745,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 94,
+          "actual": 93.99945639674674,
+          "phase": "預編譯光影與材質",
+          "at": 8981.699999999255,
+          "frame": "66.6667%"
+        },
+        {
+          "percent": 100,
+          "actual": 100,
+          "phase": "準備完成",
+          "at": 11609.099999997765,
+          "frame": "100%"
+        }
+      ],
+      "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    "arrival": {
+      "site": {
+        "x": 812.3017041593338,
+        "y": 133.4034712750289,
+        "z": -249.73994036547404,
+        "clear": true
+      },
+      "position": [
+        810.5017041593338,
+        133.3904637451172,
+        -245.83994036547404
+      ],
+      "collision": false,
+      "stats": {
+        "waterSheets": 10,
+        "mistParticles": 64,
+        "sprayParticles": 260,
+        "rocks": 38,
+        "proceduralWater": true,
+        "reflectionFaceSize": 128,
+        "reflectionFaces": 6,
+        "active": true,
+        "updates": 37,
+        "meditationSeat": true,
+        "reflectionIntensity": 1.05
+      },
+      "audio": {
+        "unlocked": true,
+        "graphReady": true,
+        "distance": 4.3,
+        "targetGain": 0.1532,
+        "contextState": "running",
+        "actualGain": 0.15304997563362122,
+        "bufferBytes": 2304000
+      }
+    },
+    "settling": [
+      {
+        "active": true,
+        "seated": false,
+        "elapsed": 0.16,
+        "seatTop": 133.8684712750289,
+        "contactGap": 0.3677,
+        "settle": 0.057,
+        "position": [
+          813.8017041593338,
+          133.92235691580407,
+          -247.83994036547404
+        ]
+      },
+      {
+        "active": true,
+        "seated": false,
+        "elapsed": 0.646,
+        "seatTop": 133.8684712750289,
+        "contactGap": 0.1452,
+        "settle": 0.629,
+        "position": [
+          813.8017041593338,
+          133.7678623328958,
+          -247.83994036547404
+        ]
+      },
+      {
+        "active": true,
+        "seated": true,
+        "elapsed": 1.257,
+        "seatTop": 133.8684712750289,
+        "contactGap": 0.0009,
+        "settle": 1,
+        "position": [
+          813.8017041593338,
+          133.66777744358512,
+          -247.83994036547404
+        ]
+      },
+      {
+        "active": true,
+        "seated": true,
+        "elapsed": 2.132,
+        "seatTop": 133.8684712750289,
+        "contactGap": -0.003,
+        "settle": 1,
+        "position": [
+          813.8017041593338,
+          133.66777744358512,
+          -247.83994036547404
+        ]
+      }
+    ],
+    "seat": {
+      "active": true,
+      "seated": true,
+      "elapsed": 2.5,
+      "seatTop": 133.8684712750289,
+      "contactGap": -0.0043,
+      "settle": 1,
+      "rig": true,
+      "position": [
+        813.8017041593338,
+        133.66777744358512,
+        -247.83994036547404
+      ],
+      "audio": {
+        "unlocked": true,
+        "graphReady": true,
+        "distance": 2.42,
+        "targetGain": 0.225,
+        "contextState": "running",
+        "actualGain": 0.22453249990940094,
+        "bufferBytes": 2304000
+      }
+    },
+    "far": {
+      "audio": {
+        "unlocked": true,
+        "graphReady": true,
+        "distance": 934.57,
+        "targetGain": 0,
+        "contextState": "suspended",
+        "actualGain": 0,
+        "bufferBytes": 2304000
+      },
+      "updates": 445
+    },
+    "night": {
+      "night": true,
+      "reflection": 0.11550000000000023
+    }
+  },
+  "scope": "Windows headless Chromium; Intel low-power GPU; mobile touch emulation is not physical iPad validation"
+}

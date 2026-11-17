@@ -1,0 +1,79 @@
+{
+  "rows": [
+    {
+      "mode": "arrival",
+      "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "fps": 31.433097794659748,
+      "p95ms": 37.900000002235174,
+      "calls": 121,
+      "triangles": 618636,
+      "ratio": 0.55,
+      "adaptive": {
+        "enabled": true,
+        "scale": 0.55,
+        "profile": "內顯",
+        "meanFrameMs": 30
+      },
+      "waterfall": {
+        "waterSheets": 10,
+        "mistParticles": 64,
+        "sprayParticles": 260,
+        "rocks": 38,
+        "proceduralWater": true,
+        "reflectionFaceSize": 128,
+        "reflectionFaces": 6,
+        "active": true,
+        "updates": 216,
+        "meditationSeat": true,
+        "reflectionIntensity": 1.05
+      },
+      "audio": {
+        "unlocked": false,
+        "graphReady": false,
+        "distance": 4.3,
+        "targetGain": 0.1532,
+        "contextState": "locked",
+        "actualGain": 0
+      }
+    },
+    {
+      "mode": "seated",
+      "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "fps": 36.81903569192235,
+      "p95ms": 28.800000000745058,
+      "calls": 129,
+      "triangles": 617018,
+      "ratio": 0.55,
+      "adaptive": {
+        "enabled": true,
+        "scale": 0.55,
+        "profile": "內顯",
+        "meanFrameMs": 30
+      },
+      "waterfall": {
+        "waterSheets": 10,
+        "mistParticles": 64,
+        "sprayParticles": 260,
+        "rocks": 38,
+        "proceduralWater": true,
+        "reflectionFaceSize": 128,
+        "reflectionFaces": 6,
+        "active": true,
+        "updates": 575,
+        "meditationSeat": true,
+        "reflectionIntensity": 1.05
+      },
+      "audio": {
+        "unlocked": true,
+        "graphReady": true,
+        "distance": 2.42,
+        "targetGain": 0.225,
+        "contextState": "running",
+        "actualGain": 0.22489811480045319,
+        "bufferBytes": 2304000
+      }
+    }
+  ],
+  "errors": [],
+  "scope": "Single Windows headless Chromium on requested Intel low-power GPU; 1920x1080 DPR1 auto mode, 5s settle +4s actual render intervals; not physical-device or RAM/VRAM reclamation measurement"
+}

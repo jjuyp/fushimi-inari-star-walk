@@ -1,0 +1,13 @@
+{
+  "revision": "3.5.0",
+  "url": "https://fushimi-inari-star-walk.jjuyp.chatgpt.site",
+  "access": "public",
+  "project_id": "appgprj_6addc86960408191bb6585ad322ec0ae",
+  "version_id": "appgprj_6addc86960408191bb6585ad322ec0ae~appgver_b61414de2b44819188d4addcc39c75b8",
+  "version_number": 15,
+  "source_commit": "c86c209144a8d80dc02921d609c6b95eec074d4c",
+  "deployment_id": "appgdep_6afc160b420c8191908b2953999eabfd",
+  "status": "succeeded",
+  "published_at": "2026-11-17T08:53:50.409687+00:00",
+  "archive_sha256": "99f03bd3031f604e81a8a8de37628f37bdb58fe7c78f454f3343ee7c1315f778"
+}

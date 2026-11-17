@@ -1,0 +1,141 @@
+{
+  "url": "http://127.0.0.1:4186",
+  "checks": [
+    "V3.5.0 scene ready",
+    "no music downloaded before explicit playback",
+    "plant borders cover station, precinct and mountain",
+    "plants preserve walkways and use four instanced groups",
+    "seven selectable walking tracks",
+    "track 0 decodes and advances",
+    "track 1 decodes and advances",
+    "track 2 decodes and advances",
+    "track 3 decodes and advances",
+    "track 4 decodes and advances",
+    "track 5 decodes and advances",
+    "track 6 decodes and advances",
+    "all seven distinct files really played",
+    "volume slider controls active music",
+    "mute stops audio",
+    "selecting while muted does not download or autoplay",
+    "mobile music controls fit",
+    "seasonal garden survives all four seasons",
+    "no JavaScript or WebGL errors"
+  ],
+  "garden": {
+    "gardenPots": 302,
+    "gardenClumps": 1439,
+    "gardenZones": {
+      "station": 339,
+      "precinct": 750,
+      "mountain": 350
+    },
+    "gardenKinds": 4,
+    "gardenVisible": 0,
+    "gardenDrawGroups": 6,
+    "gardenAtlasKiB": 1365.3333333333333,
+    "pathIntrusions": 0,
+    "pavedIntrusions": 0,
+    "kinds": [
+      {
+        "name": "參道植栽・grass",
+        "sites": 352
+      },
+      {
+        "name": "參道植栽・fern",
+        "sites": 355
+      },
+      {
+        "name": "參道植栽・shrub",
+        "sites": 371
+      },
+      {
+        "name": "參道植栽・flower",
+        "sites": 361
+      }
+    ],
+    "meshGroups": 4
+  },
+  "views": [
+    {
+      "place": "entrance",
+      "visible": 88
+    },
+    {
+      "place": "keihan",
+      "visible": 60
+    },
+    {
+      "place": "yotsu",
+      "visible": 25
+    }
+  ],
+  "tracks": [
+    {
+      "index": 0,
+      "name": "暖陽小徑｜Sunset Plains · Yoiyami",
+      "duration": 329.679977,
+      "currentTime": 0.344762,
+      "src": "sunset-plains.mp3",
+      "error": null
+    },
+    {
+      "index": 1,
+      "name": "溫泉小鎮｜Hot Springs Town · Kistol",
+      "duration": 160,
+      "currentTime": 0.215226,
+      "src": "hot-springs-town.mp3",
+      "error": null
+    },
+    {
+      "index": 2,
+      "name": "街角慢步｜peaceful town · haruta",
+      "duration": 72.888005,
+      "currentTime": 0.207848,
+      "src": "peaceful-town.mp3",
+      "error": null
+    },
+    {
+      "index": 3,
+      "name": "花開時分｜Arukas Bloom · TAD",
+      "duration": 268.225306,
+      "currentTime": 0.242774,
+      "src": "arukas-bloom.mp3",
+      "error": null
+    },
+    {
+      "index": 4,
+      "name": "暮色微光｜Deep Blue Ambient Piano · Yoiyami",
+      "duration": 234.959977,
+      "currentTime": 0.212042,
+      "src": "deep-blue-piano.mp3",
+      "error": null
+    },
+    {
+      "index": 5,
+      "name": "冬日茶香｜Yuki · AstralTempest",
+      "duration": 147.614512,
+      "currentTime": 0.255497,
+      "src": "yuki.mp3",
+      "error": null
+    },
+    {
+      "index": 6,
+      "name": "山中小歇｜Kawarayu · Yubatake",
+      "duration": 292.656463,
+      "currentTime": 0.204207,
+      "src": "kawarayu.mp3",
+      "error": null
+    }
+  ],
+  "requests": [
+    "http://127.0.0.1:4186/assets/v3.4.2/sunset-plains.mp3",
+    "http://127.0.0.1:4186/assets/v3.1/hot-springs-town.mp3",
+    "http://127.0.0.1:4186/assets/v3.4.2/peaceful-town.mp3",
+    "http://127.0.0.1:4186/assets/v3.1/arukas-bloom.mp3",
+    "http://127.0.0.1:4186/assets/v3.4.2/deep-blue-piano.mp3",
+    "http://127.0.0.1:4186/assets/v3.4.2/yuki.mp3",
+    "http://127.0.0.1:4186/assets/v3.1/kawarayu.mp3"
+  ],
+  "errors": [],
+  "scope": "Intel UHD Chrome, 1280x800 and simulated390px mobile; codec playback verified, not a subjective listening review"
+}

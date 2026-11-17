@@ -1,3 +1,7 @@
+# V3.5 additions
+
+Loading background, four-frame fox and gold progress frame: AI-generated with OpenAI image generation from the user's supplied visual reference, then optimized as WebP. The progress percentage is live, not baked into an image. Waterfall, foam, mist, pool normals, rock textures and distance-based water sound: original procedural code; no waterfall photo/video is used. The waterfall facility is a reference-inspired fictional game addition, not an official or surveyed shrine location.
+
 # V3.1 licensed assets
 
 Verified 2026-10-26. Photo derivatives remain under their stated photo licenses. These attribution notices do not imply endorsement. Runtime assets are local files, with no CDN dependency.
