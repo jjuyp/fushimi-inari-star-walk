@@ -24,7 +24,7 @@ import {MAP,terrainHeight} from './geography.js';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const touchDevice=navigator.maxTouchPoints>0,mobile=innerWidth<600;
-const state={ready:false,version:3,revision:'3.4.1',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
+const state={ready:false,version:3,revision:'3.4.2',mode:'overview',season:'spring',weather:'clear',dusk:false,fps:0,frameCap:60,photos:0};
 window.inari={state};
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('on');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('on'),2600);}
 async function init(){
@@ -163,7 +163,7 @@ async function init(){
     state.photos=photos.length;state.lastExport={width:exportCanvas.width,height:exportCanvas.height};$('#flash').classList.remove('on');void $('#flash').offsetWidth;$('#flash').classList.add('on');toast('已收藏到旅行相簿 · 點相簿照片可下載');
   }
   $('#shutter').onclick=shoot;
-  const music=createMusic($('#sound'),toast);$('#nextMusic').onclick=()=>{music.next();toast('切換下一首日式抒情曲')};$('#musicVolume').oninput=e=>music.audio.volume=Number(e.target.value);
+  const music=createMusic($('#sound'),toast);$('#nextMusic').onclick=()=>music.next();$('#previousMusic').onclick=()=>music.previous();$('#musicVolume').oninput=e=>music.setVolume(e.target.value);
   const keys=new Set(),pointers=new Map();let joyX=0,joyY=0,joyId=null,pinch=0,joyRun=false;
   function resetInput(){keys.clear();joyX=joyY=0;joyId=null;joyRun=false;$('#joystick').classList.remove('running');pointers.clear();pinch=0;$('#stick').style.transform='';}
   addEventListener('blur',resetInput);document.addEventListener('visibilitychange',()=>{if(document.hidden)resetInput()});
@@ -228,7 +228,7 @@ async function init(){
     camera.lookAt(lookTarget);state.lookElevation=THREE.MathUtils.radToDeg(Math.atan2(lookTarget.y-camera.position.y,Math.hypot(lookTarget.x-camera.position.x,lookTarget.z-camera.position.z)));
 lighting.updateShadow(player.position,mode==='overview');particles.position.set(player.position.x,Math.max(0,player.position.y),player.position.z);
     if(!reduced){for(let i=0;i<particleCount;i++){particlePositions[i*3+1]-=dt*particleSpeeds[i]*(state.weather==='rain'?9:season==='summer'?.05:season==='autumn'?1.2:.6);if(particlePositions[i*3+1]<-.5)particlePositions[i*3+1]=24;}particleGeometry.attributes.position.needsUpdate=true;}particleMaterial.uniforms.time.value=now/1000;landscape.update(reduced?0:now/1000,player.position,mode);
-    foxes.update(dt,now/1000,player.position,reduced);flora.update(camera);world.updateVisibility(camera,mode==='overview',fullMountain);residency.update(camera,mode,fullMountain);state.residency=residency.stats;state.textures=textureStats;state.streetLife=streetLife.stats;state.wildlife=wildlife.stats;renderer.info.reset();pipeline.render(mode==='overview');state.drawCalls=renderer.info.render.calls;state.triangles=renderer.info.render.triangles;state.position={x:+player.position.x.toFixed(3),y:+player.position.y.toFixed(3),z:+player.position.z.toFixed(3)};state.camera={x:+camera.position.x.toFixed(2),y:+camera.position.y.toFixed(2),z:+camera.position.z.toFixed(2)};state.pixelRatio=renderer.getPixelRatio();
+    foxes.update(dt,now/1000,player.position,reduced);flora.update(camera);state.garden=flora.garden.stats;world.updateVisibility(camera,mode==='overview',fullMountain);residency.update(camera,mode,fullMountain);state.residency=residency.stats;state.textures=textureStats;state.streetLife=streetLife.stats;state.wildlife=wildlife.stats;renderer.info.reset();pipeline.render(mode==='overview');state.drawCalls=renderer.info.render.calls;state.triangles=renderer.info.render.triangles;state.position={x:+player.position.x.toFixed(3),y:+player.position.y.toFixed(3),z:+player.position.z.toFixed(3)};state.camera={x:+camera.position.x.toFixed(2),y:+camera.position.y.toFixed(2),z:+camera.position.z.toFixed(2)};state.pixelRatio=renderer.getPixelRatio();
   }
   addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);pipeline.resize();if(mode==='overview'&&!fullMountain)distance=innerWidth<600?250:172;});
   setSeason('spring');setMode('overview');await updateLoading('正在準備陰影與輪廓平滑…');await pipeline.ready;camera.position.set(-75,75,104);camera.lookAt(overviewCenter);world.updateVisibility(camera,true);flora.update(camera);window.inariBoot?.stage('預編譯光影與材質',94);await yieldToUI();await renderer.compileAsync(scene,camera);await renderer.compileAsync(pipeline.foliageDepth.scene,camera);

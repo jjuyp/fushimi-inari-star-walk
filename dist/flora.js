@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {createGroundGarden} from './ground-garden.js';
 import {MAP,insidePolygon,terrainHeight,pathSamples} from './geography.js';
 
 // Five notched petals and a palmate, serrated maple silhouette stay distinct
@@ -64,15 +65,16 @@ export function createFlora(scene,M,world){
     dummy.position.set(x,y+.085,z);dummy.rotation.set(-Math.PI/2,0,rnd()*6.28);const size=.045+rnd()*.09;dummy.scale.set(size,size,1);dummy.updateMatrix();litter.setMatrixAt(count++,dummy.matrix);
   }
   litter.count=count;litter.computeBoundingSphere();litter.receiveShadow=true;scene.add(litter);
+  const garden=createGroundGarden(scene,world,sites);
   let season='spring';
   function setSeason(value){
-    season=value;cherryMat.map=value==='spring'?atlases.blossom:value==='autumn'?atlases.maple:template.material.map;cherryMat.color.set(value==='spring'?'#fff7fc':value==='autumn'?'#e75b18':'#76a346');cherryMat.needsUpdate=true;
+    season=value;garden.setSeason(value);cherryMat.map=value==='spring'?atlases.blossom:value==='autumn'?atlases.maple:template.material.map;cherryMat.color.set(value==='spring'?'#fff7fc':value==='autumn'?'#e75b18':'#76a346');cherryMat.needsUpdate=true;
     mapleMat.color.set(value==='autumn'?'#ee641d':'#79a94c');litterMat.map=value==='autumn'?atlases.maple:atlases.petal;litterMat.color.set(value==='autumn'?'#df5c18':'#fff0f6');litterMat.needsUpdate=true;litter.visible=value==='spring'||value==='autumn';
     for(const p of meshes){p.leaves.visible=value!=='winter';p.lowLeaves.visible=value!=='winter';}
   }
   let lastLOD=-Infinity;
-  return{atlases,sites,meshes,litter,setSeason,stats:{cherryTrees:sites.filter(p=>p.kind==='cherry').length,mapleTrees:sites.filter(p=>p.kind==='maple').length,groundPetals:count},update(camera){
-    litter.visible=(season==='spring'||season==='autumn')&&camera.position.y<150;if(performance.now()-lastLOD<550)return;lastLOD=performance.now();
+  return{atlases,sites,meshes,litter,garden,setSeason,stats:{...garden.stats,cherryTrees:sites.filter(p=>p.kind==='cherry').length,mapleTrees:sites.filter(p=>p.kind==='maple').length,groundPetals:count},update(camera){
+    garden.update(camera);litter.visible=(season==='spring'||season==='autumn')&&camera.position.y<150;if(performance.now()-lastLOD<550)return;lastLOD=performance.now();
     for(const group of meshes){let near=0,far=0;for(const p of group.sites){const distance=Math.hypot(p.x-camera.position.x,p.y+4-camera.position.y,p.z-camera.position.z);if(distance>600)continue;const close=distance<(world.builder.integrated?32:65),branches=close?group.branches:group.lowBranches,leaves=close?group.leaves:group.lowLeaves,index=close?near++:far++;branches.setMatrixAt(index,p.matrix);leaves.setMatrixAt(index,p.matrix);leaves.setColorAt(index,p.color);}group.branches.count=group.leaves.count=near;group.lowBranches.count=group.lowLeaves.count=far;for(const m of [group.branches,group.leaves,group.lowBranches,group.lowLeaves]){m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;}}
   }};
 }

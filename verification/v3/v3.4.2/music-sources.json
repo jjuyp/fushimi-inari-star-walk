@@ -1,0 +1,59 @@
+[
+  {
+    "id": "sunset-plains",
+    "original": "sunset_plains.wav",
+    "download": "https://opengameart.org/sites/default/files/sunset_plains.wav",
+    "title": "Sunset Plains",
+    "artist": "Yoiyami",
+    "license": "CC0 1.0",
+    "source": "https://opengameart.org/content/sunset-plains",
+    "file": "sunset-plains.mp3",
+    "bytes": 3957012,
+    "decodeExit": 0,
+    "duration": "00:05:29.72",
+    "changes": "Loudness normalized to -22 LUFS, MP3 96kbps stereo 44.1kHz; no trimming"
+  },
+  {
+    "id": "deep-blue-piano",
+    "original": "yoiyami_core_theme_0.wav",
+    "download": "https://opengameart.org/sites/default/files/yoiyami_core_theme_0.wav",
+    "title": "Yoiyami Core Theme – Deep Blue Ambient Piano",
+    "artist": "Yoiyami",
+    "license": "CC0 1.0",
+    "source": "https://opengameart.org/content/yoiyami-core-theme-%E2%80%93-deep-blue-ambient-piano",
+    "file": "deep-blue-piano.mp3",
+    "bytes": 2820405,
+    "decodeExit": 0,
+    "duration": "00:03:55.00",
+    "changes": "Loudness normalized to -22 LUFS, MP3 96kbps stereo 44.1kHz; no trimming"
+  },
+  {
+    "id": "peaceful-town",
+    "original": "peaceful_town.mp3",
+    "download": "https://opengameart.org/sites/default/files/peaceful_town.mp3",
+    "title": "peaceful town",
+    "artist": "haruta",
+    "license": "CC0 1.0",
+    "source": "https://opengameart.org/content/peaceful-town-1",
+    "file": "peaceful-town.mp3",
+    "bytes": 875887,
+    "decodeExit": 0,
+    "duration": "00:01:12.93",
+    "changes": "Loudness normalized to -22 LUFS, MP3 96kbps stereo 44.1kHz; no trimming"
+  },
+  {
+    "id": "yuki",
+    "original": "Yuki_3.ogg",
+    "download": "https://opengameart.org/sites/default/files/Yuki_3.ogg",
+    "title": "Yuki",
+    "artist": "AstralTempest",
+    "license": "OGA-BY 3.0",
+    "source": "https://opengameart.org/content/soothing-music-pack",
+    "artist_url": "https://twitter.com/AstralTempest_",
+    "file": "yuki.mp3",
+    "bytes": 1772127,
+    "decodeExit": 0,
+    "duration": "00:02:27.64",
+    "changes": "Loudness normalized to -22 LUFS, MP3 96kbps stereo 44.1kHz; no trimming"
+  }
+]

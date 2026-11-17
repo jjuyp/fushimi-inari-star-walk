@@ -129,7 +129,7 @@ export async function buildWorld(scene,M,onProgress){
     for(const mesh of g.meshes){const sphere=mesh.isInstancedMesh?mesh.boundingSphere:mesh.geometry.boundingSphere;if(sphere)mesh.visible=(!mesh.isInstancedMesh||mesh.count>0)&&camera.position.distanceTo(sphere.center)-sphere.radius<Math.min(limit,mesh.userData.detailRange||limit);}
     trees.update(camera,wide);
   }
-  return{ritualSites:architecture.ritualSites,physics,surface,M,terrainMesh,pathMesh,trees,district,builder:g,seasonal:architecture.seasonal,buildings:architecture.registered,places:placeMap,safePlace,walkHeight,updateVisibility,
+  return{ritualSites:architecture.ritualSites,physics,surface,paving,M,terrainMesh,pathMesh,trees,district,builder:g,seasonal:architecture.seasonal,buildings:architecture.registered,places:placeMap,safePlace,walkHeight,updateVisibility,
     stats:{toriiCount:toriis.count,senbonCount,mountainCount,buildings:architecture.registered.length,colliders:physics.bodies.length,staticInstances:g.count,trees:trees.count,shops:district.shops,stalls:district.stalls,routeMetres:Math.round(MAP.routes.reduce((s,r)=>s+r.length,0))}};
 }
 

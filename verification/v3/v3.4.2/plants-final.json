@@ -1,0 +1,390 @@
+{
+  "url": "http://127.0.0.1:4186",
+  "readyMs": 7371.673,
+  "initial": {
+    "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "resources": [
+      {
+        "name": "style.css",
+        "bytes": 29469
+      },
+      {
+        "name": "loading.js",
+        "bytes": 1563
+      },
+      {
+        "name": "experience.js",
+        "bytes": 37187
+      },
+      {
+        "name": "adaptive-quality.js",
+        "bytes": 1284
+      },
+      {
+        "name": "three.module.js",
+        "bytes": 603113
+      },
+      {
+        "name": "materials.js",
+        "bytes": 5461
+      },
+      {
+        "name": "asset-queue.js",
+        "bytes": 839
+      },
+      {
+        "name": "world.js",
+        "bytes": 20917
+      },
+      {
+        "name": "rendering.js",
+        "bytes": 10072
+      },
+      {
+        "name": "player.js",
+        "bytes": 2958
+      },
+      {
+        "name": "foxes.js",
+        "bytes": 6398
+      },
+      {
+        "name": "flora.js",
+        "bytes": 9081
+      },
+      {
+        "name": "textures.js",
+        "bytes": 2388
+      },
+      {
+        "name": "landscape.js",
+        "bytes": 5926
+      },
+      {
+        "name": "residency.js",
+        "bytes": 4464
+      },
+      {
+        "name": "music.js",
+        "bytes": 3463
+      },
+      {
+        "name": "wildlife.js",
+        "bytes": 3338
+      },
+      {
+        "name": "trains.js",
+        "bytes": 3984
+      },
+      {
+        "name": "street-life.js",
+        "bytes": 9118
+      },
+      {
+        "name": "ritual.js",
+        "bytes": 3150
+      },
+      {
+        "name": "camera-rig.js",
+        "bytes": 2701
+      },
+      {
+        "name": "pilgrimage.js",
+        "bytes": 34120
+      },
+      {
+        "name": "snacks.js",
+        "bytes": 1254
+      },
+      {
+        "name": "foliage-depth.js",
+        "bytes": 2215
+      },
+      {
+        "name": "geography.js",
+        "bytes": 6193
+      },
+      {
+        "name": "BufferGeometryUtils.js",
+        "bytes": 35539
+      },
+      {
+        "name": "FXAAShader.js",
+        "bytes": 6815
+      },
+      {
+        "name": "Sky.js",
+        "bytes": 7257
+      },
+      {
+        "name": "SMAAPass.js",
+        "bytes": 50405
+      },
+      {
+        "name": "physics.js",
+        "bytes": 4393
+      },
+      {
+        "name": "geometry.js",
+        "bytes": 10504
+      },
+      {
+        "name": "architecture.js",
+        "bytes": 25336
+      },
+      {
+        "name": "ez-tree.js",
+        "bytes": 751522
+      },
+      {
+        "name": "terrain-chunks.js",
+        "bytes": 1181
+      },
+      {
+        "name": "district.js",
+        "bytes": 16577
+      },
+      {
+        "name": "KTX2Loader.js",
+        "bytes": 34612
+      },
+      {
+        "name": "ground-garden.js",
+        "bytes": 9082
+      },
+      {
+        "name": "SkeletonUtils.js",
+        "bytes": 11062
+      },
+      {
+        "name": "GLTFLoader.js",
+        "bytes": 114734
+      },
+      {
+        "name": "district-data.js",
+        "bytes": 47888
+      },
+      {
+        "name": "map-data.js",
+        "bytes": 449948
+      },
+      {
+        "name": "wash-animation.js",
+        "bytes": 6431
+      },
+      {
+        "name": "pilgrimage-art.js",
+        "bytes": 21689
+      },
+      {
+        "name": "three.core.js",
+        "bytes": 1403455
+      },
+      {
+        "name": "Pass.js",
+        "bytes": 4218
+      },
+      {
+        "name": "SMAAShader.js",
+        "bytes": 15002
+      },
+      {
+        "name": "WorkerPool.js",
+        "bytes": 3110
+      },
+      {
+        "name": "ktx-parse.module.js",
+        "bytes": 19932
+      },
+      {
+        "name": "zstddec.module.js",
+        "bytes": 39754
+      },
+      {
+        "name": "ColorSpaces.js",
+        "bytes": 4290
+      },
+      {
+        "name": "ktx-manifest.json",
+        "bytes": 1223
+      },
+      {
+        "name": "japanese_stone_wall-color.ktx2",
+        "bytes": 1308324
+      },
+      {
+        "name": "japanese_stone_wall-normal.ktx2",
+        "bytes": 1358115
+      },
+      {
+        "name": "basis_transcoder.js",
+        "bytes": 57529
+      },
+      {
+        "name": "basis_transcoder.wasm",
+        "bytes": 527333
+      },
+      {
+        "name": "japanese_stone_wall-rough.ktx2",
+        "bytes": 271882
+      },
+      {
+        "name": "japanese_cedar_bark-color.ktx2",
+        "bytes": 616663
+      },
+      {
+        "name": "japanese_cedar_bark-normal.ktx2",
+        "bytes": 656641
+      },
+      {
+        "name": "japanese_cedar_bark-rough.ktx2",
+        "bytes": 10722
+      },
+      {
+        "name": "japanese_cedar_planks-color.ktx2",
+        "bytes": 1321007
+      },
+      {
+        "name": "japanese_cedar_planks-normal.ktx2",
+        "bytes": 1149290
+      },
+      {
+        "name": "japanese_cedar_planks-rough.ktx2",
+        "bytes": 285562
+      },
+      {
+        "name": "forest_floor-color.ktx2",
+        "bytes": 1398686
+      },
+      {
+        "name": "forest_floor-normal.ktx2",
+        "bytes": 1344980
+      },
+      {
+        "name": "forest_floor-rough.ktx2",
+        "bytes": 282546
+      },
+      {
+        "name": "granite-paving-color.jpg",
+        "bytes": 349786
+      },
+      {
+        "name": "granite-paving-height.png",
+        "bytes": 137044
+      },
+      {
+        "name": "roof-cypress-color.ktx2",
+        "bytes": 1367715
+      },
+      {
+        "name": "roof-cypress-height.ktx2",
+        "bytes": 324001
+      },
+      {
+        "name": "japanese_cedar_planks-color.jpg",
+        "bytes": 170913
+      },
+      {
+        "name": "shop-facade-atlas.ktx2",
+        "bytes": 4989691
+      },
+      {
+        "name": "kyoto-preview.webp",
+        "bytes": 98294
+      }
+    ],
+    "boot": [
+      {
+        "phase": "下載基礎材質",
+        "percent": 6,
+        "at": 1729.3999999985099
+      },
+      {
+        "phase": "依境內圖重建樓門、拜殿與本殿…",
+        "percent": 32,
+        "at": 2472.599999997765
+      },
+      {
+        "phase": "鋪設實際步道與雙列千本鳥居…",
+        "percent": 45,
+        "at": 3311.5
+      },
+      {
+        "phase": "生成杉林、枝葉與表面細節…",
+        "percent": 58,
+        "at": 3700
+      },
+      {
+        "phase": "建立四季花木",
+        "percent": 72,
+        "at": 3964.699999999255
+      },
+      {
+        "phase": "準備遠景與互動",
+        "percent": 79,
+        "at": 4036.099999997765
+      },
+      {
+        "phase": "正在準備陰影與輪廓平滑…",
+        "percent": 88,
+        "at": 4193.29999999702
+      },
+      {
+        "phase": "預編譯光影與材質",
+        "percent": 94,
+        "at": 4219.699999999255
+      },
+      {
+        "phase": "準備完成",
+        "percent": 100,
+        "at": 7366.79999999702
+      }
+    ]
+  },
+  "rows": [
+    {
+      "place": "gate",
+      "fps": 25.324088031353632,
+      "p95ms": 43.69999999925494,
+      "ratio": 0.55,
+      "calls": 644,
+      "triangles": 4198211,
+      "adaptive": {
+        "enabled": true,
+        "scale": 0.55,
+        "profile": "內顯",
+        "meanFrameMs": 38.4
+      }
+    },
+    {
+      "place": "torii",
+      "fps": 44.92308926461181,
+      "p95ms": 24.600000001490116,
+      "ratio": 0.55,
+      "calls": 223,
+      "triangles": 1756359,
+      "adaptive": {
+        "enabled": true,
+        "scale": 0.55,
+        "profile": "內顯",
+        "meanFrameMs": 22.2
+      }
+    },
+    {
+      "place": "yotsu",
+      "fps": 43.14929656612522,
+      "p95ms": 25.100000001490116,
+      "ratio": 0.55,
+      "calls": 230,
+      "triangles": 1312614,
+      "adaptive": {
+        "enabled": true,
+        "scale": 0.55,
+        "profile": "內顯",
+        "meanFrameMs": 23.2
+      }
+    }
+  ],
+  "errors": [],
+  "scope": "Same installed bundled Chromium, requested low-power GPU, 1920x1080 DPR1, reduced motion, 6s settle +5s actual render intervals. GPU string determines whether integrated GPU was used."
+}
