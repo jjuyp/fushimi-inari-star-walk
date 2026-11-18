@@ -1,0 +1,2647 @@
+{
+  "checks": [
+    {
+      "name": "All visible merchants have cached public approaches",
+      "pass": true,
+      "detail": {
+        "total": 191,
+        "cached": 191
+      }
+    },
+    {
+      "name": "Actual physics walks each merchant approach",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Every merchant opens its own matching catalogue",
+      "pass": true,
+      "detail": {
+        "count": 191,
+        "failed": []
+      }
+    },
+    {
+      "name": "Purchase senbei",
+      "pass": true,
+      "detail": {
+        "shop": "market-store-162036102",
+        "item": "senbei",
+        "price": 250
+      }
+    },
+    {
+      "name": "Purchase tofu",
+      "pass": true,
+      "detail": {
+        "shop": "market-store-162036115",
+        "item": "tofu",
+        "price": 380
+      }
+    },
+    {
+      "name": "Purchase matcha",
+      "pass": true,
+      "detail": {
+        "shop": "market-store-295577531",
+        "item": "matcha",
+        "price": 450
+      }
+    },
+    {
+      "name": "Purchase figurine",
+      "pass": true,
+      "detail": {
+        "shop": "market-store-296201560",
+        "item": "figurine",
+        "price": 650
+      }
+    },
+    {
+      "name": "Purchase sushi",
+      "pass": true,
+      "detail": {
+        "shop": "market-store-295577541",
+        "item": "sushi",
+        "price": 350
+      }
+    },
+    {
+      "name": "Purchase mask",
+      "pass": true,
+      "detail": {
+        "shop": "market-store-295577542",
+        "item": "mask",
+        "price": 800
+      }
+    },
+    {
+      "name": "Purchase dango",
+      "pass": true,
+      "detail": {
+        "shop": "market-store-295577543",
+        "item": "dango",
+        "price": 280
+      }
+    },
+    {
+      "name": "Purchase takoyaki",
+      "pass": true,
+      "detail": {
+        "shop": "market-yatai-0",
+        "item": "takoyaki",
+        "price": 500
+      }
+    },
+    {
+      "name": "Purchase taiyaki",
+      "pass": true,
+      "detail": {
+        "shop": "market-yatai-2",
+        "item": "taiyaki",
+        "price": 300
+      }
+    },
+    {
+      "name": "Purchase red",
+      "pass": true,
+      "detail": {
+        "shop": "market-store-295577546",
+        "item": "red",
+        "price": 600
+      }
+    },
+    {
+      "name": "Four variants, independent timers and actual movement",
+      "pass": true,
+      "detail": {
+        "actors": [
+          {
+            "id": 14,
+            "moved": 4.680629776726039,
+            "decisions": 3,
+            "remaining": 6.568746231651308,
+            "collision": false,
+            "variant": 2
+          },
+          {
+            "id": 15,
+            "moved": 0,
+            "decisions": 0,
+            "remaining": 5.6768206701319635,
+            "collision": false,
+            "variant": 3
+          },
+          {
+            "id": 16,
+            "moved": 1.4155696146114758,
+            "decisions": 3,
+            "remaining": 0.7135251231640645,
+            "collision": false,
+            "variant": 0
+          },
+          {
+            "id": 17,
+            "moved": 0,
+            "decisions": 0,
+            "remaining": 6.164358083095774,
+            "collision": false,
+            "variant": 1
+          },
+          {
+            "id": 18,
+            "moved": 0.8742005233067092,
+            "decisions": 3,
+            "remaining": 1.8378922275245209,
+            "collision": false,
+            "variant": 2
+          },
+          {
+            "id": 19,
+            "moved": 2.896041442480421,
+            "decisions": 3,
+            "remaining": 2.6045582745797957,
+            "collision": false,
+            "variant": 3
+          },
+          {
+            "id": 20,
+            "moved": 0.8191639304711171,
+            "decisions": 3,
+            "remaining": 6.439747635188701,
+            "collision": false,
+            "variant": 0
+          },
+          {
+            "id": 21,
+            "moved": 0,
+            "decisions": 0,
+            "remaining": 5.483348644013328,
+            "collision": false,
+            "variant": 1
+          },
+          {
+            "id": 22,
+            "moved": 2.2952951682921143,
+            "decisions": 3,
+            "remaining": 4.186997932851319,
+            "collision": false,
+            "variant": 2
+          },
+          {
+            "id": 23,
+            "moved": 0,
+            "decisions": 0,
+            "remaining": 2.341774519926306,
+            "collision": false,
+            "variant": 3
+          },
+          {
+            "id": 24,
+            "moved": 6.287304621803607,
+            "decisions": 3,
+            "remaining": 7.900813458541781,
+            "collision": false,
+            "variant": 0
+          },
+          {
+            "id": 25,
+            "moved": 4.908851180974857,
+            "decisions": 3,
+            "remaining": 1.5315629159942292,
+            "collision": false,
+            "variant": 1
+          },
+          {
+            "id": 26,
+            "moved": 4.9734198359170065,
+            "decisions": 2,
+            "remaining": 2.649744931738081,
+            "collision": false,
+            "variant": 2
+          },
+          {
+            "id": 27,
+            "moved": 4.532080060618584,
+            "decisions": 3,
+            "remaining": 2.195367932407562,
+            "collision": false,
+            "variant": 3
+          },
+          {
+            "id": 28,
+            "moved": 6.254668770313608,
+            "decisions": 2,
+            "remaining": 7.993904982963949,
+            "collision": false,
+            "variant": 0
+          },
+          {
+            "id": 29,
+            "moved": 9.763685541147101,
+            "decisions": 2,
+            "remaining": 2.776561621412641,
+            "collision": false,
+            "variant": 1
+          },
+          {
+            "id": 30,
+            "moved": 10.13558284164183,
+            "decisions": 2,
+            "remaining": 1.3877336237102809,
+            "collision": false,
+            "variant": 2
+          },
+          {
+            "id": 31,
+            "moved": 2.585235396301795,
+            "decisions": 3,
+            "remaining": 1.1074285686686667,
+            "collision": false,
+            "variant": 3
+          }
+        ],
+        "stats": {
+          "modelsLoaded": 4,
+          "active": 28,
+          "paused": false,
+          "modelStyle": "original-chibi-rig",
+          "downloadBytes": 0,
+          "textureMiB": 0.3333333333333333,
+          "geometryMiB": 2.4661712646484375,
+          "motionSets": 4,
+          "decisions": 92,
+          "routeChanges": 16,
+          "avoidances": 511,
+          "states": {
+            "chat": 3,
+            "wave": 4,
+            "serve": 3,
+            "bow": 3,
+            "idle": 5,
+            "walk": 8,
+            "pray": 1,
+            "map": 1
+          },
+          "updates": 312,
+          "triangles": [
+            9013,
+            9013,
+            9205,
+            9205
+          ]
+        }
+      }
+    },
+    {
+      "name": "Visitors remain outside static obstacles",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Stationary pose feet contact measured skinned vertices",
+      "pass": true,
+      "detail": [
+        {
+          "pose": "photo",
+          "groundGap": 0.005166663971384544,
+          "propScale": [
+            0.999999999887661,
+            3.377139957020755e-45,
+            0,
+            0
+          ]
+        },
+        {
+          "pose": "map",
+          "groundGap": 0.005166663971384544,
+          "propScale": [
+            1.402325140859495e-18,
+            0.9999999999065879,
+            0,
+            0
+          ]
+        },
+        {
+          "pose": "pray",
+          "groundGap": 0.005166663971384544,
+          "propScale": [
+            2.521008446720897e-43,
+            1.8058505035175447e-18,
+            0,
+            0
+          ]
+        },
+        {
+          "pose": "bow",
+          "groundGap": 0.005166663971384544,
+          "propScale": [
+            5.3099707331729206e-68,
+            4.833391457010323e-11,
+            0,
+            0
+          ]
+        },
+        {
+          "pose": "wave",
+          "groundGap": 0.005166663971384544,
+          "propScale": [
+            5.09782331908778e-93,
+            4.64028464900853e-36,
+            0,
+            0
+          ]
+        },
+        {
+          "pose": "bag",
+          "groundGap": 0.005166663971384544,
+          "propScale": [
+            3.1206489384830984e-118,
+            1.2243052799227632e-11,
+            0,
+            0.9999999986267997
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mobile store fits viewport",
+      "pass": true
+    },
+    {
+      "name": "No runtime errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "markets": {
+    "total": 191,
+    "count": 191,
+    "cached": 191,
+    "missing": [],
+    "failures": [],
+    "routes": [
+      {
+        "id": "market-store-162036102",
+        "pass": true
+      },
+      {
+        "id": "market-store-162036115",
+        "pass": true
+      },
+      {
+        "id": "market-store-295577531",
+        "pass": true
+      },
+      {
+        "id": "market-store-295577541",
+        "pass": true
+      },
+      {
+        "id": "market-store-295577542",
+        "pass": true
+      },
+      {
+        "id": "market-store-295577543",
+        "pass": true
+      },
+      {
+        "id": "market-store-295577546",
+        "pass": true
+      },
+      {
+        "id": "market-store-295577547",
+        "pass": true
+      },
+      {
+        "id": "market-store-296201558",
+        "pass": true
+      },
+      {
+        "id": "market-store-296201559",
+        "pass": true
+      },
+      {
+        "id": "market-store-296201560",
+        "pass": true
+      },
+      {
+        "id": "market-store-296201563",
+        "pass": true
+      },
+      {
+        "id": "market-store-296201564",
+        "pass": true
+      },
+      {
+        "id": "market-store-296201566",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213531",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213533",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213534",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213535",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213537",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213538",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213539",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213540",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213542",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213543",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213544",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213545",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213546",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213547",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213548",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213549",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213550",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213551",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213552",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213553",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213555",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213557",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213558",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213559",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213560",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213561",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213562",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213638",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213639",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213640",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213641",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213643",
+        "pass": true
+      },
+      {
+        "id": "market-store-305213646",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214362",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214363",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214369",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214374",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214377",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214378",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214379",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214380",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214381",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214838",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214842",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214938",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214941",
+        "pass": true
+      },
+      {
+        "id": "market-store-305214945",
+        "pass": true
+      },
+      {
+        "id": "market-store-305215298",
+        "pass": true
+      },
+      {
+        "id": "market-store-305215308",
+        "pass": true
+      },
+      {
+        "id": "market-store-305215309",
+        "pass": true
+      },
+      {
+        "id": "market-store-305215313",
+        "pass": true
+      },
+      {
+        "id": "market-store-305215314",
+        "pass": true
+      },
+      {
+        "id": "market-store-360055803",
+        "pass": true
+      },
+      {
+        "id": "market-store-626177631",
+        "pass": true
+      },
+      {
+        "id": "market-store-626177640",
+        "pass": true
+      },
+      {
+        "id": "market-store-768795458",
+        "pass": true
+      },
+      {
+        "id": "market-store-768795461",
+        "pass": true
+      },
+      {
+        "id": "market-store-776230251",
+        "pass": true
+      },
+      {
+        "id": "market-store-776238684",
+        "pass": true
+      },
+      {
+        "id": "market-store-777222943",
+        "pass": true
+      },
+      {
+        "id": "market-store-792897574",
+        "pass": true
+      },
+      {
+        "id": "market-store-792897575",
+        "pass": true
+      },
+      {
+        "id": "market-store-792897576",
+        "pass": true
+      },
+      {
+        "id": "market-store-792897577",
+        "pass": true
+      },
+      {
+        "id": "market-store-792897578",
+        "pass": true
+      },
+      {
+        "id": "market-store-795552032",
+        "pass": true
+      },
+      {
+        "id": "market-store-795552035",
+        "pass": true
+      },
+      {
+        "id": "market-store-795552041",
+        "pass": true
+      },
+      {
+        "id": "market-store-795552055",
+        "pass": true
+      },
+      {
+        "id": "market-store-830701002",
+        "pass": true
+      },
+      {
+        "id": "market-store-830701004",
+        "pass": true
+      },
+      {
+        "id": "market-store-830701005",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207327",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207328",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207331",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207332",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207337",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207363",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207367",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207374",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207375",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207381",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207402",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207403",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207404",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207412",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207413",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207414",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207415",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207428",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207430",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207434",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207435",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207456",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207457",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207473",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207508",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207509",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207510",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207511",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207512",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207513",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207518",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207521",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207522",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207526",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207527",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207528",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207529",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207530",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207531",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207532",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207533",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207534",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207535",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207547",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207558",
+        "pass": true
+      },
+      {
+        "id": "market-store-831207559",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-0",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-1",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-2",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-3",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-4",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-5",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-6",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-7",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-8",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-9",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-10",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-11",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-12",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-13",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-14",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-15",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-16",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-17",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-18",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-19",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-20",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-21",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-22",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-23",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-24",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-25",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-26",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-27",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-28",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-29",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-30",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-31",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-32",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-33",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-34",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-35",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-36",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-37",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-38",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-39",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-40",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-41",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-42",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-43",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-44",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-45",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-46",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-47",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-48",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-49",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-50",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-51",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-52",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-53",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-54",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-55",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-56",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-57",
+        "pass": true
+      },
+      {
+        "id": "market-yatai-58",
+        "pass": true
+      }
+    ]
+  },
+  "menus": [
+    {
+      "id": "market-store-162036102",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-162036115",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-295577531",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-295577541",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-295577542",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-295577543",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-295577546",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-295577547",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-296201558",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-296201559",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-296201560",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-296201563",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-296201564",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-296201566",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305213531",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-305213533",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-305213534",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305213535",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-305213537",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-305213538",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-305213539",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305213540",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-305213542",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-305213543",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-305213544",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305213545",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-305213546",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-305213547",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-305213548",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305213549",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-305213550",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-305213551",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-305213552",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305213553",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-305213555",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-305213557",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-305213558",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305213559",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-305213560",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-305213561",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-305213562",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305213638",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-305213639",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-305213640",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-305213641",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305213643",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-305213646",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-305214362",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-305214363",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305214369",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-305214374",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-305214377",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-305214378",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305214379",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-305214380",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-305214381",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-305214838",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305214842",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-305214938",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-305214941",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-305214945",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305215298",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-305215308",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-305215309",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-305215313",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-305215314",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-360055803",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-626177631",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-626177640",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-768795458",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-768795461",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-776230251",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-776238684",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-777222943",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-792897574",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-792897575",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-792897576",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-792897577",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-792897578",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-795552032",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-795552035",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-795552041",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-795552055",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-830701002",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-830701004",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-830701005",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-831207327",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-831207328",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-831207331",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207332",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-831207337",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-831207363",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-831207367",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207374",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-831207375",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-831207381",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-831207402",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207403",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-831207404",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-831207412",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-831207413",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207414",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-831207415",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-831207428",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-831207430",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207434",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-831207435",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-831207456",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207457",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-831207473",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-831207508",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-831207509",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207510",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-831207511",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-831207512",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-831207513",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207518",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-831207521",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-831207522",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-831207526",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207527",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-831207528",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-831207529",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-831207530",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207531",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple",
+        "business",
+        "study",
+        "travel"
+      ]
+    },
+    {
+      "id": "market-store-831207532",
+      "pass": true,
+      "goods": [
+        "senbei"
+      ]
+    },
+    {
+      "id": "market-store-831207533",
+      "pass": true,
+      "goods": [
+        "tofu"
+      ]
+    },
+    {
+      "id": "market-store-831207534",
+      "pass": true,
+      "goods": [
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-store-831207535",
+      "pass": true,
+      "goods": [
+        "figurine"
+      ]
+    },
+    {
+      "id": "market-store-831207547",
+      "pass": true,
+      "goods": [
+        "sushi"
+      ]
+    },
+    {
+      "id": "market-store-831207558",
+      "pass": true,
+      "goods": [
+        "mask"
+      ]
+    },
+    {
+      "id": "market-store-831207559",
+      "pass": true,
+      "goods": [
+        "dango",
+        "matcha"
+      ]
+    },
+    {
+      "id": "market-yatai-0",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-1",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-2",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-3",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-4",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-5",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-6",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-7",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-8",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-9",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-10",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-11",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-12",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-13",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-14",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-15",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-16",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-17",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-18",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-19",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-20",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-21",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-22",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-23",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-24",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-25",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-26",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-27",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-28",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-29",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-30",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-31",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-32",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-33",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-34",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-35",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-36",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-37",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-38",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-39",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-40",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-41",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-42",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-43",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-44",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-45",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-46",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-47",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-48",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-49",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-50",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-51",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-52",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-53",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-54",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-55",
+      "pass": true,
+      "goods": [
+        "red",
+        "purple"
+      ]
+    },
+    {
+      "id": "market-yatai-56",
+      "pass": true,
+      "goods": [
+        "takoyaki"
+      ]
+    },
+    {
+      "id": "market-yatai-57",
+      "pass": true,
+      "goods": [
+        "dango"
+      ]
+    },
+    {
+      "id": "market-yatai-58",
+      "pass": true,
+      "goods": [
+        "taiyaki"
+      ]
+    }
+  ],
+  "poses": [
+    {
+      "pose": "photo",
+      "groundGap": 0.005166663971384544,
+      "propScale": [
+        0.999999999887661,
+        3.377139957020755e-45,
+        0,
+        0
+      ]
+    },
+    {
+      "pose": "map",
+      "groundGap": 0.005166663971384544,
+      "propScale": [
+        1.402325140859495e-18,
+        0.9999999999065879,
+        0,
+        0
+      ]
+    },
+    {
+      "pose": "pray",
+      "groundGap": 0.005166663971384544,
+      "propScale": [
+        2.521008446720897e-43,
+        1.8058505035175447e-18,
+        0,
+        0
+      ]
+    },
+    {
+      "pose": "bow",
+      "groundGap": 0.005166663971384544,
+      "propScale": [
+        5.3099707331729206e-68,
+        4.833391457010323e-11,
+        0,
+        0
+      ]
+    },
+    {
+      "pose": "wave",
+      "groundGap": 0.005166663971384544,
+      "propScale": [
+        5.09782331908778e-93,
+        4.64028464900853e-36,
+        0,
+        0
+      ]
+    },
+    {
+      "pose": "bag",
+      "groundGap": 0.005166663971384544,
+      "propScale": [
+        3.1206489384830984e-118,
+        1.2243052799227632e-11,
+        0,
+        0.9999999986267997
+      ]
+    }
+  ],
+  "errors": []
+}

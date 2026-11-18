@@ -1,0 +1,3 @@
+# Page 11 — Approved
+Independent fox_review art 92/100. Stones and plinths 34/35, pavilion and materials 27/30, lift readability 18/20, portrait 13/15. Each engraved granite pedestal has one large, irregular round stone. Side sign, fabric with fox and blossom motifs, dark tiled roof and mossy backing follow the supplied reference. Nearby existing columns are outside the final interaction camera. The shade is subdued and mobile tools can overlap a small part of the side sign.
+Both stones can be lifted independently. Desktop and direct file tests verify contact posing, selected stone rise and complete reset after success or cancellation. No external requests are made offline.

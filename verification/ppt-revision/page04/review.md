@@ -1,0 +1,11 @@
+# Page04: approved and frozen
+
+Independent reference_reviewer AI art92/100, PASS on second review: Japanese paper/brass illustration31/35, composition24/25, minimap14/15, editor14/15, desktop/portrait9/10. Subjective score for this page's HUD, not for the underlying3D scene. The first85-point candidate was corrected; function tests did not increase art scoring.
+
+The reviewer inspected updated desktop and390px defaults, seasons, three geographic locations, and the editing interface. The high-contrast indigo player arrow, wider paths and legible location labels now identify position at a glance. Larger readable labels, vermilion/blue/green icon details, rounded shaded star illustrations, fine original sakura sprigs and mizuhiki supply the requested Japanese paper direction. The top brand is removed; the journal sits left of the camera. Toasts sit under the location panel and leave contextual actions clear.
+
+The native nonmodal editor adjusts13 HUD groups: position, size, opacity, direct drag, desktop/compact storage and reset. Its permanent settings entrance remains reachable when widgets are transparent. Input editing blocks character movement and camera rotation, including automatic overview orbit. Context actions share one editable stack; the duplicate old recovery button is removed. Scrolled tool buttons are clipped by their scroll viewport.
+
+Checks:20 core live checks;21 extra UI checks;6 single-file offline checks. All6 additional boundary/orbit checks pass (1280x720,844x390,390x844,320x740); results are in boundary-qa.json. All8 waypoint thumbnails decode from embedded data in the standaloneHTML, minimap canvas contains the actual dark-blue player marker, and there are no external requests or JavaScript exceptions. The8 actual game thumbnails total69,270 bytes; map uses one400x400 Canvas2D, redraws at most4Hz and skips unchanged poses. No extra WebGL renderer is created. These are implementation facts, not a measured whole-game RAM/FPS reduction.
+
+Non-blocking art notes: small explanatory/save text and the selected map's upper-edge label can be further polished. Physical tablet testing is not claimed; touch was simulated in Chromium. Full-frame game proofs are compressed to WebP; no original PPT/reference images are published. On sequential lock, do not reread or rereview this page.

@@ -1,0 +1,59 @@
+{
+  "offline": true,
+  "errors": [],
+  "external": [],
+  "passage": {
+    "unwantedColliders": 0,
+    "forward": {
+      "maxError": 0,
+      "end": {
+        "x": 85.943,
+        "z": -20.939,
+        "y": 8.201338095664978
+      }
+    },
+    "reverse": {
+      "maxError": 0,
+      "end": {
+        "x": 85.341,
+        "z": -37.404,
+        "y": 7.3723341102600095
+      }
+    }
+  },
+  "railings": [
+    {
+      "name": "honden",
+      "segments": 122,
+      "attempted": 230,
+      "crossed": 0,
+      "contacts": 230
+    },
+    {
+      "name": "romon-north",
+      "segments": 43,
+      "attempted": 84,
+      "crossed": 0,
+      "contacts": 84
+    },
+    {
+      "name": "romon-south",
+      "segments": 36,
+      "attempted": 61,
+      "crossed": 0,
+      "contacts": 61
+    },
+    {
+      "name": "shrine-rails",
+      "segments": 100,
+      "attempted": 97,
+      "crossed": 0,
+      "contacts": 97
+    }
+  ],
+  "actualPosition": {
+    "x": 85.34,
+    "y": 7.858,
+    "z": -30.404
+  }
+}

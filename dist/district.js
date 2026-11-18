@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {DISTRICT} from './district-data.js';
+import{FRONTAGE_OVERRIDES,RESIDENTIAL_BUILDINGS}from'./frontage-overrides.js';
 import {loadTexture} from './textures.js';
 import {asset} from './materials.js';
 import {Building} from './geometry.js';
@@ -7,7 +8,7 @@ import {MAP,terrainHeight,footprintBox,insidePolygon,pathSamples} from './geogra
 
 // One shared sign atlas keeps shop lettering sharp without one texture per shop.
 export async function createDistrict(g,surface,architecture){
- const M=g.M,labels=['稲荷煎餅','京とうふ','宇治抹茶','伏見人形','いなり寿司','きつね面','甘味処','京みやげ','たこ焼き','みたらし','たい焼き','おみくじ','仁志むら亭','抹茶ソフト','JR 稲荷駅','伏見稲荷駅'];
+ const M=g.M,labels=['稲荷煎餅','京とうふ','宇治抹茶','伏見人形','いなり寿司','きつね面','甘味処','京みやげ','たこ焼き','花見だんご','たい焼き','おみくじ','仁志むら亭','抹茶ソフト','JR 稲荷駅','伏見稲荷駅'];
  const atlas=document.createElement('canvas');atlas.width=atlas.height=2048;const ctx=atlas.getContext('2d');
  labels.forEach((label,i)=>{const x=i%4*512,y=Math.floor(i/4)*512;ctx.fillStyle=i<8?'#e8d9b4':i<12?'#a84225':i<14?'#243f39':'#eee4cd';ctx.fillRect(x,y,512,512);ctx.strokeStyle='#b99654';ctx.lineWidth=8;ctx.strokeRect(x+15,y+15,482,482);ctx.fillStyle=i>=8&&i<14?'#fff3d8':'#32261d';ctx.textAlign='center';ctx.font='bold 66px "Yu Mincho",serif';ctx.save();ctx.translate(x+256,y+325);ctx.scale(1,4.1);ctx.fillText(label,0,0,460);ctx.restore();ctx.font='24px serif';ctx.fillText(i<12?'伏見稲荷 ・ 京都':i<14?'四ツ辻 ・ 稲荷山':'FUSHIMI INARI',x+256,y+318);});
  const texture=new THREE.CanvasTexture(atlas);texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=8;
@@ -22,15 +23,23 @@ export async function createDistrict(g,surface,architecture){
  const facadeGeos=Array.from({length:4},(_,i)=>{const geo=new THREE.PlaneGeometry(1,1),uv=geo.attributes.uv;for(let k=0;k<uv.count;k++)uv.setXY(k,(i%2+uv.getX(k))/2,1-(Math.floor(i/2)+1-uv.getY(k))/2);return geo;});
  const photo=(b,i,x,y,z,w,h)=>g.put(facadeGeos[i%4],facadeMat,...b.p(x,y,z),w,h,1,0,b.angle);
  const salmon=new THREE.MeshStandardMaterial({color:'#e89b77',roughness:.82}),matcha=new THREE.MeshStandardMaterial({color:'#6d8e43',roughness:.83}),pink=new THREE.MeshStandardMaterial({color:'#e49b9c',roughness:.8});
+ const shopRed=new THREE.MeshStandardMaterial({color:'#b2543b',roughness:.75}),shopBrown=new THREE.MeshStandardMaterial({color:'#a77540',roughness:.8}),shopWhite=new THREE.MeshStandardMaterial({color:'#efe8d7',roughness:.65});
+ const foxShape=new THREE.Shape();foxShape.moveTo(-.09,0);foxShape.quadraticCurveTo(-.17,.11,-.12,.20);foxShape.lineTo(-.12,.32);foxShape.lineTo(-.025,.23);foxShape.quadraticCurveTo(0,.25,.025,.23);foxShape.lineTo(.12,.32);foxShape.lineTo(.12,.20);foxShape.quadraticCurveTo(.17,.11,.09,0);foxShape.quadraticCurveTo(0,-.06,-.09,0);const foxDisplay=new THREE.ExtrudeGeometry(foxShape,{depth:.018,bevelEnabled:true,bevelSegments:2,bevelSize:.008,bevelThickness:.006,curveSegments:6,steps:1});foxDisplay.userData.detailRange=80;
+ const fishShape=new THREE.Shape();fishShape.moveTo(-.14,.03);fishShape.quadraticCurveTo(-.20,.18,-.07,.23);fishShape.quadraticCurveTo(.06,.26,.13,.15);fishShape.lineTo(.25,.22);fishShape.lineTo(.21,.10);fishShape.lineTo(.25,.03);fishShape.lineTo(.09,.06);fishShape.quadraticCurveTo(-.06,-.05,-.14,.03);const fishDisplay=new THREE.ExtrudeGeometry(fishShape,{depth:.025,bevelEnabled:true,bevelSegments:2,bevelSize:.01,bevelThickness:.008,curveSegments:6,steps:1});fishDisplay.userData.detailRange=80;
  function products(b,kind,x,y,z){
   b.box(M.cream,x,y,z,.62,.045,.52);
-  if(kind%5===0){for(let j=0;j<2;j++)for(let k=0;k<2;k++){const xx=x+(j-.5)*.23,zz=z+(k-.5)*.22;b.sphere(M.cream,xx,y+.09,zz,.105,.055,.085);b.box(salmon,xx,y+.14,zz,.205,.035,.15);b.box(M.black,xx,y+.14,zz,.055,.055,.155);}}
-  else if(kind%5===1){for(let j=0;j<2;j++){b.column(M.wood,x+(j-.5)*.22,y+.08,z,.012,.05,false);for(let k=0;k<3;k++)b.sphere([matcha,M.cream,pink][k],x+(j-.5)*.22,y+.11,z+(k-1)*.14,.072);b.box(M.wood,x+(j-.5)*.22,y+.07,z,.016,.016,.62);}}
-  else if(kind%5===2){for(let j=0;j<3;j++)for(let k=0;k<2;k++){const xx=x+(j-1)*.17,zz=z+(k-.5)*.2;b.sphere(M.rope,xx,y+.11,zz,.078,.065,.078);b.box(M.cream,xx,y+.17,zz,.09,.008,.015,.3);b.box(matcha,xx,y+.178,zz,.022,.008,.03);}}
-  else if(kind%5===3){for(let k=0;k<3;k++){b.column(matcha,x+(k-1)*.17,y+.15,z,.075,.24,false);b.column(M.goldDark,x+(k-1)*.17,y+.285,z,.079,.025,false);}}
-  else{for(let j=0;j<3;j++)for(let k=0;k<2;k++){b.sphere(M.rope,x+(j-1)*.17,y+.07,z+(k-.5)*.2,.078,.02,.078);b.box(M.black,x+(j-1)*.17,y+.09,z+(k-.5)*.2,.05,.01,.03);}}
+  if(kind===0||kind===5){for(const dx of[-.14,.14]){b.mesh(foxDisplay,kind===0?shopBrown:shopWhite,x+dx,y+.06,z);for(const side of[-1,1]){b.sphere(kind===5?shopRed:M.darkWood,x+dx+side*.05,y+.20,z+.03,.014,.007,.005);}if(kind===5)b.box(shopRed,x+dx,y+.11,z+.035,.04,.014,.01);}}
+  else if(kind===1){for(const dx of[-.12,.12])for(const dz of[-.09,.09])b.box(shopWhite,x+dx,y+.09,z+dz,.20,.12,.14);b.box(matcha,x+.11,y+.155,z,.09,.008,.045,.3);}
+  else if(kind===2){for(const dx of[-.15,.15]){b.column(shopWhite,x+dx,y+.11,z,.10,.16,false);b.column(matcha,x+dx,y+.197,z,.093,.008,false);b.column(M.goldDark,x+dx,y+.035,z,.06,.025,false);}}
+  else if(kind===3){for(const dx of[-.14,.14]){b.sphere(shopWhite,x+dx,y+.15,z,.07,.12,.065);b.sphere(shopWhite,x+dx,y+.31,z+.015,.085,.075,.065);for(const side of[-1,1]){b.sphere(shopWhite,x+dx+side*.052,y+.39,z+.005,.023,.065,.025);b.sphere(M.black,x+dx+side*.034,y+.32,z+.075,.006,.008,.004);}b.box(shopRed,x+dx,y+.24,z+.075,.08,.075,.012);}}
+  else if(kind===4){for(const dx of[-.13,.13]){b.box(shopBrown,x+dx,y+.10,z,.22,.14,.28);b.box(shopWhite,x+dx,y+.176,z,.19,.012,.24);}}
+  else if(kind===6||kind===9){for(const dx of[-.14,.14]){b.box(M.wood,x+dx,y+.07,z,.012,.012,.57);for(let k=0;k<3;k++)b.sphere([matcha,shopWhite,pink][k],x+dx,y+.13,z+(k-1)*.15,.075);}}
+  else if(kind===7){for(const [i,dx]of[-.19,0,.19].entries()){b.box(i%2?indigo:shopRed,x+dx,y+.15,z,.13,.24,.045);b.box(M.goldDark,x+dx,y+.16,z+.03,.015,.19,.012);b.box(M.cream,x+dx,y+.24,z+.03,.09,.025,.012);}}
+  else if(kind===8){for(const dx of[-.15,0,.15])for(const dz of[-.09,.09]){b.sphere(shopBrown,x+dx,y+.105,z+dz,.075,.07,.075);b.box(shopWhite,x+dx,y+.175,z+dz,.10,.008,.014,.3);b.box(matcha,x+dx,y+.182,z+dz,.025,.006,.018);}}
+  else if(kind===10){for(const dx of[-.13,.13]){b.mesh(fishDisplay,shopBrown,x+dx-.03,y+.05,z);b.sphere(M.darkWood,x+dx-.11,y+.20,z+.04,.009,.009,.004);}}
+  else if(kind===11){b.column(M.wood,x-.14,y+.14,z,.11,.24,false);for(let i=0;i<5;i++)b.column(M.rope,x-.14+(i-2)*.025,y+.32,z,.009,.20,false);for(let i=0;i<3;i++)b.box(shopWhite,x+.09+i*.065,y+.07,z,.055,.07,.24);b.box(shopRed,x+.15,y+.15,z,.12,.15,.045);}
  }
- let shops=0,stalls=0;const storefronts=[],stallSites=[];
+ let shops=0,stalls=0,retailCandidates=0;const storefronts=[],stallSites=[];
  const nearestRoute=(x,z)=>{let best={distance:Infinity,x,z};for(const route of DISTRICT.routes)for(let i=1;i<route.p.length;i++){const a=route.p[i-1],b=route.p[i],dx=b[0]-a[0],dz=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/(dx*dx+dz*dz))),xx=a[0]+dx*t,zz=a[1]+dz*t,d=Math.hypot(xx-x,zz-z);if(d<best.distance)best={distance:d,x:xx,z:zz};}return best;};
  for(const building of DISTRICT.buildings){
   const bb=footprintBox(building);if(!bb||bb.area<7)continue;const y=terrainHeight(bb.x,bb.z),b=new Building(g,String(building.id),bb.x,y,bb.z,bb.angle),height=building.type==='train_station'?3.8:bb.area>140?6.6:5.2;
@@ -44,12 +53,13 @@ export async function createDistrict(g,surface,architecture){
    const near=surface.nearPath(x+nx,z+nz),route=nearestRoute(x,z),facing=(route.x-x)*nx+(route.z-z)*nz,score=route.distance<20&&facing>1?route.distance-30:near.distance;if(length>2.5&&near.distance<18&&(!best||score<best.distance))best={x,z,nx,nz,length,distance:score};}
   architecture.registered.push({id:building.id,name:building.name||'參道町屋',x:bb.x,z:bb.z,w:bb.w,d:bb.d,angle:bb.angle,open:false,district:true});
   if(building.type==='train_station'){const station=new Building(g,'JR station front',bb.x+bb.d/2+.08,y,bb.z,Math.PI/2);sign(station,14,0,3.1,.1,9,1.2);for(let k=-5;k<=5;k++){station.column(M.red,k*2,1.8,.2,.1,3.6);station.box(M.darkWood,k*2,1.7,.15,1.6,2.5,.08);}continue;}
-  if(best&&shops<135){const q=best,front=new Building(g,'shopfront-'+building.id,q.x+q.nx*.18,y,q.z+q.nz*.18,Math.atan2(q.nx,q.nz)),w=Math.min(6.4,q.length-.4),index=shops%8;
-   front.box(M.darkWood,0,1.5,.05,w,2.8,.08);photo(front,shops%3===0?3:2,0,1.45,.145,w,2.65);for(const edge of [-1,1])front.box(M.wood,edge*w/2,1.5,.19,.12,2.8,.12);
+  if(FRONTAGE_OVERRIDES[building.id])best=FRONTAGE_OVERRIDES[building.id];
+  if(best&&retailCandidates<135){const serial=retailCandidates++;if(RESIDENTIAL_BUILDINGS.has(Number(building.id)))continue;const q=best,front=new Building(g,'shopfront-'+building.id,q.x+q.nx*.18,y,q.z+q.nz*.18,Math.atan2(q.nx,q.nz)),w=Math.min(6.4,q.length-.4),index=serial%8;
+   front.box(M.darkWood,0,1.5,.05,w,2.8,.08);photo(front,serial%3===0?3:2,0,1.45,.145,w,2.65);for(const edge of [-1,1])front.box(M.wood,edge*w/2,1.5,.19,.12,2.8,.12);
    front.box(M.wood,0,2.95,.32,w+.35,.13,1.2);sign(front,index,0,3.75,.13,w*.92,.85);
-   const cloth=shops%2?indigo:canvasMat;for(let k=0;k<5;k++){front.box(cloth,(k-2)*w/5,2.48,.57,w/5-.03,.8,.035);sign(front,index,(k-2)*w/5,2.55,.6,.28,.32);}
+   const cloth=serial%2?indigo:canvasMat;for(let k=0;k<5;k++){front.box(cloth,(k-2)*w/5,2.48,.57,w/5-.03,.8,.035);sign(front,index,(k-2)*w/5,2.55,.6,.28,.32);}
    front.box(M.wood,0,.9,.65,w*.78,.12,.62,0,true);for(let k=0;k<Math.min(5,Math.floor(w/.8));k++)products(front,index,(k-(Math.min(5,Math.floor(w/.8))-1)/2)*.75,1.02,.67);
-   storefronts.push({x:front.x,z:front.z,id:building.id});shops++;
+   storefronts.push({x:front.x,z:front.z,y,id:'store-'+building.id,buildingId:building.id,number:serial+1,angle:front.angle,kind:index,sign:labels[index],width:w});shops++;
   }
  }
  // Festival yatai stand beside public paving, with a clear central walking lane.
@@ -60,8 +70,8 @@ export async function createDistrict(g,surface,architecture){
   const b=new Building(g,'festival-stall-'+stalls,x,y,z,Math.atan2(-nx,-nz));b.box(M.wood,0,1,0,3,.13,1.8,0,true);b.box(M.wood,0,.5,-.5,3,1,1,0,true);
   for(const a of [-1,1])for(const c of [-1,1])b.column(M.wood,a*1.5,1.5,c*.8,.045,3,false);b.box(i%2?indigo:canvasMat,0,2.8,0,3.5,.15,2.3);sign(b,8+stalls%4,0,2.35,1.17,2.9,.7);
   for(const a of [-1,1]){b.column(M.glow,a*1.15,2,1.04,.16,.48,false);b.box(M.black,a*1.15,2.27,1.04,.32,.06,.32);}
-  for(let k=-1;k<=1;k++)products(b,stalls,k*.75,1.1,.25);b.box(M.darkWood,0,2.1,-.65,2.6,.1,.35);for(let k=-3;k<=3;k++){b.column(stalls%2?matcha:M.rope,k*.32,2.27,-.65,.085,.25,false);b.column(M.goldDark,k*.32,2.41,-.65,.09,.04,false);}
-  g.physics.box('festival canopy',x,y+2.85,z,3.5,.15,2.3,b.angle);stallSites.push({x,z,y,angle:b.angle,kind:stalls%4});stalls++;
+  for(let k=-1;k<=1;k++)products(b,8+stalls%4,k*.75,1.1,.25);b.box(M.darkWood,0,2.1,-.65,2.6,.1,.35);for(let k=-3;k<=3;k++){b.column(stalls%2?matcha:M.rope,k*.32,2.27,-.65,.085,.25,false);b.column(M.goldDark,k*.32,2.41,-.65,.09,.04,false);}
+  g.physics.box('festival canopy',x,y+2.85,z,3.5,.15,2.3,b.angle);stallSites.push({id:'yatai-'+stalls,number:stalls+1,x,z,y,angle:b.angle,kind:stalls%4,sign:labels[8+stalls%4]});stalls++;
  }
  // Station centres are measured OSM points; exits connect to the retained street nodes.
  for(const s of DISTRICT.stations){const y=terrainHeight(...s.p),b=new Building(g,s.name,s.p[0]+10,y,s.p[1],Math.PI/2),jr=s.id==='jr';

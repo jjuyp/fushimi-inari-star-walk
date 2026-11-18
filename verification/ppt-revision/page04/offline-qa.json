@@ -1,0 +1,18 @@
+{
+  "checks": [
+    "all8 route thumbnails embedded and decoded",
+    "actual minimap canvas contains prominent blue position marker",
+    "offline layout editor contains13 HUD groups",
+    "offline opacity edit applied",
+    "offline toolbar season works",
+    "direct HTML uses no network and raises no errors"
+  ],
+  "errors": [],
+  "external": [],
+  "data": {
+    "marker": {
+      "bluePixels": 880,
+      "width": 19.03
+    }
+  }
+}

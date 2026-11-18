@@ -1,0 +1,76 @@
+{
+  "checks": [
+    {
+      "name": "Player yields around nearby visitor",
+      "pass": true,
+      "data": {
+        "inward": 0,
+        "tangent": -0.06999999999999999
+      }
+    },
+    {
+      "name": "Walk clip uses actual world displacement",
+      "pass": true,
+      "data": 2.349679380716893
+    },
+    {
+      "name": "Insufficient funds leaves bag and coins unchanged",
+      "pass": true
+    },
+    {
+      "name": "Purchase persists after reload",
+      "pass": true
+    },
+    {
+      "name": "Crowd stops updates outside town",
+      "pass": true,
+      "data": {
+        "s": true,
+        "updates": 0,
+        "visible": false
+      }
+    },
+    {
+      "name": "Merchant interaction clears action bar and toolbar",
+      "pass": true,
+      "data": [
+        {
+          "width": 1280,
+          "height": 720,
+          "left": 536.5,
+          "right": 743.5,
+          "top": 424,
+          "bottom": 462,
+          "actionsOverlap": false,
+          "toolsOverlap": false
+        },
+        {
+          "width": 844,
+          "height": 390,
+          "left": 318.5,
+          "right": 525.5,
+          "top": 174,
+          "bottom": 212,
+          "actionsOverlap": false,
+          "toolsOverlap": false
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "left": 109.5,
+          "right": 280.5,
+          "top": 500,
+          "bottom": 533,
+          "actionsOverlap": false,
+          "toolsOverlap": false
+        }
+      ]
+    },
+    {
+      "name": "No extra runtime errors",
+      "pass": true,
+      "data": []
+    }
+  ],
+  "errors": []
+}

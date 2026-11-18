@@ -1,0 +1,310 @@
+{
+  "offline": false,
+  "routes": [
+    {
+      "id": 260121328,
+      "reverse": false,
+      "travelled": 84.8284804051508,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": 260121328,
+      "reverse": true,
+      "travelled": 84.82848040514942,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": 260121354,
+      "reverse": false,
+      "travelled": 66.50579372889563,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": 260121354,
+      "reverse": true,
+      "travelled": 66.5057937288973,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": 377968455,
+      "reverse": false,
+      "travelled": 84.68225544957446,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": 377968455,
+      "reverse": true,
+      "travelled": 84.68225544957347,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "okusha",
+      "reverse": false,
+      "travelled": 426.1385203612215,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "okusha",
+      "reverse": true,
+      "travelled": 426.13852036120244,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "kumataka",
+      "reverse": false,
+      "travelled": 216.9366297119909,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "kumataka",
+      "reverse": true,
+      "travelled": 216.9366297120002,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "mitsu",
+      "reverse": false,
+      "travelled": 304.0148548431064,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "mitsu",
+      "reverse": true,
+      "travelled": 304.0148548430884,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "yotsu",
+      "reverse": false,
+      "travelled": 169.4823588168636,
+      "maxError": 0.17261794613863418,
+      "blocked": null
+    },
+    {
+      "id": "yotsu",
+      "reverse": true,
+      "travelled": 169.48235881685758,
+      "maxError": 0.23700367679271048,
+      "blocked": null
+    },
+    {
+      "id": "sannomine",
+      "reverse": false,
+      "travelled": 199.61027400228758,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "sannomine",
+      "reverse": true,
+      "travelled": 199.61027400229185,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "ninomine",
+      "reverse": false,
+      "travelled": 153.36714618448647,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "ninomine",
+      "reverse": true,
+      "travelled": 153.36714618448465,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "summit",
+      "reverse": false,
+      "travelled": 307.63462225957187,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "summit",
+      "reverse": true,
+      "travelled": 307.6346222595867,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "mitsurugi",
+      "reverse": false,
+      "travelled": 327.88285334252953,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "mitsurugi",
+      "reverse": true,
+      "travelled": 327.882853342522,
+      "maxError": 0,
+      "blocked": null
+    },
+    {
+      "id": "gozentani",
+      "reverse": false,
+      "travelled": 238.14146126551398,
+      "maxError": 0.23700367679271048,
+      "blocked": null
+    },
+    {
+      "id": "gozentani",
+      "reverse": true,
+      "travelled": 238.14146126549002,
+      "maxError": 0.17261794613863418,
+      "blocked": null
+    }
+  ],
+  "traces": [
+    {
+      "name": "upper-approach",
+      "frames": 69,
+      "maxStep": 0.6045128496070818,
+      "maxTurn": 1.1978793755455517,
+      "minimumAboveFloor": 1.4065867722366292,
+      "solids": 0,
+      "lanes": [
+        260121354
+      ],
+      "motion": 10.667549481089546,
+      "endElevation": -5.477350335970409,
+      "tracedDistance": 10.656758969481004
+    },
+    {
+      "name": "senbon-north",
+      "frames": 107,
+      "maxStep": 0.32520881015594516,
+      "maxTurn": 0.38166635384201736,
+      "minimumAboveFloor": 1.4157575320038838,
+      "solids": 0,
+      "lanes": [
+        260121328
+      ],
+      "motion": 20.74283363195753,
+      "endElevation": -1.5052298065022243,
+      "tracedDistance": 20.924991956437974
+    },
+    {
+      "name": "senbon-south",
+      "frames": 76,
+      "maxStep": 0.24132301668935524,
+      "maxTurn": 0.5612091325828499,
+      "minimumAboveFloor": 1.4251497877565278,
+      "solids": 0,
+      "lanes": [
+        377968455
+      ],
+      "motion": 11.449913288826307,
+      "endElevation": -11.507044534428276,
+      "tracedDistance": 11.620254963056826
+    },
+    {
+      "name": "corridor-exit",
+      "frames": 71,
+      "maxStep": 0.6081249999999907,
+      "maxTurn": 1.0624635199224164,
+      "minimumAboveFloor": 1.4257463133979105,
+      "solids": 0,
+      "lanes": [
+        260121354,
+        260121328
+      ],
+      "motion": 11.558781146863456,
+      "endElevation": -6.823364057318601,
+      "tracedDistance": 14.087575366178795
+    },
+    {
+      "name": "portrait-walk",
+      "frames": 225,
+      "maxStep": 0.11849643875744009,
+      "maxTurn": 0.03598519687923798,
+      "minimumAboveFloor": 1.4273917124949662,
+      "solids": 0,
+      "lanes": [
+        260121328
+      ],
+      "motion": 11.213928407678475,
+      "endElevation": -1.450880193240401,
+      "tracedDistance": 11.180005757511234
+    },
+    {
+      "name": "portrait-look-up",
+      "frames": 231,
+      "maxStep": 0.027488118976945385,
+      "maxTurn": 0.4054876994792802,
+      "minimumAboveFloor": 1.3993011875851344,
+      "solids": 0,
+      "lanes": [
+        260121328
+      ],
+      "motion": 0,
+      "endElevation": 20.005176645454835,
+      "tracedDistance": 2.092066682059986
+    }
+  ],
+  "pageErrors": [],
+  "remote": [],
+  "trees": {
+    "removed": 97,
+    "precinct": [
+      {
+        "x": 192.29412925778888,
+        "z": 21.017973823472857,
+        "lane": 377968455,
+        "distance": 4.073173883603923
+      },
+      {
+        "x": 128.87264247285202,
+        "z": 0.5754802236333489,
+        "lane": 260121354,
+        "distance": 6.788648885863096
+      },
+      {
+        "x": 170.87055263924412,
+        "z": 1.216284902766347,
+        "lane": 260121354,
+        "distance": 8.041316487508036
+      },
+      {
+        "x": 155.6291051383596,
+        "z": -5.735324202105403,
+        "lane": 260121354,
+        "distance": 7.610552555340053
+      },
+      {
+        "x": 182.73998636752367,
+        "z": 43.72399495448917,
+        "lane": 260121328,
+        "distance": 12.728439659237868
+      },
+      {
+        "x": 207.8343832702376,
+        "z": 62.231858097948134,
+        "lane": 260121328,
+        "distance": 4.536772369568131
+      },
+      {
+        "x": 143.09273846680298,
+        "z": 2.9606258356943727,
+        "lane": 260121354,
+        "distance": 5.699747316558057
+      }
+    ],
+    "remaining": 1502
+  }
+}

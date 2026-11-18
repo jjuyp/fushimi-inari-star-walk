@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "offline J opens journal",
+    "all5 journal artwork layers embedded",
+    "offline15 journal actions retained",
+    "offline B opens inventory",
+    "offline has no errors or external requests"
+  ],
+  "errors": [],
+  "external": [],
+  "scope": "Direct Windows file URL; Page02 journal only"
+}

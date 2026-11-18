@@ -1,0 +1,109 @@
+{
+  "checks": [
+    "overview automatic orbit pauses during layout editing without reduced motion",
+    "critical controls do not overlap and one recovery button at 1280x720",
+    "critical controls do not overlap and one recovery button at 844x390",
+    "critical controls do not overlap and one recovery button at 390x844",
+    "critical controls do not overlap and one recovery button at 320x740",
+    "boundary checks raise no exceptions"
+  ],
+  "errors": [],
+  "data": [
+    {
+      "width": 1280,
+      "height": 720,
+      "photo": {
+        "x": 1118,
+        "y": 480,
+        "right": 1194,
+        "bottom": 556
+      },
+      "journal": {
+        "x": 1030,
+        "y": 480,
+        "right": 1106,
+        "bottom": 556
+      },
+      "routes": {
+        "x": 38.5,
+        "y": 604,
+        "right": 1241.6875,
+        "bottom": 708
+      },
+      "overlap": false,
+      "recovery": 1
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "photo": {
+        "x": 707,
+        "y": 228,
+        "right": 771,
+        "bottom": 292
+      },
+      "journal": {
+        "x": 631,
+        "y": 228,
+        "right": 695,
+        "bottom": 292
+      },
+      "routes": {
+        "x": 126.5,
+        "y": 303,
+        "right": 717.296875,
+        "bottom": 378
+      },
+      "overlap": false,
+      "recovery": 1
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "photo": {
+        "x": 314,
+        "y": 634,
+        "right": 378,
+        "bottom": 698
+      },
+      "journal": {
+        "x": 238,
+        "y": 634,
+        "right": 302,
+        "bottom": 698
+      },
+      "routes": {
+        "x": 12,
+        "y": 757.203125,
+        "right": 377.5948791503906,
+        "bottom": 831.998779296875
+      },
+      "overlap": false,
+      "recovery": 1
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "photo": {
+        "x": 244,
+        "y": 530,
+        "right": 308,
+        "bottom": 594
+      },
+      "journal": {
+        "x": 168,
+        "y": 530,
+        "right": 232,
+        "bottom": 594
+      },
+      "routes": {
+        "x": 12,
+        "y": 654.234375,
+        "right": 307.8002624511719,
+        "bottom": 727.988525390625
+      },
+      "overlap": false,
+      "recovery": 1
+    }
+  ]
+}

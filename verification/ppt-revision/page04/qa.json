@@ -1,0 +1,92 @@
+{
+  "checks": [
+    "brand title removed",
+    "settings reachable immediately after loading",
+    "journal sits left of photo without overlap",
+    "toolbar opens seasonal panel",
+    "season selection updates world and closes popover",
+    "minimap world coordinates match jr",
+    "minimap world coordinates match gate",
+    "minimap world coordinates match yotsu",
+    "minimap zoom controls work",
+    "settings starts nonmodal layout editing",
+    "selected HUD moves by dragging",
+    "editing does not move player",
+    "per-widget opacity is applied",
+    "layout survives reload",
+    "always-reachable settings restores invisible HUD",
+    "portrait has no page overflow",
+    "portrait journal/photo/routes do not overlap",
+    "compact layout has separate saved settings",
+    "portrait touch season works",
+    "no JS/WebGL or missing asset errors"
+  ],
+  "errors": [],
+  "data": {
+    "map": [
+      {
+        "id": "jr",
+        "player": [
+          -169.058,
+          -8.611009674564468,
+          28.364
+        ],
+        "map": {
+          "radius": 125,
+          "x": -169.058,
+          "z": 28.364,
+          "heading": 3.151275001000443,
+          "frames": 2,
+          "nearest": "jr",
+          "markerPixels": 19.03
+        },
+        "centre": {
+          "x": 200,
+          "y": 200
+        }
+      },
+      {
+        "id": "gate",
+        "player": [
+          -31.5,
+          -2.4826412596501113,
+          -1.5
+        ],
+        "map": {
+          "radius": 125,
+          "x": -31.5,
+          "z": -1.5,
+          "heading": 1.6257963267948965,
+          "frames": 3,
+          "nearest": "gate",
+          "markerPixels": 19.03
+        },
+        "centre": {
+          "x": 200,
+          "y": 200
+        }
+      },
+      {
+        "id": "yotsu",
+        "player": [
+          787.229,
+          122.586485,
+          -220.937
+        ],
+        "map": {
+          "radius": 125,
+          "x": 787.229,
+          "z": -220.937,
+          "heading": 4.53238898038469,
+          "frames": 4,
+          "nearest": "yotsu",
+          "markerPixels": 19.03
+        },
+        "centre": {
+          "x": 200,
+          "y": 200
+        }
+      }
+    ]
+  }
+}

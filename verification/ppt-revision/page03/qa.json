@@ -1,0 +1,252 @@
+{
+  "checks": [
+    "real inventory starts sushi animation",
+    "sushi consumes exactly one and restores face and hands",
+    "real inventory starts senbei animation",
+    "senbei consumes exactly one and restores face and hands",
+    "real inventory starts matcha animation",
+    "matcha consumes exactly one and restores face and hands",
+    "z starts wave",
+    "wave cancels cleanly",
+    "Space starts jump",
+    "jump cancels cleanly",
+    "x starts think",
+    "think cancels cleanly",
+    "f starts surprise",
+    "surprise cancels cleanly",
+    "t starts rest",
+    "rest cancels cleanly",
+    "g starts reward",
+    "reward cancels cleanly",
+    "walking wakes resting star",
+    "Escape cancels drinking without double consumption",
+    "portrait meal retains full character scale without page overflow",
+    "mobile control menu starts gesture",
+    "no JS or WebGL errors"
+  ],
+  "errors": [],
+  "data": {
+    "foods": [
+      {
+        "id": "sushi",
+        "phase": "raise",
+        "state": {
+          "active": "eat",
+          "phase": "raise",
+          "expression": "neutral",
+          "mouthOpen": 0,
+          "item": "sushi",
+          "contact": 0.2372746153530993,
+          "gear": "sushi",
+          "scale": 1
+        }
+      },
+      {
+        "id": "sushi",
+        "phase": "bite",
+        "state": {
+          "active": "eat",
+          "phase": "bite",
+          "expression": "neutral",
+          "mouthOpen": 0.9652332611451262,
+          "item": "sushi",
+          "contact": 1,
+          "gear": "sushi",
+          "scale": 1
+        }
+      },
+      {
+        "id": "sushi",
+        "phase": "chew",
+        "state": {
+          "active": "eat",
+          "phase": "chew",
+          "expression": "chew",
+          "mouthOpen": 0,
+          "item": "sushi",
+          "contact": 1,
+          "gear": "sushi",
+          "scale": 1
+        }
+      },
+      {
+        "id": "sushi",
+        "phase": "happy",
+        "state": {
+          "active": "eat",
+          "phase": "happy",
+          "expression": "happy",
+          "mouthOpen": 0,
+          "item": "sushi",
+          "contact": 0,
+          "gear": "sushi",
+          "scale": 1
+        }
+      },
+      {
+        "id": "senbei",
+        "phase": "raise",
+        "state": {
+          "active": "eat",
+          "phase": "raise",
+          "expression": "neutral",
+          "mouthOpen": 0,
+          "item": "senbei",
+          "contact": 0.2310685881308939,
+          "gear": "senbei",
+          "scale": 1
+        }
+      },
+      {
+        "id": "senbei",
+        "phase": "bite",
+        "state": {
+          "active": "eat",
+          "phase": "bite",
+          "expression": "neutral",
+          "mouthOpen": 0.9398748706302242,
+          "item": "senbei",
+          "contact": 1,
+          "gear": "senbei",
+          "scale": 1
+        }
+      },
+      {
+        "id": "senbei",
+        "phase": "chew",
+        "state": {
+          "active": "eat",
+          "phase": "chew",
+          "expression": "chew",
+          "mouthOpen": 0,
+          "item": "senbei",
+          "contact": 1,
+          "gear": "senbei",
+          "scale": 1
+        }
+      },
+      {
+        "id": "senbei",
+        "phase": "happy",
+        "state": {
+          "active": "eat",
+          "phase": "happy",
+          "expression": "happy",
+          "mouthOpen": 0,
+          "item": "senbei",
+          "contact": 0,
+          "gear": "senbei",
+          "scale": 1
+        }
+      },
+      {
+        "id": "matcha",
+        "phase": "raise",
+        "state": {
+          "active": "eat",
+          "phase": "raise",
+          "expression": "neutral",
+          "mouthOpen": 0,
+          "item": "matcha",
+          "contact": 0.17710887486395302,
+          "gear": "matcha",
+          "scale": 1
+        }
+      },
+      {
+        "id": "matcha",
+        "phase": "sip",
+        "state": {
+          "active": "eat",
+          "phase": "sip",
+          "expression": "drink",
+          "mouthOpen": 0.28,
+          "item": "matcha",
+          "contact": 1,
+          "gear": "matcha",
+          "scale": 1
+        }
+      },
+      {
+        "id": "matcha",
+        "phase": "chew",
+        "state": {
+          "active": "eat",
+          "phase": "chew",
+          "expression": "drink",
+          "mouthOpen": 0.28,
+          "item": "matcha",
+          "contact": 1,
+          "gear": "matcha",
+          "scale": 1
+        }
+      },
+      {
+        "id": "matcha",
+        "phase": "happy",
+        "state": {
+          "active": "eat",
+          "phase": "happy",
+          "expression": "happy",
+          "mouthOpen": 0,
+          "item": "matcha",
+          "contact": 0,
+          "gear": "matcha",
+          "scale": 1
+        }
+      }
+    ],
+    "gestures": [
+      {
+        "active": "wave",
+        "phase": "perform",
+        "expression": "happy",
+        "mouthOpen": 0,
+        "item": null,
+        "contact": 0
+      },
+      {
+        "active": "jump",
+        "phase": "perform",
+        "expression": "neutral",
+        "mouthOpen": 0,
+        "item": null,
+        "contact": 0
+      },
+      {
+        "active": "think",
+        "phase": "perform",
+        "expression": "think",
+        "mouthOpen": 0,
+        "item": null,
+        "contact": 0
+      },
+      {
+        "active": "surprise",
+        "phase": "perform",
+        "expression": "surprised",
+        "mouthOpen": 0.85,
+        "item": null,
+        "contact": 0
+      },
+      {
+        "active": "rest",
+        "phase": "sleep",
+        "expression": "sleep",
+        "mouthOpen": 0,
+        "item": null,
+        "contact": 0
+      },
+      {
+        "active": "reward",
+        "phase": "celebrate",
+        "expression": "happy",
+        "mouthOpen": 0,
+        "item": null,
+        "contact": 0
+      }
+    ],
+    "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "scope": "Page03 live inventory, poses, cancellation, simulated portrait touch; independent art score separately"
+}

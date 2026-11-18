@@ -1,0 +1,98 @@
+{
+  "sourceSha256": "8DEF2610EFE05CED77A649E71763A8EB91DD4925CEA3FCBEA14FCEC893D2A939",
+  "slideCount": 15,
+  "completed": 15,
+  "rule": "Approve each page at90+ before opening next. Do not rereview approved pages.",
+  "pages": [
+    {
+      "page": 1,
+      "status": "approved",
+      "score": 96,
+      "locked": true
+    },
+    {
+      "page": 2,
+      "status": "approved",
+      "score": 94,
+      "locked": true
+    },
+    {
+      "page": 3,
+      "status": "approved",
+      "score": 91,
+      "locked": true
+    },
+    {
+      "page": 4,
+      "status": "approved",
+      "score": 92,
+      "locked": true
+    },
+    {
+      "page": 5,
+      "status": "approved",
+      "score": 91,
+      "locked": true
+    },
+    {
+      "page": 6,
+      "status": "approved",
+      "score": 92,
+      "locked": true
+    },
+    {
+      "page": 7,
+      "status": "approved",
+      "score": 94,
+      "locked": true
+    },
+    {
+      "page": 8,
+      "status": "approved",
+      "score": 93,
+      "locked": true
+    },
+    {
+      "page": 9,
+      "status": "approved",
+      "score": 94,
+      "locked": true
+    },
+    {
+      "page": 10,
+      "status": "approved",
+      "score": 94,
+      "locked": true
+    },
+    {
+      "page": 11,
+      "status": "approved",
+      "score": 92,
+      "locked": true
+    },
+    {
+      "page": 12,
+      "status": "approved",
+      "score": 91,
+      "locked": true
+    },
+    {
+      "page": 13,
+      "status": "approved",
+      "score": 92,
+      "locked": true
+    },
+    {
+      "page": 14,
+      "status": "approved",
+      "score": 96,
+      "locked": true
+    },
+    {
+      "page": 15,
+      "status": "approved",
+      "score": 91,
+      "locked": true
+    }
+  ]
+}

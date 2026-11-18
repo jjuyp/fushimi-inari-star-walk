@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "embedded offline drink animation reaches open sip",
+    "embedded offline gesture works",
+    "offline cancellation restores controller",
+    "single HTML uses no network and raises no errors"
+  ],
+  "errors": [],
+  "external": []
+}

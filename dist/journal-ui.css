@@ -1,0 +1,36 @@
+/* PPT page02: painted pilgrimage journal; scoped away from experience dialogs. */
+#journeyDialog.journal-home{width:min(1180px,calc(100vw - 36px));max-height:calc(100dvh - 36px);padding:0;border:1px solid #ae8755;border-radius:5px;background:#f6ead6;color:#3f2c1e;box-shadow:0 22px 90px #130e0c80;scrollbar-color:#ae8962 #f1e3c8;scrollbar-width:thin;font-family:"DFKai-SB","BiauKai","KaiTi","Noto Serif TC",serif}
+#journeyDialog.journal-home::backdrop{background:#14201dd9;backdrop-filter:blur(5px)}
+#journeyDialog.journal-home #journeyBody{padding:0 30px;background:#f6ead6 url('assets/v3.6/journal-washi.webp') repeat;background-size:512px}
+#journeyDialog.journal-home .dialog-head{position:sticky;top:0;z-index:4;display:block;height:0;margin:0}
+#journeyDialog.journal-home .dialog-head>div{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#journeyDialog.journal-home #journeyClose{position:absolute;right:13px;top:12px;width:36px;height:36px;padding:0;background:#fff7e5e6;border:1px solid #98744d77;border-radius:50%;color:#563e29;font:28px/1 serif;box-shadow:0 2px 7px #3b271c1c}
+.journal-hero{position:relative;inset:auto;display:block;pointer-events:auto;isolation:isolate;margin:0 -30px 10px;min-height:225px;padding:52px 42px 24px;background:linear-gradient(0deg,#f6ead6,transparent 27%),url('assets/v3.6/journal-header.webp') right top/cover no-repeat}
+.journal-wallet{display:flex;align-items:baseline;gap:15px;color:#352315;line-height:1.1;font-size:30px;letter-spacing:.05em}
+.journal-wallet strong{font-size:56px;font-weight:500;color:#9e3021;letter-spacing:.035em;white-space:nowrap;text-shadow:0 1px #fff7e1}
+.journal-currency-note{margin:10px 0 0;font-size:16px;color:#6c523b}
+.journal-invitation{max-width:630px;margin:25px 0 0;font-size:21px;line-height:1.6;letter-spacing:.035em;color:#3a2c1f}
+.journal-route-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 12px}
+#journeyDialog .journal-plaque{position:relative;min-width:0;min-height:86px;margin:0;padding:23px 52px 10px 112px;display:flex;align-items:center;text-align:left;border:0;border-radius:0;background:transparent url('assets/v3.6/journal-frame.webp') center/100% 100% no-repeat;color:#2e2116;font:600 25px/1.3 "DFKai-SB","BiauKai","KaiTi","Noto Serif TC",serif;letter-spacing:.015em;cursor:pointer;transition:filter .16s,transform .16s;isolation:isolate}
+#journeyDialog .journal-plaque:hover{filter:brightness(1.055) saturate(1.08);transform:translateY(-1px)}
+#journeyDialog .journal-plaque:active{transform:translateY(1px)}
+#journeyDialog .journal-plaque:focus-visible{outline:2px solid #a74728;outline-offset:2px}
+.journal-icon{position:absolute;left:26px;top:16px;width:76px;height:64px;background-image:url('assets/v3.6/journal-icons.webp');background-size:400% 400%;background-repeat:no-repeat;pointer-events:none}
+.journal-label{display:block;min-width:0;text-wrap:balance}
+.journal-chevron{position:absolute;right:23px;top:50%;transform:translateY(-35%);font:32px/1 Georgia,serif;font-weight:400}
+.journal-key{position:absolute;right:38px;top:12px;padding:1px 3px;min-width:17px;text-align:center;border:1px solid #a17e5460;border-radius:2px;color:#744b2b;background:#fff3d9b0;font:12px/1.2 ui-monospace,"Consolas",monospace;font-weight:500;letter-spacing:0}
+.journal-caption{margin:20px 7px 13px;font-size:15px;line-height:1.8;color:#6d5944;letter-spacing:.01em}
+.journal-sources{white-space:nowrap;margin-left:8px}
+.journal-sources a{color:#7b4c29;text-decoration:underline;text-decoration-color:#aa815477;text-underline-offset:3px}
+.journal-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#journeyDialog .journal-actions .journal-plaque{min-height:78px;padding:21px 38px 10px 83px;font-size:19px;line-height:1.35;letter-spacing:0}
+.journal-actions .journal-icon{left:18px;top:16px;width:60px;height:56px}
+.journal-actions .journal-chevron{right:17px;font-size:26px}
+.journal-actions .journal-key{top:12px;right:29px}
+.journal-fortune-link{display:block;margin:12px 10px 0;padding:3px 0;border:0;border-bottom:1px solid #9d725d;background:none;color:#7f3f2b;font:18px "DFKai-SB","BiauKai",serif}
+.journal-key-guide{text-align:center;margin:18px 0 0;padding:14px 0 0;border-top:1px solid #a0846233;color:#806a50;font-size:13px;letter-spacing:.04em}
+.journal-key-guide kbd,.journal-fortune-link kbd{font:11px ui-monospace,"Consolas",monospace;padding:1px 4px;border:1px solid #b29c7866;border-radius:2px}
+.journal-footer-art{height:155px;margin:7px -30px 0;background:url('assets/v3.6/journal-footer.webp') right bottom/cover no-repeat;mask-image:linear-gradient(transparent,#000 18%)}
+@media(max-width:850px){.journal-actions{grid-template-columns:repeat(2,minmax(0,1fr))}#journeyDialog .journal-plaque{font-size:22px;padding-left:94px}.journal-icon{left:23px;width:64px;height:60px}.journal-invitation{max-width:58%;font-size:18px}.journal-hero{min-height:218px;padding-left:32px}.journal-wallet{font-size:26px;gap:10px}.journal-wallet strong{font-size:48px}}
+@media(max-width:600px){#journeyDialog.journal-home{width:calc(100vw - 20px);max-height:calc(100dvh - 24px);border-radius:4px}#journeyDialog.journal-home #journeyBody{padding:0 10px}.journal-hero{margin:0 -10px 8px;min-height:202px;padding:40px 20px 15px;background-position:right top}.journal-hero:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#f6ead6f2 0,#f6ead6e0 46%,#f6ead600 83%)}.journal-wallet{font-size:23px;gap:8px;letter-spacing:0}.journal-wallet strong{font-size:39px}.journal-currency-note{font-size:13px;max-width:70%;margin-top:8px}.journal-invitation{max-width:69%;font-size:16px;margin-top:20px;line-height:1.65}.journal-route-grid{grid-template-columns:minmax(0,1fr);gap:5px}#journeyDialog .journal-plaque{min-height:79px;font-size:21px;padding:22px 44px 9px 91px;letter-spacing:0}.journal-icon{left:23px;top:17px;width:62px;height:57px}.journal-chevron{right:19px;font-size:29px}.journal-key{right:32px;top:14px;font-size:10px}.journal-caption{margin:16px 9px 12px;font-size:13px;line-height:1.85}.journal-sources{margin-left:0;white-space:normal}.journal-actions{grid-template-columns:minmax(0,1fr);gap:5px}#journeyDialog .journal-actions .journal-plaque{min-height:77px;font-size:20px;padding:22px 42px 9px 88px}.journal-actions .journal-icon{left:23px;top:16px;width:60px;height:56px}.journal-key-guide{font-size:11px;line-height:1.8;margin:13px 6px 0}.journal-footer-art{height:125px;margin:3px -10px 0}#journeyDialog.journal-home #journeyClose{width:32px;height:32px;right:9px;top:9px;font-size:25px}}
+@media(prefers-reduced-motion:reduce){#journeyDialog .journal-plaque{transition:none}}

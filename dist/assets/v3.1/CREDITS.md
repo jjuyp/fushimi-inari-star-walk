@@ -1,3 +1,7 @@
+# Illustrated pilgrimage journal
+
+The watercolor journal header/footer, washi texture, mizuhiki wooden frame and icon atlas were generated with OpenAI image generation from the user's supplied visual reference, then cropped/resized and exported as WebP. Text, wallet values and interactive actions remain live HTML. They are reference-inspired game artwork, not official shrine illustrations.
+
 # V3.5 additions
 
 Loading background, four-frame fox and gold progress frame: AI-generated with OpenAI image generation from the user's supplied visual reference, then optimized as WebP. The progress percentage is live, not baked into an image. Waterfall, foam, mist, pool normals, rock textures and distance-based water sound: original procedural code; no waterfall photo/video is used. The waterfall facility is a reference-inspired fictional game addition, not an official or surveyed shrine location.

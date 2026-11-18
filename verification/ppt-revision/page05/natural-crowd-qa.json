@@ -1,0 +1,829 @@
+{
+  "framing": {
+    "x": -169.26519978815801,
+    "y": -8.715172949753924,
+    "z": 5.6361737357959365,
+    "count": 4
+  },
+  "before": {
+    "camera": [
+      -172.72314962124236,
+      -6.6971874987314886,
+      -0.3921231493737585
+    ],
+    "player": [
+      -169.26519978815801,
+      -8.715172949753924,
+      5.6361737357959365
+    ],
+    "marketVisits": 8,
+    "actors": [
+      {
+        "id": 0,
+        "vendor": true,
+        "x": -164.2223233627363,
+        "z": 13.548871989018172,
+        "state": "bow",
+        "elapsed": 2.242800000000003,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 1,
+        "vendor": true,
+        "x": -162.66655349938316,
+        "z": 15.05574973058107,
+        "state": "chat",
+        "elapsed": 0.09720000000000073,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 2,
+        "vendor": true,
+        "x": -175.70594226816735,
+        "z": 15.182005568092116,
+        "state": "idle",
+        "elapsed": 3.4093000000000058,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 3,
+        "vendor": true,
+        "x": -157.08015322912533,
+        "z": 0.44759082093891656,
+        "state": "wave",
+        "elapsed": 2.8262000000000027,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 4,
+        "vendor": true,
+        "x": -156.39078885030372,
+        "z": 13.469356321561781,
+        "state": "bow",
+        "elapsed": 1.097100000000002,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 5,
+        "vendor": true,
+        "x": -162.60242955749553,
+        "z": 21.678310905912774,
+        "state": "wave",
+        "elapsed": 2.3886000000000034,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 6,
+        "vendor": true,
+        "x": -149.9069061251539,
+        "z": 0.06784346381388295,
+        "state": "wave",
+        "elapsed": 3.7705000000000046,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 7,
+        "vendor": true,
+        "x": -149.2175417463323,
+        "z": 13.089608964436747,
+        "state": "wave",
+        "elapsed": 3.6663000000000068,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 8,
+        "vendor": true,
+        "x": -162.71019593405495,
+        "z": -16.58014456917468,
+        "state": "chat",
+        "elapsed": 2.8677000000000032,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 9,
+        "vendor": true,
+        "x": -162.5383056156079,
+        "z": 28.300872081244478,
+        "state": "wave",
+        "elapsed": 4.173200000000006,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 10,
+        "vendor": true,
+        "x": -175.5776943843921,
+        "z": 28.427127918755524,
+        "state": "idle",
+        "elapsed": 1.7776000000000023,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 11,
+        "vendor": true,
+        "x": -144.18081242370587,
+        "z": 12.822967564649671,
+        "state": "chat",
+        "elapsed": 1.965200000000001,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 12,
+        "vendor": true,
+        "x": -142.04429464236085,
+        "z": 12.709861607311714,
+        "state": "idle",
+        "elapsed": 0.09720000000000073,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 13,
+        "vendor": true,
+        "x": -138.25656628995895,
+        "z": -0.5489184708996657,
+        "state": "point",
+        "elapsed": 0.638800000000003,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 14,
+        "vendor": false,
+        "x": -149.65023775147498,
+        "z": 8.675732245423893,
+        "state": "chat",
+        "elapsed": 3.9996000000000076,
+        "variant": 2,
+        "visit": "market-yatai-30",
+        "clear": true
+      },
+      {
+        "id": 16,
+        "vendor": false,
+        "x": -163.7457739757531,
+        "z": 7.8288441474040695,
+        "state": "walk",
+        "elapsed": 2.222,
+        "variant": 0,
+        "visit": "market-yatai-26",
+        "clear": true
+      },
+      {
+        "id": 17,
+        "vendor": false,
+        "x": -117.60259817199614,
+        "z": 7.166977178113044,
+        "state": "chat",
+        "elapsed": 0.875,
+        "variant": 1,
+        "visit": "market-yatai-57",
+        "clear": true
+      },
+      {
+        "id": 18,
+        "vendor": false,
+        "x": -167.08397489895958,
+        "z": 21.83317070454658,
+        "state": "point",
+        "elapsed": 0.9375,
+        "variant": 2,
+        "visit": "market-yatai-47",
+        "clear": true
+      },
+      {
+        "id": 20,
+        "vendor": false,
+        "x": -167.28606637481403,
+        "z": 19.48569819391015,
+        "state": "walk",
+        "elapsed": 3.3884000000000043,
+        "variant": 0,
+        "visit": "market-yatai-49",
+        "clear": true
+      },
+      {
+        "id": 22,
+        "vendor": false,
+        "x": -156.86581296541007,
+        "z": 4.926054113002638,
+        "state": "point",
+        "elapsed": 0.375,
+        "variant": 2,
+        "visit": "market-yatai-27",
+        "clear": true
+      },
+      {
+        "id": 24,
+        "vendor": false,
+        "x": -111.33735965831842,
+        "z": 6.579007600611881,
+        "state": "point",
+        "elapsed": 1.8401000000000023,
+        "variant": 0,
+        "visit": "market-yatai-58",
+        "clear": true
+      },
+      {
+        "id": 26,
+        "vendor": false,
+        "x": -92.39396567135202,
+        "z": 5.80623181625493,
+        "state": "point",
+        "elapsed": 2.5205000000000015,
+        "variant": 2,
+        "visit": "market-yatai-43",
+        "clear": true
+      },
+      {
+        "id": 28,
+        "vendor": false,
+        "x": -126.45121041685991,
+        "z": 7.410844241479062,
+        "state": "walk",
+        "elapsed": 3.3678000000000057,
+        "variant": 0,
+        "visit": "market-yatai-34",
+        "clear": true
+      },
+      {
+        "id": 29,
+        "vendor": false,
+        "x": -170.07405557980607,
+        "z": -71.84908378043355,
+        "state": "chat",
+        "elapsed": 6.339500000000006,
+        "variant": 1,
+        "visit": "market-store-305214362",
+        "clear": true
+      },
+      {
+        "id": 30,
+        "vendor": false,
+        "x": -144.44653497100214,
+        "z": 8.336931115913023,
+        "state": "point",
+        "elapsed": 4.999400000000005,
+        "variant": 2,
+        "visit": "market-yatai-50",
+        "clear": true
+      }
+    ]
+  },
+  "after": {
+    "camera": [
+      -172.72314962124236,
+      -6.6971874987314886,
+      -0.3921231493737585
+    ],
+    "player": [
+      -169.26519978815801,
+      -8.715172949753924,
+      5.6361737357959365
+    ],
+    "marketVisits": 13,
+    "actors": [
+      {
+        "id": 0,
+        "vendor": true,
+        "x": -164.2223233627363,
+        "z": 13.548871989018172,
+        "state": "wave",
+        "elapsed": 0.7777000000000045,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 1,
+        "vendor": true,
+        "x": -162.66655349938316,
+        "z": 15.05574973058107,
+        "state": "chat",
+        "elapsed": 4.4578000000000015,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 2,
+        "vendor": true,
+        "x": -175.70594226816735,
+        "z": 15.182005568092116,
+        "state": "chat",
+        "elapsed": 1.6874000000000011,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 3,
+        "vendor": true,
+        "x": -157.08015322912533,
+        "z": 0.44759082093891656,
+        "state": "wave",
+        "elapsed": 2.2497000000000047,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 4,
+        "vendor": true,
+        "x": -156.39078885030372,
+        "z": 13.469356321561781,
+        "state": "point",
+        "elapsed": 5.4923999999999955,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 5,
+        "vendor": true,
+        "x": -162.60242955749553,
+        "z": 21.678310905912774,
+        "state": "idle",
+        "elapsed": 2.4025,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 6,
+        "vendor": true,
+        "x": -149.9069061251539,
+        "z": 0.06784346381388295,
+        "state": "wave",
+        "elapsed": 1.9025999999999985,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 7,
+        "vendor": true,
+        "x": -149.2175417463323,
+        "z": 13.089608964436747,
+        "state": "point",
+        "elapsed": 0.8194000000000016,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 8,
+        "vendor": true,
+        "x": -162.71019593405495,
+        "z": -16.58014456917468,
+        "state": "idle",
+        "elapsed": 1.5345,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 9,
+        "vendor": true,
+        "x": -162.5383056156079,
+        "z": 28.300872081244478,
+        "state": "chat",
+        "elapsed": 2.666300000000003,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 10,
+        "vendor": true,
+        "x": -175.5776943843921,
+        "z": 28.427127918755524,
+        "state": "idle",
+        "elapsed": 3.728700000000003,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 11,
+        "vendor": true,
+        "x": -144.18081242370587,
+        "z": 12.822967564649671,
+        "state": "point",
+        "elapsed": 3.5134999999999987,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 12,
+        "vendor": true,
+        "x": -142.04429464236085,
+        "z": 12.709861607311714,
+        "state": "bow",
+        "elapsed": 5.4923999999999955,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 13,
+        "vendor": true,
+        "x": -138.25656628995895,
+        "z": -0.5489184708996657,
+        "state": "chat",
+        "elapsed": 3.2079999999999993,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 14,
+        "vendor": false,
+        "x": -153.78987445027042,
+        "z": 7.386171362032563,
+        "state": "walk",
+        "elapsed": 0.9095999999999986,
+        "variant": 2,
+        "visit": "market-yatai-30",
+        "clear": true
+      },
+      {
+        "id": 16,
+        "vendor": false,
+        "x": -164.20296121161974,
+        "z": 6.32003734077687,
+        "state": "walk",
+        "elapsed": 3.534300000000002,
+        "variant": 0,
+        "clear": true
+      },
+      {
+        "id": 17,
+        "vendor": false,
+        "x": -123.47136826049612,
+        "z": 7.071969856788677,
+        "state": "walk",
+        "elapsed": 9.665500000000002,
+        "variant": 1,
+        "clear": true
+      },
+      {
+        "id": 18,
+        "vendor": false,
+        "x": -168.4812068528923,
+        "z": 18.937120652305865,
+        "state": "walk",
+        "elapsed": 5.193799999999999,
+        "variant": 2,
+        "clear": true
+      },
+      {
+        "id": 20,
+        "vendor": false,
+        "x": -166.8289936048214,
+        "z": 15.470185255983898,
+        "state": "chat",
+        "elapsed": 10.64460000000001,
+        "variant": 0,
+        "visit": "market-yatai-49",
+        "clear": true
+      },
+      {
+        "id": 22,
+        "vendor": false,
+        "x": -156.63057758777137,
+        "z": 8.976583794013385,
+        "state": "chat",
+        "elapsed": 0.020900000000001456,
+        "variant": 2,
+        "visit": "market-yatai-28",
+        "clear": true
+      },
+      {
+        "id": 24,
+        "vendor": false,
+        "x": -111.37985067422574,
+        "z": 6.584290109073286,
+        "state": "chat",
+        "elapsed": 3.534300000000002,
+        "variant": 0,
+        "visit": "market-yatai-58",
+        "clear": true
+      },
+      {
+        "id": 26,
+        "vendor": false,
+        "x": -98.34181862623274,
+        "z": 5.646505138647102,
+        "state": "walk",
+        "elapsed": 1.0415999999999985,
+        "variant": 2,
+        "visit": "market-yatai-41",
+        "clear": true
+      },
+      {
+        "id": 28,
+        "vendor": false,
+        "x": -126.41750589730133,
+        "z": 7.449448554987511,
+        "state": "walk",
+        "elapsed": 1.7080999999999984,
+        "variant": 0,
+        "clear": true
+      },
+      {
+        "id": 29,
+        "vendor": false,
+        "x": -168.92729843531242,
+        "z": -75.8238474107379,
+        "state": "walk",
+        "elapsed": 0.38890000000000147,
+        "variant": 1,
+        "visit": "market-store-305214363",
+        "clear": true
+      },
+      {
+        "id": 30,
+        "vendor": false,
+        "x": -143.5916696113061,
+        "z": 7.2893372484995425,
+        "state": "walk",
+        "elapsed": 1.7707000000000042,
+        "variant": 2,
+        "visit": "market-yatai-50",
+        "clear": true
+      }
+    ]
+  },
+  "after32": {
+    "camera": [
+      -172.72314962124236,
+      -6.6971874987314886,
+      -0.3921231493737585
+    ],
+    "player": [
+      -169.26519978815801,
+      -8.715172949753924,
+      5.6361737357959365
+    ],
+    "marketVisits": 22,
+    "actors": [
+      {
+        "id": 0,
+        "vendor": true,
+        "x": -164.2223233627363,
+        "z": 13.548871989018172,
+        "state": "point",
+        "elapsed": 2.680200000000004,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 1,
+        "vendor": true,
+        "x": -162.66655349938316,
+        "z": 15.05574973058107,
+        "state": "idle",
+        "elapsed": 2.4094999999999995,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 2,
+        "vendor": true,
+        "x": -175.70594226816735,
+        "z": 15.182005568092116,
+        "state": "point",
+        "elapsed": 5.811799999999997,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 3,
+        "vendor": true,
+        "x": -157.08015322912533,
+        "z": 0.44759082093891656,
+        "state": "wave",
+        "elapsed": 3.6316000000000064,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 4,
+        "vendor": true,
+        "x": -156.39078885030372,
+        "z": 13.469356321561781,
+        "state": "idle",
+        "elapsed": 1.055300000000003,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 5,
+        "vendor": true,
+        "x": -162.60242955749553,
+        "z": 21.678310905912774,
+        "state": "bow",
+        "elapsed": 2.2082000000000037,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 6,
+        "vendor": true,
+        "x": -149.9069061251539,
+        "z": 0.06784346381388295,
+        "state": "chat",
+        "elapsed": 0.777800000000003,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 7,
+        "vendor": true,
+        "x": -149.2175417463323,
+        "z": 13.089608964436747,
+        "state": "point",
+        "elapsed": 0.4236000000000059,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 8,
+        "vendor": true,
+        "x": -162.71019593405495,
+        "z": -16.58014456917468,
+        "state": "bow",
+        "elapsed": 4.048100000000006,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 9,
+        "vendor": true,
+        "x": -162.5383056156079,
+        "z": 28.300872081244478,
+        "state": "bow",
+        "elapsed": 4.221800000000002,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 10,
+        "vendor": true,
+        "x": -175.5776943843921,
+        "z": 28.427127918755524,
+        "state": "wave",
+        "elapsed": 0.923600000000006,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 11,
+        "vendor": true,
+        "x": -144.18081242370587,
+        "z": 12.822967564649671,
+        "state": "chat",
+        "elapsed": 5.770199999999998,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 12,
+        "vendor": true,
+        "x": -142.04429464236085,
+        "z": 12.709861607311714,
+        "state": "idle",
+        "elapsed": 4.027300000000003,
+        "variant": 0,
+        "clear": false
+      },
+      {
+        "id": 13,
+        "vendor": true,
+        "x": -138.25656628995895,
+        "z": -0.5489184708996657,
+        "state": "idle",
+        "elapsed": 4.3954,
+        "variant": 1,
+        "clear": false
+      },
+      {
+        "id": 14,
+        "vendor": false,
+        "x": -149.7797309990505,
+        "z": 8.849686141233747,
+        "state": "chat",
+        "elapsed": 10.123700000000001,
+        "variant": 2,
+        "visit": "market-yatai-30",
+        "clear": true
+      },
+      {
+        "id": 16,
+        "vendor": false,
+        "x": -169.0551245494054,
+        "z": 4.803092906736096,
+        "state": "walk",
+        "elapsed": 1.8957000000000035,
+        "variant": 0,
+        "clear": true
+      },
+      {
+        "id": 17,
+        "vendor": false,
+        "x": -124.18918700861987,
+        "z": 7.57609202906194,
+        "state": "point",
+        "elapsed": 5.881299999999998,
+        "variant": 1,
+        "visit": "market-yatai-55",
+        "clear": true
+      },
+      {
+        "id": 18,
+        "vendor": false,
+        "x": -171.215935595521,
+        "z": 15.068793838136815,
+        "state": "chat",
+        "elapsed": 5.686899999999995,
+        "variant": 2,
+        "visit": "market-yatai-48",
+        "clear": true
+      },
+      {
+        "id": 20,
+        "vendor": false,
+        "x": -166.7284973711814,
+        "z": 21.3517773485366,
+        "state": "chat",
+        "elapsed": 6.353399999999997,
+        "variant": 0,
+        "visit": "market-yatai-47",
+        "clear": true
+      },
+      {
+        "id": 22,
+        "vendor": false,
+        "x": -156.28662864442595,
+        "z": 9.178580591977152,
+        "state": "point",
+        "elapsed": 0.19449999999999998,
+        "variant": 2,
+        "visit": "market-yatai-28",
+        "clear": true
+      },
+      {
+        "id": 24,
+        "vendor": false,
+        "x": -109.16344915417214,
+        "z": 2.8778307953055307,
+        "state": "walk",
+        "elapsed": 10.304300000000003,
+        "variant": 0,
+        "clear": true
+      },
+      {
+        "id": 26,
+        "vendor": false,
+        "x": -99.74104472003935,
+        "z": 5.308205561686044,
+        "state": "walk",
+        "elapsed": 2.680200000000004,
+        "variant": 2,
+        "clear": true
+      },
+      {
+        "id": 28,
+        "vendor": false,
+        "x": -127.54873930479187,
+        "z": 7.742678998066584,
+        "state": "point",
+        "elapsed": 5.325799999999997,
+        "variant": 0,
+        "visit": "market-yatai-34",
+        "clear": true
+      },
+      {
+        "id": 29,
+        "vendor": false,
+        "x": -168.60542826587775,
+        "z": -81.90186270981316,
+        "state": "photo",
+        "elapsed": 0.777800000000003,
+        "variant": 1,
+        "clear": true
+      },
+      {
+        "id": 30,
+        "vendor": false,
+        "x": -140.65369470575334,
+        "z": 6.1958472439471475,
+        "state": "walk",
+        "elapsed": 6.374299999999999,
+        "variant": 2,
+        "clear": true
+      }
+    ]
+  },
+  "errors": [],
+  "note": "No NPC pose, placement, route, timer or state modified; only player and view moved to actual crowd."
+}

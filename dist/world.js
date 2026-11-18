@@ -6,6 +6,7 @@ import {createArchitecture,createToriiBuilder} from './architecture.js';
 import {Tree,TreeOptions,loadPreset} from './vendor/ez-tree.js';
 import {createDistrict} from './district.js';
 import {chunkTerrain} from './terrain-chunks.js';
+import {createToriiCorridor,crownRadius} from './torii-corridor.js';
 let seed=20261025;
 export function random(){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;}
 const range=(a,b)=>a+(b-a)*random();
@@ -23,15 +24,12 @@ export async function buildWorld(scene,M,onProgress){
     if(special.has(b.id))continue;const bb=footprintBox(b);if(!bb||bb.w<.7||bb.d<.7)continue;
     if(b.type==='shrine'||b.name.includes('権殿')||b.name.includes('奥社'))architecture.shrine(b,{main:b.name.includes('権殿')});else architecture.simpleBuilding(b);
   }
-  // Precinct walls, subsidiary shrine enclosures, and actual side corridors.
-  architecture.fence([[42,-18],[58,-19],[60,3],[44,4]],.2,1.35);
-  architecture.fence([[58,-34],[98,-36]],.1,1.25);
-  architecture.fence([[-19,-20],[-28,-20],[-29,-30]],.1,1.25);
-  architecture.fence([[-18,14],[-26,14],[-27,22]],.1,1.25);
   // Main approach is west of Romon, not an invented north/south axis.
   // Public paving follows the graded terrain. A constant-height approach pad
   // previously made a 1.4 m invisible curb at x=-76 and trapped the visitor.
-  const entranceGates=MAP.gates.filter(a=>a.p[0]<-30&&a.p[0]>-125&&Math.abs(a.p[1])<35);
+  // PPT page1: this1.314m side access gate was incorrectly promoted to a large
+  // torii. Exclude it before geometry AND collision generation; keep the main torii.
+  const entranceGates=MAP.gates.filter(a=>a.p[0]<-30&&a.p[0]>-125&&Math.abs(a.p[1])<35&&a.id!==1119273330);
   if(entranceGates.length){for(const gate of entranceGates)toriis.torii(...gate.p,Math.max(2.1,gate.width/2.25),-Math.PI/2+.055,{plaque:true});}
   else{toriis.torii(-90,1.7,2.7,-Math.PI/2+.055,{plaque:true});toriis.torii(-42,-.9,2.35,-Math.PI/2+.055,{plaque:true});}
   for(let i=0;i<5;i++)for(const side of [-1,1])architecture.standingLantern(-83+i*11,side*8-1,.9,-Math.PI/2);
@@ -41,7 +39,7 @@ export async function buildWorld(scene,M,onProgress){
   await onProgress('鋪設實際步道與雙列千本鳥居…');
   await new Promise(r=>setTimeout(r,0));
   const senbonPaths=MAP.paths.filter(p=>p.id===260121328||p.id===377968455);let senbonCount=0;
-  for(const p of senbonPaths){const expected=p.id===260121328?382:399,ps=pathSamples(p.p,1);const length=ps[ps.length-1].distance;for(const q of pathSamples(p.p,length/(expected-1))){if(toriis.torii(q.x,q.z,.94,Math.atan2(q.dx,q.dz),{base:surface.height(q.x,q.z)-.015,plaque:senbonCount%100===0}))senbonCount++;}}
+  for(const p of senbonPaths){const expected=p.id===260121328?382:399,ps=pathSamples(p.p,1);const length=ps[ps.length-1].distance;for(const q of pathSamples(p.p,length/(expected-1))){if(toriis.torii(q.x,q.z,.94,Math.atan2(q.dx,q.dz),{base:surface.height(q.x,q.z)-.015,plaque:senbonCount%100===0,beamDepth:.61}))senbonCount++;}}
   const largeApproach=MAP.paths.find(p=>p.id===260121354);
   if(largeApproach)for(const p of pathSamples(largeApproach.p,1.9))toriis.torii(p.x,p.z,1.4,Math.atan2(p.dx,p.dz),{base:surface.height(p.x,p.z)-.015,plaque:true});
   // Mountain loop follows actual OSM route nodes and metre distances.
@@ -109,8 +107,14 @@ export async function buildWorld(scene,M,onProgress){
   // Gate feet use the final visible pavement, so raised paving cannot reduce
   // the clearance under a torii's crossbeam and trap the visitor's head.
   toriis.finish(walkHeight);
+  // Keep the Tamayama side approach open beside the torii and stairs.
+  // The remaining fences sit on the same finished surface as the player.
+  architecture.fence([[42,-18],[58,-19],[60,3],[44,4]],1.35,walkHeight);
+  architecture.fence([[-19,-20],[-28,-20],[-29,-30]],1.25,walkHeight);
+  architecture.fence([[-18,14],[-26,14],[-27,22]],1.25,walkHeight);
   await onProgress('生成杉林、枝葉與表面細節…');await new Promise(r=>setTimeout(r,0));
-  const trees=await plantForest(scene,g,physics,surface,M,MAP.buildings,MAP.water);
+  const toriiCorridor=createToriiCorridor();
+  const trees=await plantForest(scene,g,physics,surface,M,MAP.buildings,MAP.water,toriiCorridor);
   g.finish();
   const placeMap=Object.fromEntries(MAP.pois.map(p=>[p.id,{...p,x:p.p[0],z:p.p[1]}]));
   // Visitor positions are on public paths, not inside the measured building footprint.
@@ -129,11 +133,11 @@ export async function buildWorld(scene,M,onProgress){
     for(const mesh of g.meshes){const sphere=mesh.isInstancedMesh?mesh.boundingSphere:mesh.geometry.boundingSphere;if(sphere)mesh.visible=(!mesh.isInstancedMesh||mesh.count>0)&&camera.position.distanceTo(sphere.center)-sphere.radius<Math.min(limit,mesh.userData.detailRange||limit);}
     trees.update(camera,wide);
   }
-  return{ritualSites:architecture.ritualSites,physics,surface,paving,M,terrainMesh,pathMesh,trees,district,builder:g,seasonal:architecture.seasonal,buildings:architecture.registered,places:placeMap,safePlace,walkHeight,updateVisibility,
+  return{ritualSites:architecture.ritualSites,nightWindows:architecture.nightWindows,physics,surface,paving,M,terrainMesh,pathMesh,trees,toriiCorridor,district,builder:g,seasonal:architecture.seasonal,buildings:architecture.registered,places:placeMap,safePlace,walkHeight,updateVisibility,
     stats:{toriiCount:toriis.count,senbonCount,mountainCount,buildings:architecture.registered.length,colliders:physics.bodies.length,staticInstances:g.count,trees:trees.count,shops:district.shops,stalls:district.stalls,routeMetres:Math.round(MAP.routes.reduce((s,r)=>s+r.length,0))}};
 }
 
-async function plantForest(scene,g,physics,surface,M,buildings,waters){
+async function plantForest(scene,g,physics,surface,M,buildings,waters,corridor){
   const forestGroups=new Map(),materials=[],templates=[];
   for(let k=0;k<3;k++){
     const tree=new Tree(new TreeOptions());tree.options.copy(loadPreset(k<2?'Pine Small':'Oak Small'));tree.options.seed=3921+k*734;tree.options.bark.textured=false;
@@ -149,7 +153,7 @@ async function plantForest(scene,g,physics,surface,M,buildings,waters){
     // Keep generated branch geometry; replace bark material with the Japanese cedar scan.
     tree.branchesMesh.material.dispose();
   }
-  const sites=[];
+  const sites=[],removed=[],crownRadii=templates.map(t=>crownRadius(t,10));
   for(let i=0;i<1850;i++){
     const x=range(-55,1230),z=range(-405,175);if(x<95&&z>-48)continue;if(x<45&&z>-120)continue;
     const p=surface.nearPath(x,z);if(p.distance<(p.s?.width||2)/2+2.2)continue;
@@ -162,8 +166,16 @@ async function plantForest(scene,g,physics,surface,M,buildings,waters){
     const x=site.x+range(-3,3),z=site.z+range(-3,3),p=surface.nearPath(x,z);if(p.distance<(p.s?.width||2)/2+.7)continue;
     const h=range(.4,1.15),y=terrainHeight(x,z)+h*.5;for(let k=0;k<3;k++)g.put('plane',undergrowth,x,y,z,h*.9,h,1,range(-.25,.25),site.angle+k*Math.PI/3);
   }
+  const treeSites=sites.filter(site=>{
+    const lane=corridor.nearest(site.x,site.z);
+    if(lane&&lane.distance<lane.s.width+.32+crownRadii[site.k]*site.s){
+      removed.push({x:site.x,z:site.z,lane:lane.s.lane,distance:lane.distance});
+      return false;
+    }
+    return true;
+  });
   const dummy=new THREE.Object3D();
-  for(const site of sites){const y=terrainHeight(site.x,site.z),key=site.k+':'+Math.floor(site.x/230)+':'+Math.floor(site.z/230)+(site.sakura?':flower':'');if(!forestGroups.has(key))forestGroups.set(key,{sites:[],template:templates[site.k],kind:site.sakura?'sakura':site.k<2?'cedar':'maple'});forestGroups.get(key).sites.push({...site,y});physics.circle('tree trunk',site.x,y+2,site.z,.26*site.s,4);}
+  for(const site of treeSites){const y=terrainHeight(site.x,site.z),key=site.k+':'+Math.floor(site.x/230)+':'+Math.floor(site.z/230)+(site.sakura?':flower':'');if(!forestGroups.has(key))forestGroups.set(key,{sites:[],template:templates[site.k],kind:site.sakura?'sakura':site.k<2?'cedar':'maple'});forestGroups.get(key).sites.push({...site,y});physics.circle('tree trunk',site.x,y+2,site.z,.26*site.s,4);}
   const seasonal=[],lods=[];
   for(const group of forestGroups.values()){
     const mat=group.kind==='sakura'?group.template.material.clone():group.template.material;
@@ -173,5 +185,5 @@ async function plantForest(scene,g,physics,surface,M,buildings,waters){
     const proxies=[];for(const mesh of [branches,leaves,lowBranches,lowLeaves]){mesh.castShadow=mesh.receiveShadow=true;mesh.computeBoundingSphere();scene.add(mesh);proxies.push(shadowProxy(mesh,scene));}if(group.kind!=='cedar')seasonal.push(leaves,lowLeaves);const center=new THREE.Vector3();for(const p of group.sites)center.add(new THREE.Vector3(p.x,p.y+10,p.z));center.divideScalar(group.sites.length);lods.push({center,branches,leaves,lowBranches,lowLeaves,sites:group.sites,proxies});
   }
   const frustum=new THREE.Frustum(),clip=new THREE.Matrix4(),sphere=new THREE.Sphere(),lastPosition=new THREE.Vector3(Infinity,0,0),lastQuaternion=new THREE.Quaternion();let lastUpdate=-Infinity,lastWide;
-  return{count:sites.length,materials,seasonal,templates,update(camera,wide=false){if(wide===lastWide&&camera.position.distanceToSquared(lastPosition)<.36&&camera.quaternion.angleTo(lastQuaternion)<.015&&performance.now()-lastUpdate<500)return;lastWide=wide;lastPosition.copy(camera.position);lastQuaternion.copy(camera.quaternion);lastUpdate=performance.now();camera.updateMatrixWorld();frustum.setFromProjectionMatrix(clip.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse));for(const lod of lods){if(g.integrated){const winter=!!lod.leaves.userData.seasonalHidden,source=lod.proxies[0].instanceMatrix.array;let nearCount=0,farCount=0;for(let i=0;i<lod.sites.length;i++){const p=lod.sites[i],d=Math.hypot(p.x-camera.position.x,p.y+8-camera.position.y,p.z-camera.position.z);if(d>(wide?3000:840))continue;sphere.center.set(p.x,p.y+10*p.s,p.z);sphere.radius=25*p.s;if(!frustum.intersectsSphere(sphere))continue;const close=d<50,index=close?nearCount++:farCount++,pair=close?[lod.branches,lod.leaves]:[lod.lowBranches,lod.lowLeaves];for(const mesh of pair){for(let k=0;k<16;k++)mesh.instanceMatrix.array[index*16+k]=source[i*16+k];if(mesh.instanceColor)for(let k=0;k<3;k++)mesh.instanceColor.array[index*3+k]=lod.proxies[1].instanceColor.array[i*3+k];}}for(const [j,m] of [lod.branches,lod.leaves,lod.lowBranches,lod.lowLeaves].entries()){m.count=j<2?nearCount:farCount;m.visible=m.count>0&&(j%2===0||!winter);m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;}lod.proxies.forEach((m,i)=>m.visible=i>=2&&(i%2===0||!winter));continue;}const d=camera.position.distanceTo(lod.center),near=d<(g.integrated?45:115),visible=d<(wide?3000:840),winter=!!lod.leaves.userData.seasonalHidden;lod.branches.visible=visible&&near;lod.leaves.visible=visible&&near&&!winter;lod.lowBranches.visible=visible&&!near;lod.lowLeaves.visible=visible&&!near&&!winter;lod.proxies.forEach((m,i)=>m.visible=visible&&(i<2?near:!near)&&(i%2===0||!winter));let count=0;for(let i=0;i<lod.sites.length;i++){const p=lod.sites[i];sphere.center.set(p.x,p.y+10*p.s,p.z);sphere.radius=25*p.s;if(!frustum.intersectsSphere(sphere))continue;const matrix=lod.proxies[0].instanceMatrix.array;for(const m of [lod.branches,lod.leaves,lod.lowBranches,lod.lowLeaves]){for(let k=0;k<16;k++)m.instanceMatrix.array[count*16+k]=matrix[i*16+k];if(m.instanceColor)for(let k=0;k<3;k++)m.instanceColor.array[count*3+k]=lod.proxies[1].instanceColor.array[i*3+k];}count++;}for(const m of [lod.branches,lod.leaves,lod.lowBranches,lod.lowLeaves]){m.count=count;m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;}}}};
+  return{count:treeSites.length,removed,materials,seasonal,templates,update(camera,wide=false){if(wide===lastWide&&camera.position.distanceToSquared(lastPosition)<.36&&camera.quaternion.angleTo(lastQuaternion)<.015&&performance.now()-lastUpdate<500)return;lastWide=wide;lastPosition.copy(camera.position);lastQuaternion.copy(camera.quaternion);lastUpdate=performance.now();camera.updateMatrixWorld();frustum.setFromProjectionMatrix(clip.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse));for(const lod of lods){if(g.integrated){const winter=!!lod.leaves.userData.seasonalHidden,source=lod.proxies[0].instanceMatrix.array;let nearCount=0,farCount=0;for(let i=0;i<lod.sites.length;i++){const p=lod.sites[i],d=Math.hypot(p.x-camera.position.x,p.y+8-camera.position.y,p.z-camera.position.z);if(d>(wide?3000:840))continue;sphere.center.set(p.x,p.y+10*p.s,p.z);sphere.radius=25*p.s;if(!frustum.intersectsSphere(sphere))continue;const close=d<50,index=close?nearCount++:farCount++,pair=close?[lod.branches,lod.leaves]:[lod.lowBranches,lod.lowLeaves];for(const mesh of pair){for(let k=0;k<16;k++)mesh.instanceMatrix.array[index*16+k]=source[i*16+k];if(mesh.instanceColor)for(let k=0;k<3;k++)mesh.instanceColor.array[index*3+k]=lod.proxies[1].instanceColor.array[i*3+k];}}for(const [j,m] of [lod.branches,lod.leaves,lod.lowBranches,lod.lowLeaves].entries()){m.count=j<2?nearCount:farCount;m.visible=m.count>0&&(j%2===0||!winter);m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;}lod.proxies.forEach((m,i)=>m.visible=i>=2&&(i%2===0||!winter));continue;}const d=camera.position.distanceTo(lod.center),near=d<(g.integrated?45:115),visible=d<(wide?3000:840),winter=!!lod.leaves.userData.seasonalHidden;lod.branches.visible=visible&&near;lod.leaves.visible=visible&&near&&!winter;lod.lowBranches.visible=visible&&!near;lod.lowLeaves.visible=visible&&!near&&!winter;lod.proxies.forEach((m,i)=>m.visible=visible&&(i<2?near:!near)&&(i%2===0||!winter));let count=0;for(let i=0;i<lod.sites.length;i++){const p=lod.sites[i];sphere.center.set(p.x,p.y+10*p.s,p.z);sphere.radius=25*p.s;if(!frustum.intersectsSphere(sphere))continue;const matrix=lod.proxies[0].instanceMatrix.array;for(const m of [lod.branches,lod.leaves,lod.lowBranches,lod.lowLeaves]){for(let k=0;k<16;k++)m.instanceMatrix.array[count*16+k]=matrix[i*16+k];if(m.instanceColor)for(let k=0;k<3;k++)m.instanceColor.array[count*3+k]=lod.proxies[1].instanceColor.array[i*3+k];}count++;}for(const m of [lod.branches,lod.leaves,lod.lowBranches,lod.lowLeaves]){m.count=count;m.instanceMatrix.needsUpdate=true;if(m.instanceColor)m.instanceColor.needsUpdate=true;}}}};
 }

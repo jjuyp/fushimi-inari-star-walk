@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "cancel restores previously equipped mask, consumes only started drink",
+    "travel cancels meal and restores gear without residual food or extra consumption",
+    "rest finishes and restores feet and face",
+    "food grain and foam batching keeps serving draw submissions small",
+    "no exceptions during cleanup"
+  ],
+  "data": {
+    "productBatches": {
+      "sushi": {
+        "draws": 11,
+        "instances": 130
+      },
+      "senbei": {
+        "draws": 4,
+        "instances": 0
+      },
+      "matcha": {
+        "draws": 4,
+        "instances": 45
+      }
+    }
+  },
+  "errors": []
+}

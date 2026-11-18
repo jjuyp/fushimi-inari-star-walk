@@ -1,0 +1,92 @@
+{
+  "offline": true,
+  "errors": [],
+  "external": [],
+  "scene": {
+    "lanterns": 94,
+    "wallLanterns": 17,
+    "pathLanterns": 66,
+    "gateLanterns": 11,
+    "windowCount": 29,
+    "gardens": 3,
+    "statues": 2,
+    "lightBudget": 5,
+    "active": 5,
+    "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "moon": true,
+    "clouds": true,
+    "wet": true,
+    "fireflies": true
+  },
+  "audio": {
+    "enabled": true,
+    "playing": true
+  },
+  "photo": {
+    "width": 2560,
+    "height": 1778
+  },
+  "rain": {
+    "weather": "rain",
+    "season": "autumn",
+    "reflection": 0.96,
+    "moon": 0.19,
+    "flies": false
+  },
+  "mist": {
+    "reflection": 0.39,
+    "moon": 0.4
+  },
+  "passage": [
+    {
+      "start": [
+        19.157,
+        -18.423
+      ],
+      "end": [
+        55.4,
+        -24.52
+      ],
+      "error": 0
+    },
+    {
+      "start": [
+        55.4,
+        -24.52
+      ],
+      "end": [
+        19.157,
+        -18.423
+      ],
+      "error": 0
+    },
+    {
+      "start": [
+        85.341,
+        -37.404
+      ],
+      "end": [
+        85.943,
+        -20.939
+      ],
+      "error": 0
+    },
+    {
+      "start": [
+        85.943,
+        -20.939
+      ],
+      "end": [
+        85.341,
+        -37.404
+      ],
+      "error": 0
+    }
+  ],
+  "day": {
+    "lights": 0,
+    "moon": false,
+    "wet": false,
+    "roughness": 0.93
+  }
+}

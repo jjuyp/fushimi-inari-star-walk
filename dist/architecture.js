@@ -3,7 +3,7 @@ import {Building,curvedRoof,curtain} from './geometry.js';
 import {terrainHeight,footprintBox} from './geography.js';
 
 export function createArchitecture(g,surface){
-  const M=g.M,seasonal=[],registered=[],ritualSites=[];
+  const M=g.M,seasonal=[],registered=[],ritualSites=[],nightWindows=[];
   const P=(b,x,y,z)=>new THREE.Vector3(...b.p(x,y,z));
   function chrysanthemum(b,x,y,z,r=.16){
     for(let i=0;i<16;i++){const a=i/16*Math.PI*2;g.put('petal',M.gold,...b.p(x+Math.cos(a)*r*.55,y+Math.sin(a)*r*.55,z),r*.19,r*.48,.025,0,b.angle,a-Math.PI/2);}
@@ -63,13 +63,14 @@ export function createArchitecture(g,surface){
   }
   function rail(b,x,y,z,w,axis='x',solid=true){
     if(axis==='x'){
-      b.box(M.red,x,y+.85,z,w,.15,.14,0,solid);b.box(M.red,x,y+.31,z,w,.13,.12);
+      b.box(M.red,x,y+.85,z,w,.15,.14);b.box(M.red,x,y+.31,z,w,.13,.12);
       for(let i=0;i<=Math.floor(w/.36);i++)b.box(M.red,x-w/2+i*.36,y+.57,z,.065,.7,.07);
       for(const s of [-1,1]){b.column(M.red,x+s*w/2,y+.61,z,.1,1.22,solid);b.sphere(M.bronze,x+s*w/2,y+1.25,z,.13,.12,.13);}
     }else{
-      b.box(M.red,x,y+.85,z,.14,.15,w,0,solid);b.box(M.red,x,y+.31,z,.12,.13,w);
+      b.box(M.red,x,y+.85,z,.14,.15,w);b.box(M.red,x,y+.31,z,.12,.13,w);
       for(let i=0;i<=Math.floor(w/.36);i++)b.box(M.red,x,y+.57,z-w/2+i*.36,.07,.7,.065);
     }
+    if(solid)b.g.physics.box(b.id+' rail',...b.p(x,y+.47,z),axis==='x'?w:.14,.96,axis==='x'?.14:w,b.angle);
   }
   function hangingLantern(b,x,y,z,size=.65){
     b.column(M.black,x,y+.42*size,z,.027*size,.9*size,false);
@@ -209,6 +210,7 @@ export function createArchitecture(g,surface){
       for(let k=0;k<bays;k++){
         const xx=a[0]+dx*(k+.5)/bays+nx*.12,zz=a[1]+dz*(k+.5)/bays+nz*.12,ww=Math.min(1.8,length/bays-.35);if(ww<.35)continue;
         g.box(M.darkWood,xx,y+2.2,zz,ww,1.35,.06,angle);
+        if(xx>-110&&xx<255&&zz>-96&&zz<84)nightWindows.push({x:xx,z:zz,y:y+2.2,nx,nz,width:ww,angle:Math.atan2(nx,nz),bay:k});
         for(let q=0;q<9;q++)g.box(M.wood,xx+dx/length*(q/8-.5)*ww+nx*.045,y+2.2,zz+dz/length*(q/8-.5)*ww+nz*.045,.04,1.35,.045,angle);
         for(const sy of [-1,1])g.box(M.wood,xx+nx*.05,y+2.2+sy*.67,zz+nz*.05,ww+.1,.08,.07,angle);
       }
@@ -244,16 +246,27 @@ export function createArchitecture(g,surface){
     for(const a of [-1,1])for(const c of [-1,1])b.box(M.wall,a*.32*s,2.3*s,c*.32*s,.12*s,.72*s,.12*s);
     const rg=curvedRoof(1.35*s,1.35*s,.5*s,{ridge:.2,curl:.08});b.mesh(rg,M.wall,0,2.7*s,0);rg.dispose();b.sphere(M.wall,0,3.32*s,0,.14*s,.2*s,.14*s);
   }
-  function fence(points,yOffset=.2,height=1.5,wood=false){
-    const mat=wood?M.darkWood:M.red;
-    for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],dx=b[0]-a[0],dz=b[1]-a[1],len=Math.hypot(dx,dz),n=Math.max(1,Math.round(len/.45)),angle=Math.atan2(-dz,dx),y=(terrainHeight(...a)+terrainHeight(...b))/2+yOffset;
-      for(let k=0;k<=n;k++){const x=a[0]+dx*k/n,z=a[1]+dz*k/n,yy=terrainHeight(x,z)+yOffset;g.box(mat,x,yy+height/2,z,.1,height,.1,angle);}
-      for(const yy of [height*.2,height*.76])g.box(mat,(a[0]+b[0])/2,y+yy,(a[1]+b[1])/2,len,.13,.12,angle);
-      g.physics.box('fence',(a[0]+b[0])/2,y+height/2,(a[1]+b[1])/2,len,height,.15,angle);
+  function fence(points,height,heightAt){
+    for(let i=1;i<points.length;i++){
+      const [ax,az]=points[i-1],[bx,bz]=points[i],dx=bx-ax,dz=bz-az,len=Math.hypot(dx,dz);
+      if(len<.01)continue;
+      const spans=Math.ceil(len/.45),step=len/spans,angle=Math.atan2(-dz,dx);
+      let last={x:ax,y:heightAt(ax,az),z:az};
+      if(i===1)g.box(M.red,last.x,last.y+height/2-.07,last.z,.115,height+.14,.115,angle);
+      for(let k=1;k<=spans;k++){
+        const x=ax+dx*k/spans,z=az+dz*k/spans,y=heightAt(x,z);
+        const cx=(last.x+x)/2,cz=(last.z+z)/2,cy=(last.y+y)/2,dy=y-last.y;
+        const tilt=Math.atan2(dy,step),slopedLength=Math.hypot(step,dy)+.016;
+        g.box(M.red,x,y+height/2-.07,z,.115,height+.14,.115,angle);
+        for(const railY of [height*.25,height*.79])g.put('box',M.red,cx,cy+railY,cz,slopedLength,.114,.116,0,angle,tilt);
+        const bottom=Math.min(y,last.y)-.15,top=Math.max(y,last.y)+height;
+        g.physics.box('fence',cx,(bottom+top)/2,cz,step+.018,top-bottom,.14,angle);
+        last={x,y,z};
+      }
     }
   }
   const statueSphere=new THREE.SphereGeometry(1,24,16);
-  return{romon,shrine,simpleBuilding,fox,standingLantern,fence,detailedRoof,plaque,seasonal,registered,ritualSites,bracket,rail,hangingLantern,chrysanthemum};
+  return{romon,shrine,simpleBuilding,fox,standingLantern,fence,detailedRoof,plaque,seasonal,registered,ritualSites,nightWindows,bracket,rail,hangingLantern,chrysanthemum};
 }
 
 export function createToriiBuilder(g,surface){
@@ -265,16 +278,16 @@ export function createToriiBuilder(g,surface){
   const plaqueTexture=new THREE.CanvasTexture(plaqueCanvas);plaqueTexture.colorSpace=THREE.SRGBColorSpace;plaqueTexture.anisotropy=8;
   const plaqueMaterial=new THREE.MeshStandardMaterial({map:plaqueTexture,roughness:.7,polygonOffset:true,polygonOffsetFactor:-1});plaqueMaterial.name='伏見稲荷大社・共用扁額';plaqueMaterial.userData.noShadow=true;
   let count=0;const pending=[];
-  function torii(x,z,size=1,angle=0,{collide=true,base=null,plaque=false}={}){
+  function torii(x,z,size=1,angle=0,{collide=true,base=null,plaque=false,beamDepth=1}={}){
     if(surface&&size<1.9){
       for(const side of [-1,1]){
         const px=x+Math.cos(angle)*side*1.12*size,pz=z-Math.sin(angle)*side*1.12*size,near=surface.nearPath(px,pz);
         if(near.distance<.38+.135*size+.11)return null;
       }
     }
-    pending.push({x,z,size,angle,collide,base,plaque,id:count++});return true;
+    pending.push({x,z,size,angle,collide,base,plaque,beamDepth,id:count++});return true;
   }
-  function build({x,z,size,angle,collide,base,plaque,id},groundHeight){
+  function build({x,z,size,angle,collide,base,plaque,beamDepth,id},groundHeight){
     const ground=groundHeight(x,z),y=Math.max(base===null?terrainHeight(x,z)+.12:base,Number.isFinite(ground)?ground-.02:-Infinity),b=new Building(g,'torii-'+id,x,y,z,angle);
     const s=size;
     for(const side of [-1,1]){
@@ -285,8 +298,8 @@ export function createToriiBuilder(g,surface){
       g.put('plane',M.date,...b.p(px,1.57*s,-.138*s),.14*s,1.4*s,1,0,angle+Math.PI);
     }
     b.box(M.red,0,2.57*s,0,2.72*s,.15*s,.2*s);b.box(M.red,0,2.86*s,0,.15*s,.49*s,.18*s);
-    if(collide){g.physics.box(b.id+' crossbeam',...b.p(0,2.57*s,0),2.72*s,.15*s,.2*s,angle);g.physics.box(b.id+' lintel',...b.p(0,3.26*s,0),3.3*s,.4*s,.35*s,angle);}
-    g.put(redBeam,M.red,...b.p(0,3.22*s,0),s,s,s,0,angle);g.put(blackBeam,M.black,...b.p(0,3.37*s,0),s,s,s,0,angle);
+    if(collide){g.physics.box(b.id+' crossbeam',...b.p(0,2.57*s,0),2.72*s,.15*s,.2*s,angle);g.physics.box(b.id+' lintel',...b.p(0,3.26*s,0),3.3*s,.4*s,.35*s*beamDepth,angle);}
+    g.put(redBeam,M.red,...b.p(0,3.22*s,0),s,s,s*beamDepth,0,angle);g.put(blackBeam,M.black,...b.p(0,3.37*s,0),s,s,s*beamDepth,0,angle);
     if(plaque){b.box(M.darkWood,0,2.91*s,.17*s,.39*s,.61*s,.055);b.box(M.goldDark,0,2.91*s,.21*s,.31*s,.53*s,.025);g.put('plane',plaqueMaterial,...b.p(0,2.91*s,.241*s),.31*s,.53*s,1,0,angle);g.put('plane',plaqueMaterial,...b.p(0,2.91*s,-.185*s),.31*s,.53*s,1,0,angle+Math.PI);}
     return b;
   }

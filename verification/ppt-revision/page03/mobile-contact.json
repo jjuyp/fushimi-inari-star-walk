@@ -1,0 +1,13 @@
+{
+  "contact": {
+    "active": "eat",
+    "phase": "bite",
+    "expression": "neutral",
+    "mouthOpen": 0.8760362724754638,
+    "item": "sushi",
+    "contact": 1,
+    "scale": 1
+  },
+  "width": 390,
+  "height": 844
+}

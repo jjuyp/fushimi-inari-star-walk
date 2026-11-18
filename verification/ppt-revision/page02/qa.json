@@ -1,0 +1,83 @@
+{
+  "checks": [
+    "journal art loads on opening, not at game startup",
+    "J opens illustrated journal",
+    "all11 routes and4 illustrated actions are real buttons",
+    "J closes journal",
+    "shortcut 1 reaches wash",
+    "shortcut 2 reaches shop",
+    "shortcut 3 reaches charms",
+    "shortcut 4 reaches fortune",
+    "shortcut 5 reaches tie",
+    "shortcut 6 reaches stone",
+    "shortcut 7 reaches kagura",
+    "shortcut 8 reaches waterfall",
+    "shortcut 9 reaches art",
+    "shortcut 0 reaches art2",
+    "shortcut - reaches art3",
+    "B opens inventory",
+    "other dialog blocks route shortcuts",
+    "N enters night exploration",
+    "V reaches Kyoto night view",
+    "H reaches main shrine worship",
+    "typing shortcut letters/digits in wish input does not travel",
+    "Ctrl/Alt/Meta combinations do not trigger journal shortcuts",
+    "select focus blocks journal shortcuts",
+    "live wallet updates after real350-coin purchase",
+    "390px journal has no horizontal overflow",
+    "mobile illustrated inventory button works",
+    "no JS/WebGL errors"
+  ],
+  "errors": [],
+  "data": {
+    "routes": [
+      {
+        "id": "wash",
+        "near": true
+      },
+      {
+        "id": "shop",
+        "near": true
+      },
+      {
+        "id": "charms",
+        "near": true
+      },
+      {
+        "id": "fortune",
+        "near": true
+      },
+      {
+        "id": "tie",
+        "near": true
+      },
+      {
+        "id": "stone",
+        "near": true
+      },
+      {
+        "id": "kagura",
+        "near": true
+      },
+      {
+        "id": "waterfall",
+        "near": true
+      },
+      {
+        "id": "art",
+        "near": true
+      },
+      {
+        "id": "art2",
+        "near": true
+      },
+      {
+        "id": "art3",
+        "near": true
+      }
+    ],
+    "artRequests": 5,
+    "font": "\"Segoe UI\", \"Microsoft JhengHei\", sans-serif"
+  },
+  "scope": "Page02 only, desktop1440x1000 and simulated390px touch in Intel Chromium; AI reference review separately"
+}

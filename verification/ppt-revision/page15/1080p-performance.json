@@ -1,0 +1,29 @@
+[
+  {
+    "stage": "night",
+    "rendered": 93,
+    "fps": 16.70328074218857,
+    "p95ms": 70.69999998807907,
+    "pixelRatio": 0.55,
+    "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "drawCalls": 429
+  },
+  {
+    "stage": "day",
+    "rendered": 138,
+    "fps": 25.004562876437305,
+    "p95ms": 44.70000000298023,
+    "pixelRatio": 0.55,
+    "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "drawCalls": 418
+  },
+  {
+    "stage": "night",
+    "rendered": 108,
+    "fps": 19.40726230641229,
+    "p95ms": 56,
+    "pixelRatio": 0.55,
+    "gpu": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "drawCalls": 429
+  }
+]

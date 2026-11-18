@@ -1,0 +1,57 @@
+{
+  "proof": {
+    "catalogue": {
+      "unique": 108,
+      "fullCycles": 2,
+      "adjacentRepeats": 0
+    },
+    "mobileActions": [
+      {
+        "title": "收好籤紙",
+        "visible": true
+      },
+      {
+        "title": "到結籤所",
+        "visible": true
+      },
+      {
+        "title": "再抽一支",
+        "visible": true
+      },
+      {
+        "title": "歷次抽籤",
+        "visible": true
+      }
+    ],
+    "saves": {
+      "archive": [
+        {
+          "number": 64,
+          "cycle": 1
+        },
+        {
+          "number": 96,
+          "cycle": 1
+        },
+        {
+          "number": 103,
+          "cycle": 1
+        }
+      ],
+      "deck": {
+        "cycle": 1,
+        "used": [
+          64,
+          96,
+          103
+        ],
+        "last": 103
+      },
+      "coins": 5700,
+      "busy": false
+    },
+    "legacy": true
+  },
+  "errors": [],
+  "external": []
+}

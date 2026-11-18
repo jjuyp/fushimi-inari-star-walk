@@ -1,0 +1,79 @@
+{
+  "proof": {
+    "counts": {
+      "count": 6,
+      "tubes": 3,
+      "missing": [],
+      "ema": {
+        "count": 0
+      }
+    },
+    "walk": [
+      {
+        "id": "wealth",
+        "clear": true
+      },
+      {
+        "id": "bonds",
+        "clear": true
+      },
+      {
+        "id": "health",
+        "clear": true
+      },
+      {
+        "id": "sun",
+        "clear": true
+      },
+      {
+        "id": "study",
+        "clear": true
+      },
+      {
+        "id": "path",
+        "clear": true
+      }
+    ],
+    "saved": {
+      "ema": [
+        {
+          "style": "bond",
+          "wish": "願一起走過春天"
+        }
+      ],
+      "visible": 1,
+      "prayers": {
+        "wealth": 1,
+        "bonds": 1,
+        "health": 1,
+        "sun": 1,
+        "study": 1,
+        "path": 1
+      },
+      "themed": [
+        "wealth",
+        "bonds",
+        "health"
+      ]
+    },
+    "lights": [
+      {
+        "night": true,
+        "intensity": 9.4,
+        "emissive": true
+      },
+      {
+        "night": true,
+        "intensity": 9.4,
+        "emissive": true
+      },
+      {
+        "night": true,
+        "intensity": 9.4,
+        "emissive": true
+      }
+    ]
+  },
+  "errors": [],
+  "external": []
+}

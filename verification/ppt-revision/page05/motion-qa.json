@@ -1,0 +1,206 @@
+{
+  "frames": [
+    {
+      "requested": "photo",
+      "label": "begin",
+      "actual": "photo",
+      "elapsed": 0.851300000000001,
+      "torso": 0
+    },
+    {
+      "requested": "photo",
+      "label": "peak",
+      "actual": "photo",
+      "elapsed": 2.5733000000000015,
+      "torso": 0
+    },
+    {
+      "requested": "photo",
+      "label": "lower",
+      "actual": "walk",
+      "elapsed": 0.5624000000000015,
+      "torso": 0
+    },
+    {
+      "requested": "map",
+      "label": "begin",
+      "actual": "map",
+      "elapsed": 0.6943000000000029,
+      "torso": 0
+    },
+    {
+      "requested": "map",
+      "label": "peak",
+      "actual": "map",
+      "elapsed": 2.3329999999999997,
+      "torso": 0
+    },
+    {
+      "requested": "map",
+      "label": "lower",
+      "actual": "walk",
+      "elapsed": 0.30559999999999854,
+      "torso": 0
+    },
+    {
+      "requested": "pray",
+      "label": "begin",
+      "actual": "pray",
+      "elapsed": 0.7151999999999971,
+      "torso": 0
+    },
+    {
+      "requested": "pray",
+      "label": "peak",
+      "actual": "pray",
+      "elapsed": 2.3121999999999963,
+      "torso": 0
+    },
+    {
+      "requested": "pray",
+      "label": "lower",
+      "actual": "walk",
+      "elapsed": 0.3402000000000007,
+      "torso": 0
+    },
+    {
+      "requested": "bow",
+      "label": "begin",
+      "actual": "bow",
+      "elapsed": 0.6805,
+      "torso": 0.1951042411571032
+    },
+    {
+      "requested": "bow",
+      "label": "peak",
+      "actual": "bow",
+      "elapsed": 2.277499999999999,
+      "torso": 0.2545193653525525
+    },
+    {
+      "requested": "bow",
+      "label": "lower",
+      "actual": "wave",
+      "elapsed": 0.2638000000000029,
+      "torso": 0
+    },
+    {
+      "requested": "wave",
+      "label": "begin",
+      "actual": "wave",
+      "elapsed": 0.6874999999999999,
+      "torso": 0
+    },
+    {
+      "requested": "wave",
+      "label": "peak",
+      "actual": "wave",
+      "elapsed": 2.298300000000004,
+      "torso": 0
+    },
+    {
+      "requested": "wave",
+      "label": "lower",
+      "actual": "walk",
+      "elapsed": 0.30559999999999854,
+      "torso": 0
+    },
+    {
+      "requested": "bag",
+      "label": "begin",
+      "actual": "bag",
+      "elapsed": 0.7222999999999956,
+      "torso": 0
+    },
+    {
+      "requested": "bag",
+      "label": "peak",
+      "actual": "bag",
+      "elapsed": 2.360799999999996,
+      "torso": 0
+    },
+    {
+      "requested": "bag",
+      "label": "lower",
+      "actual": "idle",
+      "elapsed": 0.3889000000000014,
+      "torso": 0
+    },
+    {
+      "index": 0,
+      "actual": "bow",
+      "elapsed": 0.7638999999999941,
+      "torso": 0.21825702122283866
+    },
+    {
+      "index": 1,
+      "actual": "bow",
+      "elapsed": 1.5345999999999989,
+      "torso": 0.3371578034305135
+    },
+    {
+      "index": 2,
+      "actual": "bow",
+      "elapsed": 2.312199999999998,
+      "torso": 0.24612227824772862
+    },
+    {
+      "index": 3,
+      "actual": "bow",
+      "elapsed": 3.1176999999999984,
+      "torso": 0.011385766627248392
+    },
+    {
+      "index": 4,
+      "actual": "bow",
+      "elapsed": 3.888399999999996,
+      "torso": 0.000011065357840546128
+    },
+    {
+      "index": 5,
+      "actual": "bow",
+      "elapsed": 4.652299999999997,
+      "torso": 4.163799117101001e-17
+    },
+    {
+      "index": 6,
+      "actual": "bow",
+      "elapsed": 5.450799999999997,
+      "torso": 4.163799117101001e-17
+    },
+    {
+      "index": 7,
+      "actual": "wave",
+      "elapsed": 0.19430000000000291,
+      "torso": 0
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "modelsLoaded": 4,
+    "active": 15,
+    "paused": false,
+    "modelStyle": "original-chibi-rig",
+    "downloadBytes": 0,
+    "textureMiB": 0.3333333333333333,
+    "geometryMiB": 2.4521026611328125,
+    "motionSets": 4,
+    "decisions": 139,
+    "routeChanges": 1,
+    "avoidances": 149,
+    "states": {
+      "wave": 5,
+      "idle": 4,
+      "bow": 2,
+      "serve": 2,
+      "chat": 2
+    },
+    "updates": 1068,
+    "triangles": [
+      8917,
+      8917,
+      9205,
+      9205
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+# Illustrated pilgrimage journal
+
+Journal header/footer watercolor, washi paper, mizuhiki wooden frame and16-cell watercolor icon atlas were generated with OpenAI image generation from the user's supplied visual reference. Header/footer/paper crops and WebP exports were prepared locally. Live text, wallet values, labels, keyboard hints and button actions are independent HTML, not baked into the pictures. Runtime files are journal-*.webp; the generated original paintings are retained privately as project references.
+
+The illustrations are reference-inspired game artwork, not official shrine images or exact reproductions of shrine objects. Existing world/photo/model/music source notices remain in ../v3.1/CREDITS.md.
+
+PPT page04 HUD: original native SVG icons, rounded star gesture illustrations, sakura sprigs, knot ornament and Canvas minimap, authored in this project. Waypoint thumbnails are captures of this project's own Three.js scene, not photographs of the real shrine. The HUD reuses the credited journal washi texture. Geographic paths and footprints retain the existing OpenStreetMap attribution.
+
+PPT page05: four original chibi rig variants (two floral kimono palettes, two straw-hat/backpack palettes), shared 256px hand-painted Canvas atlas, continuous weighted sleeves, face/prop animation and contact shading are authored procedurally in this project. One SkinnedMesh per person; no external visitor model is loaded. New street-product meshes and their WebP previews are original scene artwork. The existing Mei model is retained for the separate miko performance. Store frontage corrections follow actual existing footprint edges; three enclosed courtyard buildings retain residential exteriors without false public retail counters. All visible merchants have independent virtual-goods catalogues and collision-audited approaches. These purchases are fictional and use game coins only.
+PPT page08: original procedural central kagura pavilion and chibi miko, hand-drawn Canvas blossom motifs, and original game day/night choreography. The historical Mei visitor model is no longer loaded by the current performance.
+PPT page11: original Omokaru stone models, granite material, shrine pavilion, fox and flower fabric motifs and wood signage. Designed from the supplied visual reference for the game.

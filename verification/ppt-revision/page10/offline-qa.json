@@ -1,0 +1,39 @@
+{
+  "proof": {
+    "catalogue": {
+      "unique": 108,
+      "fullCycles": 2,
+      "adjacentRepeats": 0
+    },
+    "saves": {
+      "archive": [
+        {
+          "number": 22,
+          "cycle": 1
+        },
+        {
+          "number": 48,
+          "cycle": 1
+        },
+        {
+          "number": 107,
+          "cycle": 1
+        }
+      ],
+      "deck": {
+        "cycle": 1,
+        "used": [
+          22,
+          48,
+          107
+        ],
+        "last": 107
+      },
+      "coins": 5700,
+      "busy": false
+    },
+    "legacy": true
+  },
+  "errors": [],
+  "external": []
+}

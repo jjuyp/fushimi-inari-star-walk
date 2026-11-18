@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "population": {
+      "id": 10,
+      "foxCount": 21,
+      "meshCount": 8
+    },
+    "key": {
+      "events": [
+        {
+          "code": "KeyY",
+          "target": "BODY",
+          "phase": "pet"
+        }
+      ],
+      "active": "pet",
+      "mode": "walk",
+      "busy": false,
+      "actorBusy": false,
+      "focus": "BODY"
+    },
+    "pet": true,
+    "poses": [
+      "wag",
+      "nuzzle",
+      "stretch",
+      "yawn",
+      "sleep",
+      "roll"
+    ],
+    "play": true,
+    "travelCancels": true
+  },
+  "errors": [],
+  "external": []
+}

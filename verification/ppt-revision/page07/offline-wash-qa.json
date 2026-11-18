@@ -1,0 +1,166 @@
+{
+  "url": "file:///C:/Users/shang/Documents/%E5%89%B5%E6%84%8F%E5%B0%8F%E9%81%8A%E6%88%B2/fushimi-star/%E4%BC%8F%E8%A6%8B%E7%A8%BB%E8%8D%B7%E3%83%BB%E6%98%9F%E6%97%85.html",
+  "scope": "Intel UHD Chrome, desktop and simulated 390px mobile, not physical-device validation",
+  "checks": [
+    "left shows star at basin with articulated hands",
+    "right shows star at basin with articulated hands",
+    "mouth shows star at basin with articulated hands",
+    "handle shows star at basin with articulated hands",
+    "completion resets animation and records washing",
+    "Escape cancels and restores ladle",
+    "travel cancels and resets wash",
+    "mobile wash has no page overflow",
+    "no JS or WebGL errors"
+  ],
+  "frames": [
+    {
+      "active": true,
+      "phase": "left",
+      "flow": true,
+      "handedness": "right",
+      "elapsed": 2.032,
+      "starVisible": true,
+      "rigVisible": true,
+      "palms": [
+        {
+          "name": "左手掌",
+          "position": [
+            -0.24,
+            1.204910307542182,
+            1.038
+          ]
+        },
+        {
+          "name": "右手掌",
+          "position": [
+            0.32,
+            1.28,
+            0.6699999999999999
+          ]
+        }
+      ],
+      "distance": 1.92,
+      "collision": false,
+      "camera": {
+        "x": -21.970593862178312,
+        "y": 0.29529322309529626,
+        "z": -11.24193005317706
+      },
+      "avatarScale": 1,
+      "cameraCollision": false,
+      "waterThickness": 0.014572170217867374
+    },
+    {
+      "active": true,
+      "phase": "right",
+      "flow": true,
+      "handedness": "left",
+      "elapsed": 4.83,
+      "starVisible": true,
+      "rigVisible": true,
+      "palms": [
+        {
+          "name": "左手掌",
+          "position": [
+            -0.32,
+            1.28,
+            0.698
+          ]
+        },
+        {
+          "name": "右手掌",
+          "position": [
+            0.24,
+            1.18,
+            1.01
+          ]
+        }
+      ],
+      "distance": 1.92,
+      "collision": false,
+      "camera": {
+        "x": -21.970593862178312,
+        "y": 0.29529322309529626,
+        "z": -11.24193005317706
+      },
+      "avatarScale": 1,
+      "cameraCollision": false,
+      "waterThickness": 0.014607227966047433
+    },
+    {
+      "active": true,
+      "phase": "mouth",
+      "flow": false,
+      "handedness": "right",
+      "elapsed": 8.003,
+      "starVisible": true,
+      "rigVisible": true,
+      "palms": [
+        {
+          "name": "左手掌",
+          "position": [
+            -0.08000000000000002,
+            0.96,
+            0.452
+          ]
+        },
+        {
+          "name": "右手掌",
+          "position": [
+            0.38,
+            1.25,
+            0.6599999999999999
+          ]
+        }
+      ],
+      "distance": 1.92,
+      "collision": false,
+      "camera": {
+        "x": -21.970593862178312,
+        "y": 0.29529322309529626,
+        "z": -11.24193005317706
+      },
+      "avatarScale": 1,
+      "cameraCollision": false,
+      "waterThickness": 0.015181393431492442
+    },
+    {
+      "active": true,
+      "phase": "handle",
+      "flow": true,
+      "handedness": "right",
+      "elapsed": 10.843,
+      "starVisible": true,
+      "rigVisible": true,
+      "palms": [
+        {
+          "name": "左手掌",
+          "position": [
+            -0.02,
+            1.12,
+            0.65
+          ]
+        },
+        {
+          "name": "右手掌",
+          "position": [
+            0.15,
+            1.28,
+            0.65
+          ]
+        }
+      ],
+      "distance": 1.92,
+      "collision": false,
+      "camera": {
+        "x": -21.970593862178312,
+        "y": 0.29529322309529626,
+        "z": -11.24193005317706
+      },
+      "avatarScale": 1,
+      "cameraCollision": false,
+      "waterThickness": 0.01484221903845972
+    }
+  ],
+  "errors": []
+}
