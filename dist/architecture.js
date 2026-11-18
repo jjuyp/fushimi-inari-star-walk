@@ -239,8 +239,8 @@ export function createArchitecture(g,surface){
     if(token==='key'){b.g.put('torus',M.goldDark,...b.p(.02*s,2.9*s,.78*s),.14*s,.14*s,.14*s,0,b.angle);b.box(M.goldDark,.02*s,2.65*s,.78*s,.055*s,.36*s,.055*s);for(const yy of [2.51,2.59])b.box(M.goldDark,.09*s,yy*s,.78*s,.18*s,.055*s,.065*s);}
     else{b.sphere(M.wall,0,2.8*s,.84*s,.2*s,.22*s,.2*s);b.g.put('cone',M.wall,...b.p(0,3.03*s,.84*s),.1*s,.22*s,.1*s,0,b.angle);}
   }
-  function standingLantern(x,z,size=1,angle=0){
-    const y=terrainHeight(x,z),b=new Building(g,'stone lantern',x,y,z,angle),s=size;
+  function standingLantern(x,z,size=1,angle=0,y=terrainHeight(x,z)){
+    const b=new Building(g,'stone lantern',x,y,z,angle),s=size;
     b.box(M.stone,0,.16*s,0,1.1*s,.32*s,1.1*s,0,true);b.box(M.wall,0,.43*s,0,.78*s,.24*s,.78*s,0,true);b.column(M.wall,0,1.16*s,0,.18*s,1.3*s);b.box(M.wall,0,1.9*s,0,.9*s,.2*s,.9*s);
     b.box(M.glow,0,2.3*s,0,.5*s,.62*s,.5*s);
     for(const a of [-1,1])for(const c of [-1,1])b.box(M.wall,a*.32*s,2.3*s,c*.32*s,.12*s,.72*s,.12*s);

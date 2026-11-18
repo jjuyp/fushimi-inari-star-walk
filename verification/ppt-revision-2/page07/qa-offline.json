@@ -1,0 +1,144 @@
+{
+  "offline": true,
+  "errors": [],
+  "external": [],
+  "awards": [
+    {
+      "id": "wealth",
+      "date": "2026-11-19",
+      "claps": 2
+    },
+    {
+      "id": "bonds",
+      "date": "2026-11-19",
+      "claps": 2
+    },
+    {
+      "id": "health",
+      "date": "2026-11-19",
+      "claps": 2
+    },
+    {
+      "id": "sun",
+      "date": "2026-11-19",
+      "claps": 2
+    },
+    {
+      "id": "study",
+      "date": "2026-11-19",
+      "claps": 2
+    },
+    {
+      "id": "path",
+      "date": "2026-11-19",
+      "claps": 2
+    },
+    {
+      "id": "harvest",
+      "date": "2026-11-19",
+      "claps": 2
+    },
+    {
+      "id": "snow",
+      "date": "2026-11-19",
+      "claps": 2
+    },
+    {
+      "id": "foxguard",
+      "date": "2026-11-19",
+      "claps": 2
+    }
+  ],
+  "placement": {
+    "count": 9,
+    "tubes": 3,
+    "missing": [],
+    "ema": {
+      "count": 0
+    },
+    "list": [
+      {
+        "id": "wealth",
+        "x": -62.738961274813065,
+        "z": -12.128935681295886,
+        "retail": 40.906794696628126,
+        "hits": 0,
+        "residual": 7.105427357601002e-15,
+        "standClear": true
+      },
+      {
+        "id": "bonds",
+        "x": -34.944150891285815,
+        "z": -9.814915792601578,
+        "retail": 68.11160004290286,
+        "hits": 0,
+        "residual": 7.32410687763558e-15,
+        "standClear": true
+      },
+      {
+        "id": "health",
+        "x": 22.609941895543496,
+        "z": -9.798488811989387,
+        "retail": 113.44807699192899,
+        "hits": 0,
+        "residual": 3.552713678800501e-15,
+        "standClear": true
+      },
+      {
+        "id": "sun",
+        "x": 257.4716800520073,
+        "z": 74.74781514843676,
+        "retail": 358.53480401229723,
+        "hits": 0,
+        "residual": 5.859285502108464e-14,
+        "standClear": true
+      },
+      {
+        "id": "study",
+        "x": 180.23663751302996,
+        "z": 40.91747873731204,
+        "retail": 274.37772567739586,
+        "hits": 0,
+        "residual": 0,
+        "standClear": true
+      },
+      {
+        "id": "path",
+        "x": 784.5235580848428,
+        "z": -225.90227621326596,
+        "retail": 858.538335147352,
+        "hits": 0,
+        "residual": 1.1718571004216928e-13,
+        "standClear": true
+      },
+      {
+        "id": "harvest",
+        "x": 523.2687315387999,
+        "z": -126.85253297544229,
+        "retail": 587.2977204436786,
+        "hits": 0,
+        "residual": 1.4210854715202004e-14,
+        "standClear": true
+      },
+      {
+        "id": "snow",
+        "x": 539.2070385675067,
+        "z": -338.62550606463265,
+        "retail": 652.4593204998117,
+        "hits": 0,
+        "residual": 0,
+        "standClear": true
+      },
+      {
+        "id": "foxguard",
+        "x": 986.9400131009611,
+        "z": -275.01146803446886,
+        "retail": 1066.353575419892,
+        "hits": 0,
+        "residual": 0,
+        "standClear": true
+      }
+    ]
+  },
+  "persistent": true
+}

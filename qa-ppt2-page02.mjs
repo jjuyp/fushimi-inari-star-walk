@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {chromium} from '../tidepool-jelly/node_modules/playwright-core/index.mjs';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import {pathToFileURL} from 'node:url';
+import {resolve} from 'node:path';
+const offline=process.argv.includes('--offline'),out='output/ppt-revision-2/page02'+(offline?'/offline':'');
+mkdirSync(out,{recursive:true});
+const browser=await chromium.launch({headless:true,executablePath:'C:/Users/shang/AppData/Local/ms-playwright/chromium-1223/chrome-win64/chrome.exe',args:['--no-sandbox','--force_low_power_gpu']});
+const report={offline,errors:[],external:[]};
+try{
+ const p=await browser.newPage({viewport:{width:1600,height:900},reducedMotion:'reduce'});
+ p.on('pageerror',e=>report.errors.push(e.message));
+ p.on('console',m=>{if(m.type()==='error'&&m.text().includes('Shader'))report.errors.push(m.text());});
+ if(offline)p.on('request',r=>{if(!/^(file:|data:|blob:)/.test(r.url()))report.external.push(r.url());});
+ await p.goto(offline?pathToFileURL(resolve('伏見稻荷・星旅.html')).href:'http://127.0.0.1:4197');
+ await p.waitForFunction(()=>window.inari?.state.ready,null,{timeout:120000});
+ await p.evaluate(()=>{inari.setRenderQuality('clear');inari.setWeather('rain');inari.setView(-.97,.25,143);});
+ await p.locator('#weather').click();
+ await p.waitForFunction(()=>inari.landscape.mist.active&&inari.landscape.mist.visible>0);
+ report.fog=await p.evaluate(()=>({...inari.landscape.mist,density:inari.landscape.weatherData.mist.fog,sun:inari.lighting.sun.intensity}));
+ await p.waitForFunction(()=>!document.querySelector('#toast.on'));await p.screenshot({path:out+'/overview.png'});
+ await p.evaluate(()=>{inari.goPlace('gate');inari.teleport(-60,-.3);inari.setView(-1.52,-.075,6.4);});
+ await p.waitForFunction(()=>!inari.state.travelLoading);await p.waitForTimeout(900);await p.screenshot({path:out+'/walking.png'});
+ await p.setViewportSize({width:390,height:844});
+ await p.evaluate(()=>{inari.setMode('overview');inari.setView(-.84,.23,151);});
+ await p.waitForTimeout(650);await p.screenshot({path:out+'/portrait.png'});
+ await p.locator('#weather').click();
+ await p.waitForFunction(()=>!inari.landscape.mist.active);report.clearReturn=await p.evaluate(()=>({...inari.landscape.mist,weather:inari.state.weather}));
+ assert.equal(report.clearReturn.weather,'clear');assert.equal(report.clearReturn.visible,0);
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.external,[]);
+}finally{writeFileSync(out+'/qa.json',JSON.stringify(report,null,2));await browser.close();}

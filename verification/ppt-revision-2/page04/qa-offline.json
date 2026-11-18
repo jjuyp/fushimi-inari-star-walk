@@ -1,0 +1,32 @@
+{
+  "offline": true,
+  "errors": [],
+  "external": [],
+  "folded": {
+    "quiet": false,
+    "routes": true,
+    "actions": true,
+    "routesInert": true,
+    "actionsInert": true
+  },
+  "saved": {
+    "folds": {
+      "quiet": false,
+      "routes": true,
+      "actions": true
+    },
+    "config": {
+      "x": 86,
+      "y": 1,
+      "scale": 98,
+      "opacity": 100,
+      "enabled": false
+    },
+    "hidden": true
+  },
+  "quiet": {
+    "shown": 0,
+    "key": "顯示介面",
+    "width": 390
+  }
+}

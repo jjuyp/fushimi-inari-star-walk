@@ -5,7 +5,7 @@ import {createArchitecture} from './architecture.js';
 
 const HERO={x:30.24,z:-18.67,yaw:-1.59};
 const ROUTES=[
- [[-87,1],[-33,-1],[-10,-2],[18,-3]],
+ [[-90,1],[-78,1],[-49,-.32],[-22,-1.55],[-5,-2.6]],
  [[11.868,-17.822],[19.157,-18.423],[23.317,-18.568],[32.394,-18.713],[31.91,-22.553],[50.803,-24.257],[57.061,-24.613]],
  [[50.219,-36.914],[50.803,-24.257],[51.113,-17.678]],
  [[63.866,-37.27],[75.096,-37.326],[85.341,-37.404],[85.441,-32.851],[85.532,-28.286],[85.943,-20.939]],
@@ -106,6 +106,7 @@ function nearRoute(x,z){
 }
 export function createNightWalk(scene,world){
  const M=world.M,art=new GeometryBuilder(scene,M,world.physics),sites=[],reflections=[],glowMats=[];
+ const layout=world.fixtureLayout;
  const dryStone={roughness:M.stone.roughness,bumpScale:M.stone.bumpScale};
  const paper=(map,color)=>{const m=new T.MeshStandardMaterial({map,color,emissive:'#ffc373',emissiveMap:map,emissiveIntensity:0,roughness:.8});m.userData.noShadow=true;glowMats.push(m);return m;};
  const warm=paper(lampPaper(),0xffffff),printed=paper(lampPaper(true),0xffffff),window=paper(windowPaper(),0xffffff);
@@ -159,17 +160,21 @@ export function createNightWalk(scene,world){
  }
  const placed=[];
  for(const [routeIndex,route] of ROUTES.entries()){
-  for(const [i,p] of pathSamples(route,routeIndex<4?4.6:10).entries()){
-   const flank=(i%2===0?1:-1),gap=routeIndex<4?1.57:1.85;
+  const grand=routeIndex===0;
+  for(const [i,p] of pathSamples(route,grand?9.4:routeIndex<4?5.1:10).entries()){
+   const flank=(i%2===0?1:-1),gap=grand?(p.x<-20?7.03:5.31):routeIndex<4?1.62:1.89;
    for(const side of [flank,-flank]){
-    const x=p.x-p.dz*gap*side,z=p.z+p.dx*gap*side,y=world.walkHeight(x,z),floor=world.walkHeight(p.x,p.z);
-    if(!Number.isFinite(y)||Math.abs(y-floor)>.58||nearRoute(x,z)<1.12||world.physics.collides(x,y,z)||placed.some(q=>Math.hypot(q.x-x,q.z-z)<2.9))continue;
+    const stone=routeIndex<4&&i%4===1,radius=stone?.51:.38;
+    const spot=layout.beside(world,p,side,radius,gap);
+    if(!spot||placed.some(q=>Math.hypot(q.x-spot.x,q.z-spot.z)<2.75))continue;
+    const {x,y,z}=spot;
     const a=Math.atan2(p.dx,p.dz);
-    if(routeIndex<4&&i%4===1)stoneLamp(x,y,z,a);
+    if(stone)stoneLamp(x,y,z,a);
     else woodBox(x,y,z,i%3===1?.87:1,a);
     placed.push({x,z});
-    reflections.push({x:p.x-p.dz*.76*side,z:p.z+p.dx*.76*side,w:1.35,d:2.75,angle:a});
-    break;
+    layout.record(stone?'夜行石燈籠':'夜行行燈',spot,radius);
+    reflections.push({x:x+p.dz*.27*side,z:z-p.dx*.27*side,w:1.38,d:2.62,angle:a});
+    if(!grand)break;
    }
   }
  }
@@ -180,14 +185,15 @@ export function createNightWalk(scene,world){
  }
  let gateLanterns=0;
  const mainTorii=MAP.paths.find(p=>p.id===260121354);
- for(const [i,p] of pathSamples(mainTorii.p,10.9).entries()){
+ for(const [i,p] of pathSamples(mainTorii.p,1.9).entries()){
+  if(i%6!==0)continue;
   const dx=p.dz*1.38,dz=-p.dx*1.38,a=Math.atan2(p.dx,p.dz);
   for(const side of i%2===0?[-1,1]:[1]){
-   const x=p.x+dx*side,z=p.z+dz*side,y=world.walkHeight(x,z);
+   const x=p.x+dx*side,z=p.z+dz*side,y=world.walkHeight(p.x,p.z)-.02;
    if(!Number.isFinite(y))continue;
    art.put(shape,printed,x,y+2.48,z,.44,.66,.44,0,a);
    for(const h of [2.14,2.82])art.cylinder(M.darkWood,x,y+h,z,.15,.057);
-   art.cylinder(M.darkWood,x,y+2.99,z,.019,.35);
+   art.cylinder(M.darkWood,x,y+3.21,z,.019,.77);
    point(x,y+2.25,z,'gate',8.4,23);gateLanterns++;
   }
   reflections.push({x:p.x,z:p.z,w:2.45,d:3.1,angle:a});
@@ -197,7 +203,9 @@ export function createNightWalk(scene,world){
  let gardens=0;
  const rnd=randomSeed(56);
  for(const [x,z] of gardenSeeds){
-  const y=world.walkHeight(x,z);if(!Number.isFinite(y)||world.physics.collides(x,y,z))continue;
+  const spot=layout.test(world,x,z,.46);if(!spot)continue;
+  const {y}=spot;
+  layout.record('夜行苔石與竹叢',spot,.46);
   gardens++;
   art.sphere(M.wall,x,y+.15,z,.45,.23,.38);art.sphere(moss,x-.09,y+.29,z-.035,.32,.09,.29);
   for(let i=0;i<5;i++){
@@ -217,12 +225,12 @@ export function createNightWalk(scene,world){
   let spot;
   for(let r=0;r<=2.35&&!spot;r+=.27)for(let j=0;j<16;j++){
    const x=ax+r*Math.cos(j*Math.PI/8),z=az+r*Math.sin(j*Math.PI/8),y=world.walkHeight(x,z);
-   if(!Number.isFinite(y)||nearRoute(x,z)<1.46||world.physics.collides(x,y,z))continue;
+   if(!layout.test(world,x,z,.63))continue;
    const rim=[[-.37,-.37],[-.37,.37],[.37,-.37],[.37,.37]];
    if(rim.some(([dx,dz])=>Math.abs(world.walkHeight(x+dx,z+dz)-y)>.32||world.physics.collides(x+dx,y,z+dz)))continue;
    spot={x,y,z};break;
   }
-  if(spot){fox(spot.x,spot.z,.43,angle,spot.y,'pearl');statues++;}
+  if(spot){fox(spot.x,spot.z,.43,angle,spot.y,'pearl');layout.record('夜行石狐',spot,.63);statues++;}
  }
  world.builder.meshes.push(...art.finish());
  const wetMat=new T.MeshBasicMaterial({map:floorGlow(),color:'#ffd28a',transparent:true,opacity:.55,depthWrite:false,blending:T.AdditiveBlending,polygonOffset:true,polygonOffsetFactor:-1});

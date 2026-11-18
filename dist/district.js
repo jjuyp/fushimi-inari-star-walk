@@ -12,9 +12,29 @@ export async function createDistrict(g,surface,architecture){
  const atlas=document.createElement('canvas');atlas.width=atlas.height=2048;const ctx=atlas.getContext('2d');
  labels.forEach((label,i)=>{const x=i%4*512,y=Math.floor(i/4)*512;ctx.fillStyle=i<8?'#e8d9b4':i<12?'#a84225':i<14?'#243f39':'#eee4cd';ctx.fillRect(x,y,512,512);ctx.strokeStyle='#b99654';ctx.lineWidth=8;ctx.strokeRect(x+15,y+15,482,482);ctx.fillStyle=i>=8&&i<14?'#fff3d8':'#32261d';ctx.textAlign='center';ctx.font='bold 66px "Yu Mincho",serif';ctx.save();ctx.translate(x+256,y+325);ctx.scale(1,4.1);ctx.fillText(label,0,0,460);ctx.restore();ctx.font='24px serif';ctx.fillText(i<12?'伏見稲荷 ・ 京都':i<14?'四ツ辻 ・ 稲荷山':'FUSHIMI INARI',x+256,y+318);});
  const texture=new THREE.CanvasTexture(atlas);texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=8;
+ // The tea house uses one mounted lacquer plaque with separate name and location lines.
+ const teaCellX=0,teaCellY=1536;
+ ctx.save();ctx.translate(teaCellX,teaCellY);
+ const lacquer=ctx.createLinearGradient(0,0,512,512);
+ lacquer.addColorStop(0,'#29423b');lacquer.addColorStop(1,'#142b27');
+ ctx.fillStyle=lacquer;ctx.fillRect(0,0,512,512);
+ for(let i=0;i<60;i++){ctx.fillStyle=i%2?'#d7d3a109':'#100d0b12';ctx.fillRect(0,i*8+3,512,1+((i*13)%3));}
+ ctx.strokeStyle='#bd9658';ctx.lineWidth=4;ctx.strokeRect(12,24,488,464);
+ ctx.strokeStyle='#927043';ctx.lineWidth=2;ctx.strokeRect(18,40,476,432);
+ ctx.textAlign='center';ctx.fillStyle='#f4e4bb';
+ ctx.save();ctx.translate(256,317);ctx.scale(1,4.55);
+ ctx.font='bold 75px "Yu Mincho",serif';ctx.fillText(labels[12],0,0,424);ctx.restore();
+ ctx.fillStyle='#d7b886';ctx.save();ctx.translate(256,428);ctx.scale(1,4.2);
+ ctx.font='20px "Yu Mincho",serif';ctx.fillText('四ツ辻　茶屋',0,0);ctx.restore();
+ ctx.restore();
  const signMat=new THREE.MeshStandardMaterial({map:texture,roughness:.87});signMat.userData.noShadow=true;signMat.name='商店街・文字アトラス';
  const signGeos=labels.map((_,i)=>{const geo=new THREE.PlaneGeometry(1,1),uv=geo.attributes.uv;for(let k=0;k<uv.count;k++)uv.setXY(k,(i%4+uv.getX(k))/4,1-(Math.floor(i/4)+1-uv.getY(k))/4);return geo;});
- const sign=(b,index,x,y,z,w,h)=>g.put(signGeos[index],signMat,...b.p(x,y,z),w,h,1,0,b.angle);
+ const teaSignMat=signMat.clone();
+ teaSignMat.name='四ツ辻・茶屋の額';
+ teaSignMat.emissive.set('#fff5db');
+ teaSignMat.emissiveMap=texture;
+ teaSignMat.emissiveIntensity=.28;
+ const sign=(b,index,x,y,z,w,h)=>g.put(signGeos[index],index===12?teaSignMat:signMat,...b.p(x,y,z),w,h,1,0,b.angle);
  const indigo=new THREE.MeshStandardMaterial({color:'#253f54',roughness:.95}),canvasMat=new THREE.MeshStandardMaterial({color:'#cf5b33',roughness:.95,side:THREE.DoubleSide}),tileMat=new THREE.MeshStandardMaterial({color:'#49514c',roughness:.9,map:M.roof.map});
  const tileCanvas=document.createElement('canvas');tileCanvas.width=tileCanvas.height=512;const tc=tileCanvas.getContext('2d');tc.fillStyle='#38413e';tc.fillRect(0,0,512,512);for(let row=0;row<8;row++)for(let col=0;col<12;col++){const x=col*44-8+(row%2)*2,y=row*64;const grad=tc.createLinearGradient(x,0,x+44,0);grad.addColorStop(0,'#252d2b');grad.addColorStop(.3,'#65706a');grad.addColorStop(.62,'#4b5551');grad.addColorStop(1,'#28322e');tc.fillStyle=grad;tc.fillRect(x,y,42,62);tc.strokeStyle='#171f1d';tc.lineWidth=3;tc.beginPath();tc.moveTo(x,y+60);tc.quadraticCurveTo(x+21,y+66,x+42,y+60);tc.stroke();}const tileTexture=new THREE.CanvasTexture(tileCanvas);tileTexture.colorSpace=THREE.SRGBColorSpace;tileTexture.wrapS=tileTexture.wrapT=THREE.RepeatWrapping;tileTexture.anisotropy=8;tileMat.map=tileTexture;tileMat.bumpMap=tileTexture;tileMat.bumpScale=.018;tileMat.color.set('#b6bbb5');
  const roof=(b,w,d,y)=>{const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute([-w/2,y,-d/2,w/2,y,-d/2,-w/2,y,d/2,w/2,y,d/2,-w/2,y+1.6,0,w/2,y+1.6,0],3));geo.setAttribute('uv',new THREE.Float32BufferAttribute([0,0,w/2,0,0,d/2,w/2,d/2,0,d/4,w/2,d/4],2));geo.setIndex([0,4,1,1,4,5,4,2,5,5,2,3,0,2,4,1,5,3]);geo.computeVertexNormals();b.mesh(geo,tileMat);geo.dispose();for(const side of [-1,1]){b.box(M.darkWood,0,y-.06,side*d/2,w,.12,.18);b.box(tileMat,0,y+.015,side*d/2,w,.1,.15);b.box(M.bronze,side*(w/2-.15),y-1.5,d/2,.075,3,.075);}b.box(tileMat,0,y+1.65,0,w+.15,.16,.3);};
@@ -93,9 +113,18 @@ export async function createDistrict(g,surface,architecture){
  const teaPoint=MAP.pois.find(p=>p.id==='yotsu').p;
  let teaSpot=null;for(const r of [18,22,26])for(const a of [0,-Math.PI/4,Math.PI/4,-Math.PI/2,Math.PI/2]){if(teaSpot)break;const x=teaPoint[0]+Math.cos(a)*r,z=teaPoint[1]+Math.sin(a)*r,y=terrainHeight(x,z),near=surface.nearPath(x,z),heights=[[-4,-6],[-4,6],[4,-6],[4,6]].map(p=>terrainHeight(x+p[0],z+p[1]));if(near.distance>8&&Math.max(...heights)-Math.min(...heights)<3.6&&!g.physics.collides(x,y,z)&&!MAP.buildings.some(b=>insidePolygon(x,z,b.p)))teaSpot={x,z,y};}
  const t=teaSpot||{x:teaPoint[0]+16,z:teaPoint[1]-12,y:terrainHeight(teaPoint[0]+16,teaPoint[1]-12)},tea=new Building(g,'yotsu-tea',t.x,t.y,t.z,-Math.PI/2);
- tea.box(M.wall,0,-.25,-1,11,.5,6,0,true);tea.box(M.cream,0,2,-1,10,4,5,0,true);architecture.detailedRoof(tea,4,12,8,2.1);sign(tea,12,0,3.25,1.6,6.6,1.2);sign(tea,13,4,1.6,1.65,1.1,1.5);
+ tea.box(M.wall,0,-.25,-1,11,.5,6,0,true);tea.box(M.cream,0,2,-1,10,4,5,0,true);architecture.detailedRoof(tea,4,12,8,2.1);
+ tea.box(M.darkWood,0,3.12,2.52,8.2,.18,.22);
+ tea.box(M.darkWood,0,3.12,2.66,4.92,1.02,.15);
+ tea.box(M.wood,0,3.12,2.738,4.80,.94,.023);
+ sign(tea,12,0,3.12,2.752,4.71,.88);
+ for(const side of [-1,1]){
+  tea.box(M.bronze,side*2.41,3.12,2.760,.045,.36,.018);
+  architecture.hangingLantern(tea,side*3.25,3.21,2.98,.66);
+ }
+ sign(tea,13,4,1.6,1.65,1.1,1.5);
  for(let i=-2;i<=2;i++){tea.box(M.darkWood,i*1.8,1.6,1.55,1.6,2.4,.08);for(let k=0;k<7;k++)tea.box(M.wood,i*1.8-.68+k*.225,1.6,1.62,.045,2.4,.05);}tea.box(M.wood,0,.16,3.2,11,.3,3.5,0,true);
- for(const x of [-4,-2,0,2,4])tea.column(M.darkWood,x,1.9,2.5,.1,3.8);for(let i=0;i<5;i++)tea.box(indigo,(i-2)*1.65,2.6,2.6,1.6,.8,.04);
+ for(const x of [-4,-2,0,2,4])tea.column(M.darkWood,x,1.9,2.5,.1,3.8);for(let i=0;i<5;i++)tea.box(indigo,(i-2)*1.65,2.26,2.6,1.6,.66,.04);
  for(const x of [-3,2.5]){tea.box(M.redDark,x,.6,4,3.4,.16,1,0,true);for(const a of [-1,1])tea.box(M.darkWood,x+a*1.2,.27,4,.18,.55,.6);tea.box(M.redEdge,x,.71,4,3.2,.08,.9);}
  const foundationLow=Math.min(...[-5.5,5.5].flatMap(x=>[-3.5,5].map(z=>{const p=tea.p(x,0,z);return terrainHeight(p[0],p[2])-t.y;})))-.3;
  tea.box(M.wall,0,foundationLow/2,1,11,-foundationLow,8,0,true);
@@ -108,6 +137,6 @@ export async function createDistrict(g,surface,architecture){
  MAP.buildings.push({id:'yotsu-tea',name:'四辻茶屋（情境重建）',type:'cafe',p:teaFootprint,artistic:true});
  architecture.registered.push({id:'yotsu-tea',name:'四辻茶屋',x:t.x,z:t.z,w:12,d:9.2,angle:tea.angle,open:false,district:false});
  for(let k=0;k<3;k++){const b=new Building(g,'tea display',t.x-3,t.y,t.z+(k-1)*.7,-Math.PI/2);b.g.put('cone',M.rope,...b.p(0,1.35,0),.12,.5,.12,Math.PI,0);b.sphere(M.cream,0,1.65,0,.18,.23,.18);b.g.put('torus',M.cream,...b.p(0,1.9,0),.12,.12,.12,Math.PI/2,0);}
- const board=new Building(g,'yotsu directions',teaPoint[0]+1,terrainHeight(teaPoint[0]+1,teaPoint[1]+4),teaPoint[1]+4,Math.PI/2);board.column(M.darkWood,0,1.2,0,.07,2.4);board.box(M.darkWood,0,1.9,0,1.5,.6,.1);sign(board,12,0,1.9,.06,1.4,.5);
+
  return{shops,stalls,stallSites,railways:DISTRICT.railways,sign,tea:{x:t.x,z:t.z,deck:[deck[0],deck[2]],approach:[[nearEntry.x,nearEntry.z],[entry[0],entry[2]]]},stations:DISTRICT.stations,storefronts};
 }

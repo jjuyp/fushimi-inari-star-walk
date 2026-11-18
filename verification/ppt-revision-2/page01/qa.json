@@ -1,0 +1,62 @@
+{
+  "offline": false,
+  "errors": [],
+  "external": [],
+  "weather": [
+    {
+      "weather": "clear",
+      "sky": 1,
+      "sun": [
+        0.10351119944858338,
+        0.13917310096006547,
+        0.9848432766475461
+      ],
+      "intensity": 4.5,
+      "skyVisible": true
+    },
+    {
+      "weather": "cloudy",
+      "sky": 0,
+      "sun": [
+        -0.6064382790875886,
+        0.7431448254773942,
+        -0.2827868137368808
+      ],
+      "intensity": 1.9,
+      "skyVisible": true
+    },
+    {
+      "weather": "clear",
+      "sky": 1,
+      "sun": [
+        0.10351119944858338,
+        0.13917310096006547,
+        0.9848432766475461
+      ],
+      "intensity": 4.5,
+      "skyVisible": true
+    },
+    {
+      "weather": "clear",
+      "sky": 0,
+      "sun": [
+        -0.6064382790875886,
+        0.7431448254773942,
+        -0.2827868137368808
+      ],
+      "intensity": 0.1,
+      "skyVisible": false
+    }
+  ],
+  "dusk": {
+    "weather": "clear",
+    "sky": 0,
+    "sun": [
+      -0.9224278206486249,
+      0.19080899537654492,
+      0.3357362699751426
+    ],
+    "intensity": 2.331,
+    "skyVisible": true
+  }
+}

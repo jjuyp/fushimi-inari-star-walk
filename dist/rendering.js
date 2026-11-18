@@ -8,11 +8,11 @@ export function createLighting(scene,renderer){
   const fill=new THREE.HemisphereLight('#c1d7ef','#52432d',.42);scene.add(fill);
   const pmrem=new THREE.PMREMGenerator(renderer),envScene=new THREE.Scene(),envSky=new Sky();envSky.scale.setScalar(450);envScene.add(envSky);
   let center=new THREE.Vector3(45,6,-5),extent=145,dusk=false,season='spring',lastShadow=new THREE.Vector3(Infinity,0,0),environment=null;
-  const sunDirection=new THREE.Vector3();
+  const sunDirection=new THREE.Vector3();let clearDay=false;
+  function orientSun(){const elevation=dusk?11:clearDay?38:season==='winter'?31:48,azimuth=dusk?-70:clearDay?6:-115;sunDirection.setFromSphericalCoords(1,THREE.MathUtils.degToRad(90-elevation),THREE.MathUtils.degToRad(azimuth));const disc=sky.material.uniforms.sunPosition.value;if(clearDay&&!dusk)disc.setFromSphericalCoords(1,THREE.MathUtils.degToRad(82),THREE.MathUtils.degToRad(6));else disc.copy(sunDirection);}
   function atmosphere(){
-    const elevation=dusk?11:season==='winter'?31:48,azimuth=dusk?-70:-115;
-    sunDirection.setFromSphericalCoords(1,THREE.MathUtils.degToRad(90-elevation),THREE.MathUtils.degToRad(azimuth));
-    for(const sky of [envSky,scene.children.find(o=>o===skyRef)]){const u=sky.material.uniforms;u.turbidity.value=dusk?4:1.8;u.rayleigh.value=season==='winter'?2:3.0;u.mieCoefficient.value=.006;u.mieDirectionalG.value=.78;u.sunPosition.value.copy(sunDirection);}
+    orientSun();
+    for(const sky of [envSky,scene.children.find(o=>o===skyRef)]){const u=sky.material.uniforms;u.turbidity.value=dusk?4:1.8;u.rayleigh.value=season==='winter'?2:3.0;u.mieCoefficient.value=.006;u.mieDirectionalG.value=.78;if(sky===envSky)u.sunPosition.value.copy(sunDirection);}
     sun.color.set(dusk?'#ffb673':season==='winter'?'#eff4ff':'#fff0d4');sun.intensity=dusk?2.1:2.7;fill.intensity=dusk?.25:.42;renderer.toneMappingExposure=dusk?.94:.87;
     if(environment)environment.dispose();environment=pmrem.fromScene(envScene,.035);scene.environment=environment.texture;scene.environmentIntensity=.3;
     scene.fog=new THREE.FogExp2(dusk?'#ad9477':season==='winter'?'#a3b4bf':'#9caeb2',.0007);
@@ -26,7 +26,7 @@ export function createLighting(scene,renderer){
     Object.assign(sun.shadow.camera,{left:-extent,right:extent,top:extent,bottom:-extent,near:10,far:820});sun.shadow.camera.updateProjectionMatrix();sun.shadow.needsUpdate=true;lastShadow.copy(wanted);updateShadow.overview=overview;
   }
   atmosphere();updateShadow(center,true,true);
-  return{sun,fill,sky,setSeason(value){season=value;atmosphere();updateShadow(center,updateShadow.overview,true);},setDusk(value){dusk=value;atmosphere();updateShadow(center,updateShadow.overview,true);},updateShadow};
+  return{sun,fill,sky,setClearDay(value){if(clearDay===value)return;clearDay=value;orientSun();updateShadow(center,updateShadow.overview,true);},setSeason(value){season=value;atmosphere();updateShadow(center,updateShadow.overview,true);},setDusk(value){dusk=value;atmosphere();updateShadow(center,updateShadow.overview,true);},updateShadow};
 }
 
 // Multisampled HDR scene + edge filtering + optional contact occlusion. Tone

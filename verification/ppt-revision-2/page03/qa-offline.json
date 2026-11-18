@@ -1,0 +1,108 @@
+{
+  "offline": true,
+  "errors": [],
+  "external": [],
+  "layout": {
+    "kinds": [
+      [
+        "石燈籠",
+        21
+      ],
+      [
+        "光の稲穂・攝影裝置",
+        1
+      ],
+      [
+        "狐の輪・攝影裝置",
+        1
+      ],
+      [
+        "星の窓・京都眺望",
+        1
+      ],
+      [
+        "山路石燈",
+        26
+      ],
+      [
+        "觀景石燈籠",
+        2
+      ],
+      [
+        "夜行行燈",
+        55
+      ],
+      [
+        "夜行石燈籠",
+        12
+      ],
+      [
+        "夜行苔石與竹叢",
+        2
+      ],
+      [
+        "夜行石狐",
+        2
+      ]
+    ],
+    "conflicts": [],
+    "clearMin": 0.10095874115445136,
+    "count": 123,
+    "rows": [
+      14,
+      13
+    ],
+    "shrines": {
+      "count": 6,
+      "tubes": 3,
+      "missing": [],
+      "ema": {
+        "count": 0
+      }
+    },
+    "night": {
+      "lanterns": 96,
+      "wallLanterns": 17,
+      "pathLanterns": 67,
+      "gateLanterns": 12,
+      "windowCount": 29,
+      "gardens": 2,
+      "statues": 2,
+      "lightBudget": 5,
+      "active": 0
+    }
+  },
+  "paths": [
+    {
+      "route": 0,
+      "reverse": 0,
+      "error": 1.4211288389453755e-14
+    },
+    {
+      "route": 0,
+      "reverse": 1,
+      "error": 1.4210854715202004e-14
+    },
+    {
+      "route": 1,
+      "reverse": 0,
+      "error": 1.5888218580782548e-14
+    },
+    {
+      "route": 1,
+      "reverse": 1,
+      "error": 1.5888218580782548e-14
+    },
+    {
+      "route": 2,
+      "reverse": 0,
+      "error": 7.944109290391274e-15
+    },
+    {
+      "route": 2,
+      "reverse": 1,
+      "error": 7.944109290391274e-15
+    }
+  ],
+  "walked": 7.9544295954551245
+}

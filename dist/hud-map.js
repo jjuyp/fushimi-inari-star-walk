@@ -1,5 +1,5 @@
 import{terrainHeight}from'./geography.js';
-export function createHudMap({container,MAP,player,camera,world}){
+export function createHudMap({container,MAP,player,camera,world,shrinePoints=[]}){
  const canvas=container.querySelector('canvas'),ctx=canvas.getContext('2d',{alpha:false}),size=400,centre=size/2;canvas.width=canvas.height=size;
  const stats={radius:125,x:0,z:0,heading:0,frames:0,nearest:null};let last=0,key='';
  const project=(x,z)=>({x:centre+(x-player.position.x)/stats.radius*centre,y:centre+(z-player.position.z)/stats.radius*centre});
@@ -16,6 +16,12 @@ export function createHudMap({container,MAP,player,camera,world}){
   for(const b of MAP.buildings){if(!inside(b.p))continue;outline(b.p);ctx.closePath();ctx.fillStyle=b.type==='shrine'?'#b77752':'#bcaa88';ctx.strokeStyle='#826e51';ctx.lineWidth=1.3;ctx.fill();ctx.stroke()}
   const places=MAP.pois.map(p=>({...p,d:Math.hypot(p.p[0]-player.position.x,p.p[1]-player.position.z)})).sort((a,b)=>a.d-b.d);stats.nearest=places[0]?.id;let label=0;
   const labelBoxes=[];for(const p of places){const q=project(...p.p),distance=Math.hypot(q.x-centre,q.y-centre);if(distance>175||distance<57)continue;ctx.strokeStyle='#a8432e';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(q.x-9,q.y-5);ctx.lineTo(q.x+9,q.y-5);ctx.moveTo(q.x-7,q.y);ctx.lineTo(q.x+7,q.y);ctx.moveTo(q.x-5,q.y-4);ctx.lineTo(q.x-5,q.y+10);ctx.moveTo(q.x+5,q.y-4);ctx.lineTo(q.x+5,q.y+10);ctx.stroke();if(label>=(compact?2:3)||q.x<70||q.x>330||q.y>305||q.y<40)continue;const font=Math.round((compact?10:12)*400/width);ctx.font='600 '+font+'px "Microsoft JhengHei",sans-serif';ctx.textAlign='center';const text=p.name.replace(/・.*/,'').replace('表參道','大鳥居').slice(0,4),w=ctx.measureText(text).width+14,box={x:q.x-w/2,y:q.y+16,w,h:font+10};if(labelBoxes.some(b=>box.x<b.x+b.w&&box.x+box.w>b.x&&box.y<b.y+b.h&&box.y+box.h>b.y))continue;labelBoxes.push(box);label++;ctx.fillStyle='#fff3d6ed';ctx.beginPath();ctx.roundRect(box.x,box.y,box.w,box.h,6);ctx.fill();ctx.fillStyle='#594b33';ctx.fillText(text,q.x,box.y+font+1)}
+  for(const site of shrinePoints){
+   const q=project(site.x,site.z),d=Math.hypot(q.x-centre,q.y-centre);
+   if(d>180||d<33)continue;
+   ctx.save();ctx.translate(q.x,q.y);ctx.rotate(Math.PI/4);ctx.fillStyle='#863e35';ctx.strokeStyle='#fff4d0';ctx.lineWidth=2.5;
+   ctx.fillRect(-6,-6,12,12);ctx.strokeRect(-6,-6,12,12);ctx.restore();
+  }
   ctx.save();ctx.translate(centre,centre);ctx.rotate(Math.PI-player.rotation.y);ctx.fillStyle='#2b658533';ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,68,-2.2,-.94);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(0,-30);ctx.lineTo(22,24);ctx.lineTo(0,10);ctx.lineTo(-22,24);ctx.closePath();ctx.shadowColor='#243c3b80';ctx.shadowBlur=7;ctx.shadowOffsetY=2;ctx.fillStyle='#285f91';ctx.strokeStyle='#fff1cf';ctx.lineWidth=5;ctx.stroke();ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#467fa7';ctx.beginPath();ctx.moveTo(0,-20);ctx.lineTo(0,4);ctx.lineTo(-12,13);ctx.closePath();ctx.fill();ctx.restore();
   container.querySelector('figcaption').textContent=world.places[stats.nearest]?.name?.replace(/・.*/,'')||places[0]?.name?.replace(/・.*/,'')||'稻荷山參道';
  }

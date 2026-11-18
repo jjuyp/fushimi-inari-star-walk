@@ -27,34 +27,53 @@ export function createCameraRig(physics){
 }
 
 export function createCorridorCamera(world){
- const rail=world.toriiCorridor;
+ const rail=world.toriiCorridor,math=THREE.MathUtils;
  const before={},after={},point={};
- const view=new THREE.Vector3(),ray=new THREE.Vector3(),unit=new THREE.Vector3();
- let lane=null;
- function find(player,reset=false){
-  lane=rail.nearest(player.x,player.z,reset?null:lane);
-  if(!lane||lane.distance>lane.s.width+1.65)return null;
-  lane.blend=1-THREE.MathUtils.smoothstep(lane.distance,lane.s.width*.72,lane.s.width+1.65);
+ const view=new THREE.Vector3(),free=new THREE.Vector3(),ray=new THREE.Vector3(),unit=new THREE.Vector3();
+ let lane=null,blend=0,orbitYaw=null;
+ const angleDelta=(a,b)=>Math.atan2(Math.sin(a-b),Math.cos(a-b));
+
+ function find(player,gateCount,dt,reset=false){
+  if(reset){lane=null;blend=0;orbitYaw=null;}
+  const hit=rail.nearest(player.x,player.z,lane);
+  const active=hit&&hit.distance<hit.s.width+1.48&&gateCount>=(blend>.15?2:4);
+  const weight=active?1-math.smoothstep(hit.distance,hit.s.width*.72,hit.s.width+1.48):0;
+  blend=reset?weight:math.lerp(blend,weight,1-Math.exp(-dt*(active?7.5:5.8)));
+  lane=hit;
+  if(!lane||blend<.035){orbitYaw=null;return null;}
+  lane.blend=blend;
+  rail.sample(lane,-1.45,before);
+  rail.sample(lane,1.45,after);
+  lane.angle=Math.atan2(after.x-before.x,after.z-before.z);
   return lane;
  }
- function position(target,yaw,pitch,distance,lane){
-  rail.sample(lane,-.8,before);
-  rail.sample(lane,.8,after);
-  const length=Math.hypot(after.x-before.x,after.z-before.z)||1;
-  const dx=(after.x-before.x)/length,dz=(after.z-before.z)/length;
-  const sin=Math.sin(yaw),cos=Math.cos(yaw);
-  const behind=sin*dx+cos*dz,side=sin*dz-cos*dx;
+ function movementYaw(yaw,lane){
+  if(!lane)return yaw;
+  const along=lane.angle+(Math.cos(yaw-lane.angle)<0?Math.PI:0);
+  const delta=angleDelta(along,yaw);
+  // While walking along the tunnel, the path heading changes gently at bends.
+  // Sideways input remains available when the player deliberately turns there.
+  const weight=.84*lane.blend*(1-math.smoothstep(Math.abs(delta),.40,1.02));
+  return yaw+delta*weight;
+ }
+ function position(target,yaw,pitch,distance,lane,dt){
+  orbitYaw=orbitYaw===null?yaw:orbitYaw+angleDelta(yaw,orbitYaw)*(1-Math.exp(-dt*11));
+  const angle=orbitYaw-lane.angle,along=Math.cos(angle),side=Math.sin(angle);
   const last=lane.s.segments.at(-1),end=last.start+last.len;
   const fromOpening=Math.min(lane.at,end-lane.at);
-  const reach=THREE.MathUtils.lerp(2.35,Math.min(4.2,Math.max(2.8,distance)),THREE.MathUtils.smoothstep(fromOpening,0,6));
-  rail.sample(lane,reach*behind,point);
-  const maxSide=lane.s.width-.32;
-  const lateral=THREE.MathUtils.clamp(side*maxSide,-maxSide,maxSide);
-  const x=point.x+dz*lateral,z=point.z-dx*lateral;
-  const ground=world.walkHeight(x,z);
-  view.set(x,(Number.isFinite(ground)?ground:target.y-1)+1.40+Math.min(.35,Math.max(0,pitch)*.24),z);
-  // The orbit can contract against a post, but stays on the requested side.
-  // Trying unrelated orbit angles here made the view jump between gates.
+  const reach=math.lerp(2.6,math.clamp(distance,3.25,4.35),math.smoothstep(fromOpening,0,5));
+  const sweep=Math.sign(along)*(1-(1-Math.abs(along))**2.05);
+  rail.sample(lane,reach*sweep,point);
+  const sideLimit=lane.s.width-.38,lateral=side*sideLimit;
+  const x=point.x+Math.cos(lane.angle)*lateral,z=point.z-Math.sin(lane.angle)*lateral;
+  const floor=world.walkHeight(x,z);
+  view.set(x,(Number.isFinite(floor)?floor:target.y-1)+1.43+Math.min(.32,Math.max(0,pitch)*.27),z);
+  if(lane.blend<.999){
+   const p=Math.max(.045,pitch),d=Math.min(distance,7.3);
+   free.set(target.x+Math.sin(orbitYaw)*Math.cos(p)*d,target.y+Math.sin(p)*d,target.z+Math.cos(orbitYaw)*Math.cos(p)*d);
+   limit(target,free);
+   view.lerp(free,1-lane.blend);
+  }
   return limit(target,view);
  }
  function limit(target,destination){
@@ -63,11 +82,11 @@ export function createCorridorCamera(world){
   if(length<.01)return destination;
   unit.copy(ray).divideScalar(length);
   let clear=world.physics.cameraDistance(target,unit,length);
-  for(let d=.40;d<clear;d+=.22){
+  for(let d=.38;d<clear;d+=.22){
    const floor=world.walkHeight(target.x+unit.x*d,target.z+unit.z*d);
    if(Number.isFinite(floor)&&target.y+unit.y*d<floor+.29){clear=d-.20;break;}
   }
   return destination.copy(target).addScaledVector(unit,clear);
  }
- return{find,position,limit};
+ return{find,position,limit,movementYaw};
 }

@@ -7,12 +7,14 @@ import {Tree,TreeOptions,loadPreset} from './vendor/ez-tree.js';
 import {createDistrict} from './district.js';
 import {chunkTerrain} from './terrain-chunks.js';
 import {createToriiCorridor,crownRadius} from './torii-corridor.js';
+import {createFixtureLayout} from './fixture-placement.js';
 let seed=20261025;
 export function random(){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;}
 const range=(a,b)=>a+(b-a)*random();
 
 export async function buildWorld(scene,M,onProgress){
   const physics=new CollisionWorld(),surface=new SurfaceMap(),paving=new PavedSurface(),g=new GeometryBuilder(scene,M,physics),architecture=createArchitecture(g,surface),toriis=createToriiBuilder(g,surface);
+  const fixtureLayout=createFixtureLayout(surface),fixtureWorld={walkHeight,physics},lanternRequests=[];
   await onProgress('依境內圖重建樓門、拜殿與本殿…');
   const byId=new Map(MAP.buildings.map(b=>[b.id,b]));
   architecture.romon(byId.get(105449733));
@@ -32,7 +34,7 @@ export async function buildWorld(scene,M,onProgress){
   const entranceGates=MAP.gates.filter(a=>a.p[0]<-30&&a.p[0]>-125&&Math.abs(a.p[1])<35&&a.id!==1119273330);
   if(entranceGates.length){for(const gate of entranceGates)toriis.torii(...gate.p,Math.max(2.1,gate.width/2.25),-Math.PI/2+.055,{plaque:true});}
   else{toriis.torii(-90,1.7,2.7,-Math.PI/2+.055,{plaque:true});toriis.torii(-42,-.9,2.35,-Math.PI/2+.055,{plaque:true});}
-  for(let i=0;i<5;i++)for(const side of [-1,1])architecture.standingLantern(-83+i*11,side*8-1,.9,-Math.PI/2);
+  for(let i=0;i<5;i++)for(const side of [-1,1])lanternRequests.push([-83+i*11,side*8-1,.9,-Math.PI/2]);
   // A low stone water basin at the real hand-washing pavilion west/north of the gate.
   // The interactive art module builds the hollow basin inside this pavilion.
 
@@ -64,7 +66,7 @@ export async function buildWorld(scene,M,onProgress){
     for(const side of [-1,1]){
       let xx=x+side*4,zz=z+4;const near=surface.nearPath(xx,zz);
       if(near.s&&near.distance<near.s.width/2+1){const dx=xx-near.x,dz=zz-near.z,len=Math.hypot(dx,dz)||1,target=near.s.width/2+1.3;xx=near.x+dx/len*target;zz=near.z+dz/len*target;}
-      architecture.standingLantern(xx,zz,.65,0);
+      lanternRequests.push([xx,zz,.65,0]);
     }
   }
   const focusFoxes=[[-30,-10],[-29,6],[175,10],[177,17],[240,59],[247,59]];
@@ -112,6 +114,12 @@ export async function buildWorld(scene,M,onProgress){
   architecture.fence([[42,-18],[58,-19],[60,3],[44,4]],1.35,walkHeight);
   architecture.fence([[-19,-20],[-28,-20],[-29,-30]],1.25,walkHeight);
   architecture.fence([[-18,14],[-26,14],[-27,22]],1.25,walkHeight);
+  for(const [x,z,scale,angle] of lanternRequests){
+    const place=fixtureLayout.near(fixtureWorld,x,z,.74*scale);
+    if(!place)continue;
+    architecture.standingLantern(place.x,place.z,scale,angle,place.y);
+    fixtureLayout.record('石燈籠',place,.74*scale);
+  }
   await onProgress('生成杉林、枝葉與表面細節…');await new Promise(r=>setTimeout(r,0));
   const toriiCorridor=createToriiCorridor();
   const trees=await plantForest(scene,g,physics,surface,M,MAP.buildings,MAP.water,toriiCorridor);
@@ -133,7 +141,7 @@ export async function buildWorld(scene,M,onProgress){
     for(const mesh of g.meshes){const sphere=mesh.isInstancedMesh?mesh.boundingSphere:mesh.geometry.boundingSphere;if(sphere)mesh.visible=(!mesh.isInstancedMesh||mesh.count>0)&&camera.position.distanceTo(sphere.center)-sphere.radius<Math.min(limit,mesh.userData.detailRange||limit);}
     trees.update(camera,wide);
   }
-  return{ritualSites:architecture.ritualSites,nightWindows:architecture.nightWindows,physics,surface,paving,M,terrainMesh,pathMesh,trees,toriiCorridor,district,builder:g,seasonal:architecture.seasonal,buildings:architecture.registered,places:placeMap,safePlace,walkHeight,updateVisibility,
+  return{ritualSites:architecture.ritualSites,nightWindows:architecture.nightWindows,physics,surface,paving,M,terrainMesh,pathMesh,trees,toriiCorridor,fixtureLayout,district,builder:g,seasonal:architecture.seasonal,buildings:architecture.registered,places:placeMap,safePlace,walkHeight,updateVisibility,
     stats:{toriiCount:toriis.count,senbonCount,mountainCount,buildings:architecture.registered.length,colliders:physics.bodies.length,staticInstances:g.count,trees:trees.count,shops:district.shops,stalls:district.stalls,routeMetres:Math.round(MAP.routes.reduce((s,r)=>s+r.length,0))}};
 }
 

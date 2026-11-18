@@ -40,7 +40,47 @@
 @media(max-width:360px){#location.hud-widget{width:128px}#hudMinimap{width:120px}}
 #hudContext.hud-widget{max-width:min(320px,calc(100vw - 136px))!important}#hudContext>button{white-space:normal;text-align:center}
 .fox-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:5px}.fox-actions[hidden]{display:none}.fox-actions button{border:1px solid #c7a460;background:#f8edce;color:#533720;border-radius:999px;padding:8px 12px;font:600 11px/1.2 Microsoft JhengHei,sans-serif;box-shadow:0 2px 8px #432b2526}
+
+/* The two drawer tabs stay reachable when their strips slide below the scene. */
+#destinations.hud-widget,#hudActions.hud-widget{transition:transform .28s cubic-bezier(.37,.72,.25,1),opacity .19s}
+.hud-widget.hud-folded{transform:translateY(calc(100dvh - var(--hud-y) + 12px)) scale(var(--hud-scale))!important;opacity:0!important;pointer-events:none!important}
+.hud-widget[data-hud-enabled=false]{visibility:hidden;pointer-events:none!important}
+.hud-editing .hud-widget[data-hud-enabled=false]{visibility:visible;opacity:.53!important}
+.hud-quiet .hud-widget,.hud-quiet #controlSettings,.hud-quiet #toast,.hud-quiet #hudSeasons{visibility:hidden!important;pointer-events:none!important}
+#hudFolders{position:fixed;left:50%;bottom:var(--hud-folder-bottom,12px);transform:translateX(-50%);z-index:25;display:flex;gap:5px;padding:3px;border:1px solid #c49a58;border-radius:16px;background:#f9ecd2ee;box-shadow:0 2px 8px #36281736,0 0 0 1px #fff2cc;transition:bottom .24s;white-space:nowrap}
+#hudFolders[hidden],#hudFolders button[hidden],.photograph #hudFolders,body:has(#loading:not(.ready)) #hudFolders{display:none!important}
+#hudFolders button{min-height:28px;min-width:56px;display:flex;align-items:center;justify-content:center;gap:7px;padding:4px 9px;border-radius:12px;color:#60482f;border:1px solid #d9bf8e;background:linear-gradient(#fff9e7,#f2dfb7);font:600 11px/1.2 Microsoft JhengHei,sans-serif;transition:background .2s}
+#hudFolders button:hover{transform:none;background:#fff9e8}
+#hudFolders button i{display:block;width:7px;height:7px;border:solid #996b37;border-width:0 1.7px 1.7px 0;transform:translateY(-2px) rotate(45deg);flex:none}
+#hudFolders button[aria-expanded=false] i{transform:translateY(2px) rotate(225deg)}
+#hudFolders [data-fold=quiet] i{width:9px;height:7px;border-width:1px;border-radius:1px;transform:none}
+#hudFolders [data-fold=quiet][aria-pressed=true]{min-width:104px;color:#fff1d2;background:linear-gradient(#846746,#644c33);border-color:#7e5e3a}
+#hudFolders [data-fold=quiet][aria-pressed=true] i{border-color:#fff0c0}
+#controlsDialog .hud-editor-form>.hud-show-option{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 12px;margin:-4px 0 13px;border:1px solid #d4b47c;border-radius:9px;background:#fff5d9;font:600 12px/1.4 Microsoft JhengHei,sans-serif}
+#hudEnabled{appearance:none;position:relative;display:block;width:38px;height:21px;border:1px solid #998067;border-radius:20px;margin:0;background:#b7a78f;cursor:pointer}
+#hudEnabled:before{content:'';position:absolute;left:2px;top:2px;width:15px;height:15px;border-radius:50%;background:#fff4d5;box-shadow:0 1px 3px #50372570;transition:transform .18s}
+#hudEnabled:checked{background:#726247;border-color:#776144}
+#hudEnabled:checked:before{transform:translateX(17px)}
+@media(max-width:699px){#hudFolders{gap:4px;max-width:calc(100vw - 24px)}#hudFolders button{min-height:34px;min-width:60px;padding:4px 10px}}
+@media(prefers-reduced-motion:reduce){#hudFolders,#destinations.hud-widget,#hudActions.hud-widget,#hudEnabled:before{transition:none}}
 .washing-scene #hudActions{visibility:hidden}
 .kagura-scene #hudActions{visibility:hidden}
 .prayer-scene #hudActions{visibility:hidden}
 .omokaru-scene #hudActions{visibility:hidden}
+
+#ritualProgress.prayer-camera{pointer-events:none;text-align:center}
+#ritualProgress.prayer-camera::after{display:block;content:'拖曳環視 · 滾輪縮放';font-size:.83em;line-height:1.35;color:#f9dfa9;margin-top:5px}
+@media(pointer:coarse){#ritualProgress.prayer-camera::after{content:'滑動環視 · 雙指縮放'}}
+.fox-actions button[hidden]{display:none}
+.fox-actions [data-fox-action=follow]{border-color:#a5643e;background:#f5e1b6;color:#654326}
+.fox-actions [data-fox-action=follow][aria-pressed=true]{border-color:#8f6947;background:#eee3c8;color:#644b33}
+#geographicMap .shrine-map-pin{cursor:pointer}
+#geographicMap .shrine-map-pin:hover rect,#geographicMap .shrine-map-pin:focus-visible rect{fill:#bb663e;stroke:#fff6df}
+#shrineMapKey{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0 13px;padding:10px 12px;border:1px solid #bfaa7d;border-radius:10px;background:#f6e9cb}
+#shrineMapKey h3{font:700 14px/1.2 "DFKai-SB",KaiTi,serif;color:#694c36;margin:0 9px 0 0}
+#shrineMapKey p{font-size:12px;margin:0}
+#shrineMapKey .shrine-map-stop{display:flex;align-items:center;gap:5px;margin:0;background:#fff6e2;border:1px solid #c4a67a;border-radius:8px;color:#604531;padding:6px 8px;font:600 12px/1.15 "Microsoft JhengHei",sans-serif}
+#shrineMapKey .shrine-map-stop:hover,#shrineMapKey .shrine-map-stop:focus-visible{border-color:#913f3b;background:#f6dec4}
+#shrineMapKey .shrine-map-stop span{display:grid;place-content:center;min-width:17px;height:17px;font:700 11px/1 Georgia,serif;border-radius:4px;background:#843e36;color:#fff6dc}
+@media(max-width:620px){#shrineMapKey{padding:7px;gap:4px}#shrineMapKey h3{flex-basis:100%;margin:2px 0 4px}#shrineMapKey .shrine-map-stop{font-size:10px;min-height:30px}}
+#mapDialog .map-switch [data-map-area][aria-pressed=true],#mapDialog .map-switch [data-map-area][aria-pressed=true]:hover{background:#385042;color:#fff5d9}

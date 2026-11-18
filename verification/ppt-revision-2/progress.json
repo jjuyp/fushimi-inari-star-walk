@@ -1,0 +1,56 @@
+{
+  "sourceSha256": "FD450C168AE3E70955DEEBACFA804C0A92A8202C5A0EBC581C56FC4F30C2B730",
+  "slideCount": 8,
+  "completed": 8,
+  "minimumArtScore": 90,
+  "pages": [
+    {
+      "page": 1,
+      "status": "approved",
+      "score": 95,
+      "locked": true
+    },
+    {
+      "page": 2,
+      "status": "approved",
+      "score": 92,
+      "locked": true
+    },
+    {
+      "page": 3,
+      "status": "approved",
+      "score": 95,
+      "locked": true
+    },
+    {
+      "page": 4,
+      "status": "approved",
+      "score": 95,
+      "locked": true
+    },
+    {
+      "page": 5,
+      "status": "approved",
+      "score": 95,
+      "locked": true
+    },
+    {
+      "page": 6,
+      "status": "approved",
+      "score": 97,
+      "locked": true
+    },
+    {
+      "page": 7,
+      "status": "approved",
+      "score": 94,
+      "locked": true
+    },
+    {
+      "page": 8,
+      "status": "approved",
+      "score": 91,
+      "locked": true
+    }
+  ]
+}

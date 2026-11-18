@@ -34,3 +34,35 @@
 @media(max-width:850px){.journal-actions{grid-template-columns:repeat(2,minmax(0,1fr))}#journeyDialog .journal-plaque{font-size:22px;padding-left:94px}.journal-icon{left:23px;width:64px;height:60px}.journal-invitation{max-width:58%;font-size:18px}.journal-hero{min-height:218px;padding-left:32px}.journal-wallet{font-size:26px;gap:10px}.journal-wallet strong{font-size:48px}}
 @media(max-width:600px){#journeyDialog.journal-home{width:calc(100vw - 20px);max-height:calc(100dvh - 24px);border-radius:4px}#journeyDialog.journal-home #journeyBody{padding:0 10px}.journal-hero{margin:0 -10px 8px;min-height:202px;padding:40px 20px 15px;background-position:right top}.journal-hero:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#f6ead6f2 0,#f6ead6e0 46%,#f6ead600 83%)}.journal-wallet{font-size:23px;gap:8px;letter-spacing:0}.journal-wallet strong{font-size:39px}.journal-currency-note{font-size:13px;max-width:70%;margin-top:8px}.journal-invitation{max-width:69%;font-size:16px;margin-top:20px;line-height:1.65}.journal-route-grid{grid-template-columns:minmax(0,1fr);gap:5px}#journeyDialog .journal-plaque{min-height:79px;font-size:21px;padding:22px 44px 9px 91px;letter-spacing:0}.journal-icon{left:23px;top:17px;width:62px;height:57px}.journal-chevron{right:19px;font-size:29px}.journal-key{right:32px;top:14px;font-size:10px}.journal-caption{margin:16px 9px 12px;font-size:13px;line-height:1.85}.journal-sources{margin-left:0;white-space:normal}.journal-actions{grid-template-columns:minmax(0,1fr);gap:5px}#journeyDialog .journal-actions .journal-plaque{min-height:77px;font-size:20px;padding:22px 42px 9px 88px}.journal-actions .journal-icon{left:23px;top:16px;width:60px;height:56px}.journal-key-guide{font-size:11px;line-height:1.8;margin:13px 6px 0}.journal-footer-art{height:125px;margin:3px -10px 0}#journeyDialog.journal-home #journeyClose{width:32px;height:32px;right:9px;top:9px;font-size:25px}}
 @media(prefers-reduced-motion:reduce){#journeyDialog .journal-plaque{transition:none}}
+#journeyDialog.goshuin-book{width:min(1100px,calc(100vw - 24px));max-height:calc(100dvh - 28px);background:#f5e9d1 url('assets/v3.6/journal-washi.webp') center / 512px auto;color:#463426;border:1px solid #b78d55;border-radius:13px;padding:clamp(14px,3vw,34px);scrollbar-width:thin}
+#journeyDialog.goshuin-book::backdrop{background:#1e1d15c7;backdrop-filter:blur(4px)}
+#journeyDialog.goshuin-book .dialog-head{margin-bottom:8px}
+#journeyDialog.goshuin-book .eyebrow{display:none}
+#journeyDialog.goshuin-book h2{color:#503621;font-family:"DFKai-SB","KaiTi","Yu Mincho",serif;font-size:clamp(24px,3.5vw,40px);letter-spacing:.12em}
+.goshuin-overview{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 16px;border-bottom:1px solid #b28a554b}
+.goshuin-overview p,.goshuin-caption{font:500 13px/1.6 "Microsoft JhengHei",sans-serif;color:#75583e;margin:4px 0 10px}
+.goshuin-overview>span{white-space:nowrap;color:#a44532;font:15px/1 Georgia,serif}
+.goshuin-overview strong{font-size:24px}
+.goshuin-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#journeyDialog .goshuin-entry{display:block;width:100%;min-width:0;margin:0;padding:0;border:0;background:none;border-radius:12px;transition:filter .17s,transform .17s;text-align:initial;color:inherit}
+#journeyDialog .goshuin-entry:hover{transform:translateY(-2px);filter:saturate(1.08) brightness(1.03)}
+#journeyDialog .goshuin-entry:focus-visible{outline:2px solid #b64632;outline-offset:3px}
+.goshuin-card{container-type:inline-size;position:relative;isolation:isolate;aspect-ratio:3 / 2;border:1px solid #c39846;border-radius:4.5% / 7%;background:#fbf2dd;overflow:hidden;box-shadow:0 3px 6px #4f331e26;text-shadow:0 1px 0 #dabe9d36;font-family:"DFKai-SB","Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",KaiTi,serif;color:#252014}
+.goshuin-card::after{content:'';position:absolute;inset:1.8% 1.25%;border:1px solid #c99f5799;border-radius:3.4% / 5.8%;pointer-events:none}
+.goshuin-card img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:-2}
+.goshuin-card span,.goshuin-seal{position:absolute;display:block;font-style:normal}
+.goshuin-name,.goshuin-worship,.goshuin-era,.goshuin-date{writing-mode:vertical-rl;text-orientation:upright}
+.goshuin-name{top:8%;bottom:7%;left:50%;transform:translateX(-50%) rotate(-2.2deg);font-size:11.2cqw;font-weight:900;line-height:1;letter-spacing:-.055em;-webkit-text-stroke:.07cqw currentColor;text-shadow:.16cqw .07cqw #2c1b1266}
+.goshuin-worship{right:6.5%;top:8%;font-size:8.7cqw;font-weight:800;line-height:1;transform:rotate(2deg)}
+.goshuin-era,.goshuin-date{font-size:4.25cqw;font-weight:700;line-height:1;left:10%;top:32%}
+.goshuin-date{left:4.35%;top:43%}
+.goshuin-seal{left:29%;top:41%;z-index:-1;display:grid;place-content:center;padding:1.3cqw .7cqw 1.0cqw;border:.72cqw double currentColor;border-radius:1.0cqw;transform:rotate(-5deg);color:#b53c29bf;background:#fbf1dd42;line-height:1;font-size:5.5cqw;font-weight:900;text-align:center;mix-blend-mode:multiply}
+.goshuin-round{right:7%;bottom:7.5%;display:grid!important;place-content:center;width:9.6cqw;height:9.6cqw;transform:rotate(8deg);font-size:5.5cqw;font-weight:800;border:.68cqw double currentColor;border-radius:50%;color:#a7372cbf;background:#fff5de98}
+.goshuin-empty{background:radial-gradient(ellipse,#fcf3df 15%,#e9d6af 100%);color:#836a48}
+.goshuin-empty .goshuin-name{font-size:10cqw;top:11%;opacity:.7}
+.goshuin-missing{right:9%;bottom:10%;font-size:4.8cqw;padding:.35cqw 1.2cqw;border:1px solid #bc9368;border-radius:3px}
+.goshuin-caption{text-align:center;margin-top:14px}
+.goshuin-feature{width:min(100%,655px);margin:0 auto}
+.goshuin-footer{display:flex;justify-content:center;margin:15px 0 0}
+@media(max-width:700px){.goshuin-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.goshuin-overview p{font-size:11px}}
+@media(prefers-reduced-motion:reduce){#journeyDialog .goshuin-entry{transition:none}}

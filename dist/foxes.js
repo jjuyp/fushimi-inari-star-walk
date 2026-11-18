@@ -68,13 +68,75 @@ export function createFoxes(scene,world){
   const hearts=Array.from({length:3},()=>{const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:heartTexture,transparent:true,depthWrite:false}));sprite.visible=false;scene.add(sprite);return sprite});
   const moods=['wag','stretch','yawn','sleep','roll','nuzzle'],stats={active:0,interactions:0};
   const mix=THREE.MathUtils.lerp,smooth=THREE.MathUtils.smoothstep;
-  let interacting=null;
+  let interacting=null,companion=null,trail=[],lastTrace=null,followingStride=false;
   for(const a of agents){a.pose='walk';a.elapsed=0;a.remaining=2+a.id*1.39%8;a.emote=0;a.touch=new THREE.Vector3()}
   function turn(a,yaw,dt){a.yaw+=Math.atan2(Math.sin(yaw-a.yaw),Math.cos(yaw-a.yaw))*Math.min(1,dt*8)}
   function setPose(a,pose,length){a.pose=pose;a.elapsed=0;a.remaining=length}
   function nearest(player){let best=null,limit=2.1;for(const a of agents){const d=Math.hypot(a.x-player.x,a.z-player.z);if(d<limit&&Math.abs(a.y-player.y)<.9){limit=d;best=a}}return best}
   function interact(a,kind,player){if(interacting||!a||nearest(player)!==a||!['pet','play'].includes(kind))return false;setPose(a,kind==='pet'?'pet':'play',kind==='pet'?4:5);interacting=a;stats.interactions++;return true}
   function cancel(){if(interacting){setPose(interacting,'walk',4);interacting=null}}
+  function positionOf(actor){return{x:actor.x,y:actor.y,z:actor.z};}
+  function horizontal(a,b){return Math.hypot(a.x-b.x,a.z-b.z);}
+  function follow(a,player){
+    if(companion||!a||nearest(player)!==a||horizontal(a,player)>1.55)return false;
+    cancel();companion=a;trail=[positionOf(player)];lastTrace=positionOf(player);followingStride=false;
+    setPose(a,'wag',40);return true;
+  }
+  function release(){
+    if(!companion)return false;
+    if(interacting===companion)cancel();
+    const a=companion;
+    if(!a.route.some(p=>horizontal(a,p)<2)){
+      a.route=[positionOf(a),...trail.filter(p=>horizontal(a,p)<4).slice(0,5)];a.index=Math.min(1,a.route.length-1);a.direction=1;
+    }
+    setPose(a,'wag',3);a.blocked=0;companion=null;trail=[];lastTrace=null;followingStride=false;
+    return true;
+  }
+  function settleNear(a,player,facing){
+    const start=facing;
+    for(const d of [2.15,1.8,1.35])for(const bias of [Math.PI+.45,Math.PI-.45,Math.PI,1.55,-1.55,0]){
+      const angle=start+bias,x=player.x+Math.sin(angle)*d,z=player.z+Math.cos(angle)*d,y=world.walkHeight(x,z);
+      if(!Number.isFinite(y)||Math.abs(y-player.y)>.92||world.physics.collides(x,y,z))continue;
+      Object.assign(a,{x,y,z,yaw:Math.atan2(player.x-x,player.z-z),blocked:0});return true;
+    }
+    return false;
+  }
+  function updateCompanion(a,player,dt,facing){
+    if(!lastTrace||horizontal(lastTrace,player)>8.5||Math.abs(lastTrace.y-player.y)>2.8){
+      if(!settleNear(a,player,facing)){lastTrace=null;return;}
+      trail=[positionOf(player)];lastTrace=positionOf(player);followingStride=false;
+    }
+    const recent=trail.at(-1);
+    if(horizontal(recent,player)>.54){trail.push(positionOf(player));if(trail.length>48)trail.shift();}
+    lastTrace.x=player.x;lastTrace.y=player.y;lastTrace.z=player.z;
+    const distance=horizontal(a,player);
+    followingStride=distance>(followingStride?1.33:1.70);
+    if(!followingStride){
+      if(a.pose!=='wag'||a.remaining<.5)setPose(a,'wag',40);
+      turn(a,Math.atan2(player.x-a.x,player.z-a.z),dt*.65);return;
+    }
+    while(trail.length>1&&horizontal(trail[0],a)<.61)trail.shift();
+    const aim=trail.length===1?player:trail[0],next=trail[1]||player;
+    const direction=horizontal(aim,next)>.25?Math.atan2(next.x-aim.x,next.z-aim.z):facing;
+    const side=a.id%2 ? -.44 : .44;
+    const sx=aim.x+Math.cos(direction)*side,sz=aim.z-Math.sin(direction)*side,sy=world.walkHeight(sx,sz);
+    const clear=Number.isFinite(sy)&&Math.abs(sy-aim.y)<.42&&!world.physics.collides(sx,sy,sz);
+    const dx=(clear?sx:aim.x)-a.x,dz=(clear?sz:aim.z)-a.z,length=Math.hypot(dx,dz);
+    if(length<.04)return;
+    const step=Math.min(length,dt*THREE.MathUtils.clamp(distance*1.34,1.55,7.0)),oldX=a.x,oldZ=a.z;
+    world.physics.move(a,dx*step/length,dz*step/length,world.walkHeight);
+    const moved=Math.hypot(a.x-oldX,a.z-oldZ);
+    if(moved>.002){
+      if(a.pose!=='walk')setPose(a,'walk',40);
+      a.phase+=moved*11;a.distance+=moved;a.blocked=0;
+      turn(a,Math.atan2(a.x-oldX,a.z-oldZ),dt);
+    }else{
+      a.blocked+=dt;
+      if(a.blocked>1.05&&trail.length>1){trail.shift();a.blocked=0;}
+      else if(distance>12&&a.blocked>2.7)lastTrace=null;
+      if(a.pose!=='wag')setPose(a,'wag',40);
+    }
+  }
   const poseMatrix=new THREE.Matrix4(),bodyScale=new THREE.Vector3(1,1,.75);
   function keepPawsAboveGround(index,ground){
     let lowest=Infinity;
@@ -103,12 +165,13 @@ export function createFoxes(scene,world){
     for(let k=0;k<4;k++){const side=k%2?1:-1,front=k<2?1:-1,stride=p==='walk'?Math.sin(a.phase+(k===0||k===3?0:Math.PI))*.34:0;joint.position.set(side*(.145-nap*.025),.322+(front<0?-sit*.052:0)-nap*.055,front*.195+bow*.10-nap*.05);joint.rotation.set(stride+bow*(front>0?-1.06:.2)+nap*(front>0?-1.45:1.45)+roll*.56*Math.sin(t*6+k)+play*.20*Math.sin(t*7+k),0,0);joint.updateMatrix();local.multiplyMatrices(root,joint.matrix);legs.setMatrixAt(i*4+k,local);}
     if(roll||bow||nap)keepPawsAboveGround(i,a.y);
   }for(const m of [...meshes,shadows]){m.count=m===legs?shown*4:shown;if(shown)m.instanceMatrix.needsUpdate=true}stats.rendered=shown;}
-  function update(dt,time,player,reduced=false,enabled=true){
+  function update(dt,time,player,reduced=false,enabled=true,facing=0){
     stats.active=0;if(!enabled){draw(time,player,false);for(const sprite of hearts)sprite.visible=false;return}
     for(const a of agents){
-      if(Math.hypot(a.x-player.x,a.z-player.z)>100)continue;
+      if(a!==companion&&Math.hypot(a.x-player.x,a.z-player.z)>100)continue;
       stats.active++;a.elapsed+=dt;a.remaining-=dt;
       if(a===interacting){if(a.remaining<=0||Math.hypot(a.x-player.x,a.z-player.z)>2.8){cancel();continue}turn(a,Math.atan2(player.x-a.x,player.z-a.z),dt);continue}
+      if(a===companion){updateCompanion(a,player,dt,facing);continue;}
       if(a.remaining<=0){if(a.pose==='walk'){const pose=moods[(a.id+a.emote++*5)%moods.length];setPose(a,pose,pose==='sleep'?7:2.6+a.id%4*.33)}else setPose(a,'walk',4+a.id%5)}
       if(reduced||a.pose!=='walk')continue;
       let target=a.route[a.index],dx=target.x-a.x,dz=target.z-a.z,len=Math.hypot(dx,dz);
@@ -129,5 +192,5 @@ export function createFoxes(scene,world){
       sprite.position.copy(a.touch).addScaledVector(THREE.Object3D.DEFAULT_UP,.19+age*.24);sprite.position.x+=(i-1)*.22+Math.sin(age*3+i)*.065;
     }
   }
-  draw(0,null,false);return{agents,meshes:[...meshes,shadows],count:agents.length,update,nearest,interact,cancel,stats,get interacting(){return interacting}};
+  draw(0,null,false);return{agents,meshes:[...meshes,shadows],count:agents.length,update,nearest,interact,cancel,follow,release,stats,get companion(){return companion},get interacting(){return interacting}};
 }

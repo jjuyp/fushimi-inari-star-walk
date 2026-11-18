@@ -1,0 +1,105 @@
+import assert from 'node:assert/strict';
+import {chromium} from '../tidepool-jelly/node_modules/playwright-core/index.mjs';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import {pathToFileURL} from 'node:url';
+import {resolve} from 'node:path';
+const offline=process.argv.includes('--offline'),out='output/ppt-revision-2/page05'+(offline?'/offline':'');
+mkdirSync(out,{recursive:true});
+const browser=await chromium.launch({headless:true,executablePath:'C:/Users/shang/AppData/Local/ms-playwright/chromium-1223/chrome-win64/chrome.exe',args:['--no-sandbox','--force_low_power_gpu']});
+const report={offline,errors:[],external:[]};
+try{
+ const url=offline?pathToFileURL(resolve('伏見稻荷・星旅.html')).href:'http://127.0.0.1:4197';
+ async function load(options){
+  const page=await browser.newPage(options);
+  page.on('pageerror',e=>report.errors.push(e.message));
+  if(offline)page.on('request',r=>{if(!/^(file:|data:|blob:)/.test(r.url()))report.external.push(r.url());});
+  await page.goto(url);
+  await page.waitForFunction(()=>inari?.state.ready,null,{timeout:120000});
+  await page.evaluate(()=>inari.setRenderQuality('clear'));
+  return page;
+ }
+ const state=p=>p.evaluate(()=>({camera:inari.camera.position.toArray(),player:inari.player.position.toArray(),elevation:inari.state.lookElevation,boom:inari.state.cameraBoom,active:inari.pilgrimage.stats.active}));
+ async function drag(p,x,y,dx,dy){
+  await p.mouse.move(x,y);
+  await p.mouse.down();
+  await p.mouse.move(x+dx,y+dy,{steps:5});
+  await p.mouse.up();
+ }
+ const separation=(a,b)=>Math.hypot(...a.camera.map((v,i)=>v-b.camera[i]));
+ async function thumbnail(p,name){if(!offline)await p.screenshot({path:out+'/'+name+'.png'});}
+ async function side(p){
+  await p.evaluate(()=>inari.pilgrimage.travel('shrine-bonds'));
+  await p.waitForFunction(()=>!inari.state.travelLoading&&inari.pilgrimage.stats.near==='shrine-bonds');
+  await p.keyboard.press('KeyE');
+  await p.getByRole('button',{name:'在此參拜',exact:true}).click();
+  await p.locator('#ritualProgress.prayer-camera').waitFor();
+ }
+ const p=await load({viewport:{width:1280,height:800}});
+ await side(p);
+ await thumbnail(p,'side-default');
+ const start=await state(p);
+ await drag(p,805,378,-148,-98);
+ await p.waitForTimeout(340);
+ const left=await state(p);
+ await thumbnail(p,'side-up');
+ await drag(p,516,330,254,155);
+ await p.waitForTimeout(320);
+ const right=await state(p);
+ await thumbnail(p,'side-other-angle');
+ assert.equal(right.active,'sidepray');
+ assert.ok(separation(start,left)>1.10);
+ assert.ok(separation(left,right)>1.45);
+ assert.ok(left.elevation-start.elevation>8);
+ assert.deepEqual(right.player,start.player);
+ const wheelStart=await state(p);
+ await p.mouse.move(682,285);
+ await p.mouse.wheel(0,390);
+ await p.waitForTimeout(350);
+ const wheelEnd=await state(p);
+ assert.ok(wheelEnd.boom>wheelStart.boom+.35);
+ report.side={start,left,right,wheelStart:wheelStart.boom,wheelEnd:wheelEnd.boom};
+ await p.keyboard.press('Escape');
+ await p.waitForFunction(()=>!inari.pilgrimage.busy);
+ await p.evaluate(()=>{inari.goPlace('hall');const s=inari.ritual.site;for(const d of [4,5,6])if(inari.teleport(s.position[0]+Math.sin(s.angle)*d,s.position[2]+Math.cos(s.angle)*d))break;});
+ await p.waitForFunction(()=>!inari.state.travelLoading&&!document.querySelector('#pray').hidden);
+ await p.locator('#pray').click();
+ await p.locator('#ritualProgress.prayer-camera').waitFor();
+ await p.waitForTimeout(260);
+ const first=await state(p);
+ await drag(p,681,403,150,-79);
+ await p.waitForTimeout(310);
+ const second=await state(p);
+ await thumbnail(p,'main-orbit');
+ assert.ok(separation(first,second)>1.2);
+ assert.deepEqual(first.player,second.player);
+ assert.equal(second.active,'pray');
+ const prayers=await p.evaluate(()=>inari.pilgrimage.saved.prayers);
+ await p.waitForFunction(previous=>!inari.pilgrimage.busy&&inari.pilgrimage.saved.prayers===previous+1,prayers,{timeout:23000});
+ report.main={first,second,completed:true,claps:await p.evaluate(()=>inari.ritual.stats.claps.length)};
+ assert.equal(report.main.claps,2);
+ await p.close();
+ const m=await load({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
+ await side(m);
+ const touchStart=await state(m);
+ const client=await m.context().newCDPSession(m);
+ await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:293,y:355}]});
+ for(const [x,y] of [[274,337],[253,320],[232,303],[210,286],[186,271]])await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y}]});
+ await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ await m.waitForTimeout(360);
+ const touchEnd=await state(m);
+ await thumbnail(m,'touch-orbit');
+ assert.equal(touchEnd.active,'sidepray');
+ assert.ok(separation(touchStart,touchEnd)>1);
+ assert.deepEqual(touchStart.player,touchEnd.player);
+ const fingers=(a,b)=>[{x:a,y:348,id:1},{x:b,y:348,id:2}];
+ await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:fingers(113,277)});
+ for(const [a,b] of [[118,272],[124,266],[132,258],[140,250]])await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:fingers(a,b)});
+ await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+ await m.waitForTimeout(330);
+ const pinchEnd=await state(m);
+ assert.ok(pinchEnd.boom>touchEnd.boom+.4);
+ assert.deepEqual(pinchEnd.player,touchStart.player);
+ report.touch={touchStart,touchEnd,pinchBoom:pinchEnd.boom,caption:await m.locator('#ritualProgress').evaluate(e=>getComputedStyle(e,'::after').content)};
+ assert.match(report.touch.caption,/滑動環視/);
+ assert.deepEqual(report.errors,[]);assert.deepEqual(report.external,[]);
+}finally{await browser.close();writeFileSync(out+'/qa.json',JSON.stringify(report,null,2)+'\n');}

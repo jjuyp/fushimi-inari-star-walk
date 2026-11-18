@@ -29,7 +29,7 @@ export function createToriiCorridor(){
   for(const s of cells.get(Math.floor(x/CELL)+','+Math.floor(z/CELL))||[]){
    const t=clamp(((x-s.x)*s.dx+(z-s.z)*s.dz)/(s.len*s.len),0,1),px=s.x+s.dx*t,pz=s.z+s.dz*t;
    const distance=Math.hypot(x-px,z-pz);
-   const weighted=distance+(previous&&s.lane!==previous.s.lane ? .13 : 0);
+   const weighted=distance+(previous&&s.lane!==previous.s.lane ? .29 : 0);
    if(weighted<bestDistance){bestDistance=weighted;best={x:px,z:pz,distance,at:s.start+t*s.len,s};}
   }
   return best;

@@ -7,7 +7,10 @@ export const SHRINES=[
  {id:'health',place:'hall',name:'少彥名小社',deity:'少彥名命',wish:'健康・身心安穩',color:'#526b58',mark:'葉',fortune:'健康籤',source:'https://www.kandamyoujin.or.jp/profile/'},
  {id:'sun',place:'okusha',name:'日之御小社',deity:'天照大御神',wish:'日光・感謝新的一日',color:'#ad502d',mark:'日',source:'https://www.isejingu.or.jp/about/naiku/'},
  {id:'study',place:'torii',name:'天神小社',deity:'菅原道真公',wish:'學業・持續精進',color:'#57537c',mark:'梅',source:'https://kitanotenmangu.or.jp/about/'},
- {id:'path',place:'yotsu',name:'道開小社',deity:'猿田彥大神',wish:'旅途平安・新的方向',color:'#426275',mark:'道',source:'https://www.sarutahikojinja.or.jp/'}
+ {id:'path',place:'yotsu',name:'道開小社',deity:'猿田彥大神',wish:'旅途平安・新的方向',color:'#426275',mark:'道',source:'https://www.sarutahikojinja.or.jp/'},
+ {id:'harvest',place:'kumataka',name:'穗守小社',deity:'稻穗之心',wish:'收穫・感謝四時',color:'#9e4e36',mark:'穂',roof:'#574335',rim:'#af8b42'},
+ {id:'snow',place:'mitsu',name:'雪燈小社',deity:'雪夜之燈',wish:'安穩・守候歸途',color:'#4e687b',mark:'灯',roof:'#364c62',rim:'#acb7b9'},
+ {id:'foxguard',place:'gozentani',name:'白狐守小社',deity:'白狐守護',wish:'招福・守護身邊的人',color:'#b36e34',mark:'狐',roof:'#383d38',rim:'#ad7952'}
 ];
 
 const verseSets={wealth:[
@@ -34,7 +37,7 @@ const verseSets={wealth:[
 ]};
 export function thematicFortunes(id){return verseSets[id]||[];}
 
-const cube=new T.BoxGeometry(1,1,1),sphere=new T.SphereGeometry(1,14,9);
+const cube=new T.BoxGeometry(1,1,1),sphere=new T.SphereGeometry(1,14,9),smallEar=new T.ConeGeometry(1,1,5);
 const material=color=>new T.MeshStandardMaterial({color,roughness:.87});
 const vector=(x,y,z)=>new T.Vector3(x,y,z);
 function mesh(g,geo,mat,x,y,z,sx=1,sy=1,sz=1){const o=new T.Mesh(geo,mat);o.position.set(x,y,z);o.scale.set(sx,sy,sz);o.receiveShadow=true;g.add(o);return o;}
@@ -52,17 +55,18 @@ function bell(g,M,x,y,z){const group=new T.Group();group.position.set(x,y,z);g.a
 
 // A short side path joins each clearing. Test the building footprint, roof
 // height and actual approach before committing any collider to the world.
-export function chooseClearing(world,anchor,{width=3.5,depth=2.1,min=4,max=29,viewDistance=4.8,treeClearance=1.15}={}){
+export function chooseClearing(world,anchor,{width=3.5,depth=2.1,min=4,max=29,viewDistance=4.8,treeClearance=1.15,accept=()=>true}={}){
  const choices=[];
  const closeTrees=world.physics.bodies.filter(b=>b.name==='tree trunk'&&Math.hypot(b.x-anchor.x,b.z-anchor.z)<max+viewDistance+treeClearance+2);
  for(let r=min;r<=max;r+=1.25)for(let step=0;step<32;step++){
   const a=(step+(r%3)*.14)*Math.PI/16,x=anchor.x+Math.cos(a)*r,z=anchor.z+Math.sin(a)*r;
   const y=world.walkHeight(x,z);if(!Number.isFinite(y))continue;
-  const near=world.surface.nearPath(x,z);if(near.distance<2.45||near.distance>9.8)continue;
+  const near=world.surface.nearPath(x,z);if(near.distance<2.45||near.distance>9.8||!accept(x,z))continue;
   const yaw=Math.atan2(near.x-x,near.z-z),sn=Math.sin(yaw),cs=Math.cos(yaw),point=(u,v)=>[x+cs*u+sn*v,z-sn*u+cs*v];
   let clear=true,high=y,low=y;
   for(const u of [-width/2,0,width/2])for(const v of [-depth/2,0,depth/2]){
    const [xx,zz]=point(u,v),h=world.walkHeight(xx,zz);if(!Number.isFinite(h)||Math.abs(y-h)>.52){clear=false;break}high=Math.max(high,h);low=Math.min(low,h);
+   if(world.fixtureLayout.margin(xx,zz,.19)<.10){clear=false;break;}
    if(world.physics.near(xx,zz).some(body=>[0,1.0,2.1].some(d=>world.physics.penetration(body,xx,h+d,zz,.31,.58)))){clear=false;break}
   }
   if(!clear)continue;
@@ -99,9 +103,56 @@ export function sideArrival(world,placement,depth,offset){
  return Number.isFinite(y)&&Math.abs(y-pathPoint.y)<.42&&!world.physics.collides(x,y,z)?{x,y,z}:pathPoint;
 }
 
+function decorateNewShrine(g,M,s,width){
+ const rim=material(s.rim);
+ const ridgeY=2.657;
+ box(g,rim,0,ridgeY,-.035,width*.81,.055,.14);
+ for(const side of [-1,1]){
+  const x=side*width*.53;
+  for(let i=0;i<5;i++){
+   const cap=box(g,rim,x-side*.064*i,2.103+.008*i,.790,.035,.086,.14);
+   cap.rotation.z=side*.08;
+  }
+ }
+ const curve=new T.CatmullRomCurve3([vector(-.88,1.63,.723),vector(-.47,1.50,.763),vector(0,1.475,.776),vector(.47,1.50,.763),vector(.88,1.63,.723)]);
+ const cord=mesh(g,new T.TubeGeometry(curve,16,s.id==='foxguard'?.044:.031,5,false),M.rope,0,0,0);
+ cord.castShadow=false;
+ for(const side of [-1,1]){
+  const flag=box(g,M.cream,side*.48,1.427,.752,.081,.19,.020);
+  flag.rotation.z=side*.24;
+  box(g,M.cream,side*.51,1.342,.747,.078,.114,.018).rotation.z=-side*.18;
+ }
+ if(s.id==='harvest'){
+  for(const side of [-1,1])for(let i=0;i<5;i++){
+   const grain=mesh(g,sphere,rim,side*(1.05-.033*i),1.76+.061*i,.620,.037,.073,.025);
+   grain.rotation.z=side*(i%2?.52:-.43);
+  }
+ }
+ if(s.id==='snow'){
+  for(const side of [-1,1])box(g,M.cream,side*1.03,1.62,.66,.12,.21,.055);
+ }
+ if(s.id==='foxguard')for(const side of [-1,1]){
+  const x=side*1.16,z=.80;
+  box(g,M.wall,x,.25,z,.285,.42,.29);
+  box(g,M.stone,x,.48,z,.32,.06,.32);
+  mesh(g,sphere,M.cream,x,.639,z-.01,.096,.13,.089);
+  mesh(g,sphere,M.cream,x,.808,z,.070,.067,.072);
+  mesh(g,sphere,M.cream,x,.783,z+.060,.049,.034,.052);
+  mesh(g,sphere,M.black,x,.798,z+.109,.020,.012,.014);
+  for(const dx of [-.037,.037]){
+   mesh(g,smallEar,M.cream,x+dx,.881,z-.009,.036,.097,.031).rotation.z=-dx*5;
+   mesh(g,sphere,M.cream,x+dx,.548,z+.062,.028,.042,.047);
+   mesh(g,sphere,M.black,x+dx*.95,.826,z+.054,.010,.006,.006);
+  }
+  const tail=new T.CatmullRomCurve3([vector(x-side*.05,.57,z-.065),vector(x-side*.12,.59,z-.088),vector(x-side*.12,.70,z-.105),vector(x-side*.08,.747,z-.081)]);
+  mesh(g,new T.TubeGeometry(tail,9,.025,5,false),M.cream,0,0,0);
+  box(g,M.redEdge,x,.716,z+.063,.088,.084,.019).rotation.z=side*.13;
+ }
+}
+
 function createPavilion(world,scene,s,placement){
  const g=new T.Group(),M=world.M;g.name=s.name;g.position.set(placement.x,placement.y,placement.z);g.rotation.y=placement.yaw;scene.add(g);
- const red=material(s.color),dark=material('#3c3730'),roof=material('#42494b'),white=material('#eee0bc'),metal=material('#ba8847');
+ const red=material(s.color),dark=material('#3c3730'),roof=material(s.roof||'#42494b'),white=material('#eee0bc'),metal=material('#ba8847');
  const width=s.id==='sun'?2.7:2.5;
  const plinthBottom=Math.min(placement.low-placement.y-.06,-.055);
  box(g,M.wall,0,(.175+plinthBottom)/2,0,width+.37,.175-plinthBottom,1.92);box(g,M.darkWood,0,.24,-.08,width,.23,1.55);
@@ -124,7 +175,8 @@ function createPavilion(world,scene,s,placement){
  box(g,M.darkWood,0,1.78,.665,1.93,.363,.072);
  sign(g,[s.name,s.deity],s.color,0,1.78,.706,1.84,.326);
  const pivot=bell(g,M,0,1.60,.62);
- for(const x of [-1.16,1.16]){box(g,M.wall,x,.215,.80,.28,.29,.27);box(g,M.wall,x,.47,.80,.235,.18,.24);const glow=material('#f4c78a');glow.emissive.set('#cc8e47');glow.emissiveIntensity=.65;box(g,glow,x,.588,.80,.142,.13,.12);box(g,M.darkWood,x,.69,.80,.29,.06,.29);}
+ if(s.rim)decorateNewShrine(g,M,s,width);
+ for(const x of s.id==='foxguard'?[]:[-1.16,1.16]){box(g,M.wall,x,.215,.80,.28,.29,.27);box(g,M.wall,x,.47,.80,.235,.18,.24);const glow=material('#f4c78a');glow.emissive.set('#cc8e47');glow.emissiveIntensity=.65;box(g,glow,x,.588,.80,.142,.13,.12);box(g,M.darkWood,x,.69,.80,.29,.06,.29);}
  for(const [u,v,w,d,h] of [[0,-.20,width+.17,1.48,1.84],[0,.77,1.26,.51,1.01]]){
   const [x,z]=placement.point(u,v);world.physics.box(s.name,x,placement.y+h/2,z,w,h,d,placement.yaw);
  }
@@ -145,9 +197,29 @@ function createPavilion(world,scene,s,placement){
  const [fx,fz]=placement.point(.12,1.45);
  return{...s,id:'shrine-'+s.id,key:s.id,x:placement.x,y:placement.y,z:placement.z,angle:placement.yaw,group:g,range:3.4,arrival,stand,pivot,tubeSite,approach:placement.approach,shrine:s,cameraTarget:vector(fx,placement.y+1.34,fz)};
 }
+export function storefrontClearance(storefronts,x,z){
+ let clearance=Infinity;
+ for(const front of storefronts){
+  const dx=x-front.x,dz=z-front.z,sin=Math.sin(front.angle),cos=Math.cos(front.angle);
+  const across=Math.abs(dx*cos-dz*sin),depth=dx*sin+dz*cos;
+  // Preserve a continuous approach in front of each shop and its display tables.
+  const sideGap=Math.max(0,across-(front.width/2+1.45));
+  const depthGap=Math.max(-1.2-depth,depth-7,0);
+  clearance=Math.min(clearance,Math.hypot(sideGap,depthGap));
+ }
+ return clearance;
+}
+
 export function createSideShrines(world,scene){
  const shrines=[],fortuneSites=[],missing=[];
- for(const s of SHRINES){const study=s.id==='study',p=chooseClearing(world,world.places[s.place],{width:3.4,depth:2.7,min:study?12:4,max:45,treeClearance:study?4.0:1.15});
-  if(!p){missing.push(s.id);continue;}const site=createPavilion(world,scene,s,p);shrines.push(site);if(site.tubeSite)fortuneSites.push(site.tubeSite);}
+ const fronts=world.district.storefronts;
+ for(const s of SHRINES){
+  const study=s.id==='study',landmark=world.places[s.place];
+  const anchor=s.id==='wealth'?{x:-57,z:2}:landmark;
+  const accept=(x,z)=>(s.id!=='wealth'||x>-73)&&storefrontClearance(fronts,x,z)>3.15&&shrines.every(shrine=>Math.hypot(shrine.x-x,shrine.z-z)>7);
+  const p=chooseClearing(world,anchor,{width:3.4,depth:2.7,min:study?12:4,max:45,treeClearance:study?4.0:1.15,accept});
+  if(!p){missing.push(s.id);continue;}
+  const site=createPavilion(world,scene,s,p);shrines.push(site);if(site.tubeSite)fortuneSites.push(site.tubeSite);
+ }
  return{shrines,fortuneSites,missing};
 }
