@@ -7,6 +7,7 @@ import {Tree,TreeOptions,loadPreset} from './vendor/ez-tree.js';
 import {createDistrict} from './district.js';
 import {chunkTerrain} from './terrain-chunks.js';
 import {createToriiCorridor,crownRadius} from './torii-corridor.js';
+import {waterfallJunction} from './waterfall-grounds.js';
 import {createFixtureLayout} from './fixture-placement.js';
 let seed=20261025;
 export function random(){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;}
@@ -49,7 +50,7 @@ export async function buildWorld(scene,M,onProgress){
   for(const route of MAP.routes){for(let i=1;i<route.p.length;i++){
     const a=route.p[i-1],b=route.p[i],key=[a.join(','),b.join(',')].sort().join('/');if(usedSegments.has(key))continue;usedSegments.add(key);
     const samples=pathSamples([a,b],1.02);
-    for(let j=1;j<samples.length;j++){const p=samples[j];if(p.distance<.25)continue;const scale=.92+(Math.sin(p.x*.19+p.z*.08)+1)*.16;if(toriis.torii(p.x,p.z,scale,Math.atan2(p.dx,p.dz),{base:surface.height(p.x,p.z)-.015,plaque:mountainCount%13===0}))mountainCount++;}
+    for(let j=1;j<samples.length;j++){const p=samples[j];if(p.distance<.25||waterfallJunction(p.x,p.z))continue;const scale=.92+(Math.sin(p.x*.19+p.z*.08)+1)*.16;if(toriis.torii(p.x,p.z,scale,Math.atan2(p.dx,p.dz),{base:surface.height(p.x,p.z)-.015,plaque:mountainCount%13===0}))mountainCount++;}
   }}
   const nearGates=MAP.gates.filter(a=>a.p[0]>45&&a.p[0]<160&&a.p[1]<-20);
   for(const gate of nearGates){const p=surface.nearPath(...gate.p);toriis.torii(...gate.p,Math.max(.9,Math.min(2,gate.width/2.25)),p.s?Math.atan2(p.s.dx,p.s.dz):0,{plaque:true});}
